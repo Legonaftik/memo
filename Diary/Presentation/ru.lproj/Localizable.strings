@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  Diary
+
+  Created by Vladimir Pavlov on 18/06/2018.
+  Copyright © 2018 Vladimir Pavlov. All rights reserved.
+*/
+
+"Warning" = "Предупреждение";
+"Log Out" = "Выйти из аккаунта";
+"Log In" = "Войти в аккаунт";
+"You have successfully logged out." = "Вы успешно вышли из аккаунта.";
+"All the notes were deleted." = "Все заметки были успешно удалены.";
+"Authorize to access your diary" = "Авторизутесь, чтобы получить доступ к дневнику.";
+"No Title" = "Без названия";
+"Choose from gallery" = "Выбрать из галереи";
+"Take a photo" = "Сделать фото";
+"Cancel" = "Отмена";
+"How are you?" = "Как твои дела?";
+"resetSyncDate" = "Все заметки будут загружены заново. Для завершения вернитесь на экаран списка заметок.";

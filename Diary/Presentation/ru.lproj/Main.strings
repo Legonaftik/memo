@@ -1,0 +1,54 @@
+
+/* Class = "UILabel"; text = "длинный текст длинный текст длинный текст длинный текст длинный текст длинный текст длинный текст длинный текст длинный текст "; ObjectID = "4xD-6p-Z6F"; */
+"4xD-6p-Z6F.text" = "длинный текст длинный текст длинный текст длинный текст длинный текст длинный текст длинный текст длинный текст длинный текст ";
+
+/* Class = "UILabel"; text = "Заголовок"; ObjectID = "5pM-qn-99B"; */
+"5pM-qn-99B.text" = "Заголовок";
+
+/* Class = "UILabel"; text = "24 сентября 9:41"; ObjectID = "742-LE-ffQ"; */
+"742-LE-ffQ.text" = "24 сентября 9:41";
+
+/* Class = "UILabel"; text = "1000"; ObjectID = "EyI-C1-9Ri"; */
+"EyI-C1-9Ri.text" = "1000";
+
+/* Class = "UISegmentedControl"; Feu-eO-xkY.segmentTitles[0] = "List"; ObjectID = "Feu-eO-xkY"; */
+"Feu-eO-xkY.segmentTitles[0]" = "Список";
+
+/* Class = "UISegmentedControl"; Feu-eO-xkY.segmentTitles[1] = "Calendar"; ObjectID = "Feu-eO-xkY"; */
+"Feu-eO-xkY.segmentTitles[1]" = "Календарь";
+
+/* Class = "UIButton"; normalTitle = "Войти"; ObjectID = "J5Q-B9-eeA"; */
+"J5Q-B9-eeA.normalTitle" = "Войти";
+
+/* Class = "UITextField"; placeholder = "Заголовок"; ObjectID = "Lla-Jq-NzO"; */
+"Lla-Jq-NzO.placeholder" = "Заголовок";
+
+/* Class = "UIButton"; normalTitle = "Изменить дату"; ObjectID = "eOO-me-uDX"; */
+"eOO-me-uDX.normalTitle" = "Изменить дату";
+
+/* Class = "UINavigationItem"; title = "Note date"; ObjectID = "ehm-rL-ASv"; */
+"ehm-rL-ASv.title" = "Дата заметки";
+
+/* Class = "UILabel"; text = "24 сентября 9:41"; ObjectID = "h5F-N7-zJW"; */
+"h5F-N7-zJW.text" = "24 сентября 9:41";
+
+/* Class = "UITextView"; text = "Как твои дела?"; ObjectID = "iPP-6r-Iy9"; */
+"iPP-6r-Iy9.text" = "Как твои дела?";
+
+/* Class = "UITextField"; placeholder = "Заголовок"; ObjectID = "iW2-5k-qUw"; */
+"iW2-5k-qUw.placeholder" = "Заголовок";
+
+/* Class = "UILabel"; text = "18 сентября  20:46"; ObjectID = "ine-6J-RwG"; */
+"ine-6J-RwG.text" = "18 сентября  20:46";
+
+/* Class = "UITextView"; text = "Как твои дела?"; ObjectID = "ltQ-GY-LBJ"; */
+"ltQ-GY-LBJ.text" = "Как твои дела?";
+
+/* Class = "UISegmentedControl"; rQf-aZ-QjG.segmentTitles[0] = "Список"; ObjectID = "rQf-aZ-QjG"; */
+"rQf-aZ-QjG.segmentTitles[0]" = "Список";
+
+/* Class = "UISegmentedControl"; rQf-aZ-QjG.segmentTitles[1] = "Календарь"; ObjectID = "rQf-aZ-QjG"; */
+"rQf-aZ-QjG.segmentTitles[1]" = "Календарь";
+
+/* Class = "UITableViewController"; title = "Diary"; ObjectID = "yLl-33-mhU"; */
+"yLl-33-mhU.title" = "Дневник";

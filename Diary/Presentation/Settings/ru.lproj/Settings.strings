@@ -1,0 +1,15 @@
+
+/* Class = "UIButton"; normalTitle = "Log Out"; ObjectID = "7S5-2q-ZJW"; */
+"7S5-2q-ZJW.normalTitle" = "Выйти из аккаунта";
+
+/* Class = "UIButton"; normalTitle = "Delete all notes"; ObjectID = "BkL-Up-FM0"; */
+"BkL-Up-FM0.normalTitle" = "Удалить все заметки";
+
+/* Class = "UITableViewSection"; headerTitle = "Account"; ObjectID = "Dfr-XD-to2"; */
+"Dfr-XD-to2.headerTitle" = "Аккаунт";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "Di5-Tw-YgN"; */
+"Di5-Tw-YgN.title" = "Настройки";
+
+/* Class = "UITableViewSection"; headerTitle = "Notes"; ObjectID = "K5t-u1-aA0"; */
+"K5t-u1-aA0.headerTitle" = "Заметки";

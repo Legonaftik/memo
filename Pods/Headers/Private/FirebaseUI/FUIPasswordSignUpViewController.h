@@ -1,0 +1,1 @@
+../../../FirebaseUI/FirebaseAuthUI/FUIPasswordSignUpViewController.h

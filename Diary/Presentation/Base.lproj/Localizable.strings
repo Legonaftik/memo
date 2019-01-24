@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  Diary
+
+  Created by Vladimir Pavlov on 18/06/2018.
+  Copyright © 2018 Vladimir Pavlov. All rights reserved.
+*/
+
+"Warning" = "Warning";
+"Log Out" = "Log Out";
+"Log In" = "Log In";
+"You have successfully logged out." = "You have successfully logged out.";
+"All the notes were deleted." = "All the notes were deleted.";
+"Authorize to access your diary" = "Authorize to access your diary";
+"No Title" = "No Title";
+"Choose from gallery" = "Choose from gallery";
+"Take a photo" = "Take a photo";
+"Cancel" = "Cancel";
+"How are you?" = "How are you?";
+"resetSyncDate" = "All your notes will be downloaded again. You can go back to the main screen.";

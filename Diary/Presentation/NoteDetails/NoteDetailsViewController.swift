@@ -1,0 +1,72 @@
+//
+//  NoteDetailsViewController.swift
+//  Diary
+//
+//  Created by Vladimir Pavlov on 17/03/2018.
+//  Copyright © 2018 Vladimir Pavlov. All rights reserved.
+//
+
+import UIKit
+
+final class NoteDetailsViewController: UIViewController {
+
+  var notesService: IAuthorizedNoteServiceFacade!
+  var noteID: UUID!
+  private var note: Note? {
+    didSet {
+      if note != nil { setupUI(with: note!) }
+    }
+  }
+
+  private let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.timeStyle = .short
+    formatter.dateStyle = .short
+    return formatter
+  }()
+
+  // MARK: - Interface Builder
+
+  @IBOutlet private var photoImageView: UIImageView!
+  @IBOutlet private var editBarButtonItem: UIBarButtonItem!
+  @IBOutlet private var dateLabel: UILabel!
+  @IBOutlet private var titleLabel: UITextField!
+  @IBOutlet private var contentTextView: UITextView!
+  @IBOutlet private var moodControl: MoodControl!
+
+  // MARK: - View Controller lifecycle
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    getNote(with: noteID)
+  }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let editNoteSegue = R.segue.noteDetailsViewController.editNote(segue: segue) {
+      let noteEditingViewController = editNoteSegue.destination.topViewController as! NoteEditingViewController
+      noteEditingViewController.notesService = notesService
+      noteEditingViewController.noteLocalID = noteID
+    }
+  }
+
+  // MARK: - Helpers
+
+  private func getNote(with localID: UUID) {
+    do {
+      note = try notesService.note(with: noteID)
+    } catch {
+      displayAlert(message: error.localizedDescription)
+    }
+  }
+
+  private func setupUI(with note: Note) {
+    dateLabel.text = dateFormatter.string(from: note.creationDate)
+    titleLabel.text = note.title
+    contentTextView.text = note.content
+    moodControl.selectedSegmentIndex = Int(note.mood)
+
+    if let jpegData = note.image?.jpegData {
+      photoImageView.image = UIImage(data: jpegData)
+    }
+  }
+}

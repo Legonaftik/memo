@@ -1,0 +1,6 @@
+module Pods_Diary {
+  umbrella header "Pods-Diary-umbrella.h"
+
+  export *
+  module * { export * }
+}
