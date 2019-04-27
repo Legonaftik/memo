@@ -1,1 +1,1 @@
-../../../FirebaseUI/FirebaseDatabaseUI/FirebaseDatabaseUI.h
+../../../FirebaseUI/Database/FirebaseDatabaseUI/FirebaseDatabaseUI.h

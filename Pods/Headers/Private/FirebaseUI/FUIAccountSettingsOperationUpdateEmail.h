@@ -1,1 +1,1 @@
-../../../FirebaseUI/FirebaseAuthUI/AccountManagement/FUIAccountSettingsOperationUpdateEmail.h
+../../../FirebaseUI/Auth/FirebaseAuthUI/AccountManagement/FUIAccountSettingsOperationUpdateEmail.h

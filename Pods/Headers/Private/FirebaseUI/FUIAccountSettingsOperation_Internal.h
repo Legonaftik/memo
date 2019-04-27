@@ -1,1 +1,1 @@
-../../../FirebaseUI/FirebaseAuthUI/AccountManagement/FUIAccountSettingsOperation_Internal.h
+../../../FirebaseUI/Auth/FirebaseAuthUI/AccountManagement/FUIAccountSettingsOperation_Internal.h

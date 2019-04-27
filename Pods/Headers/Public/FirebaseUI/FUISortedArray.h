@@ -1,1 +1,1 @@
-../../../FirebaseUI/FirebaseDatabaseUI/FUISortedArray.h
+../../../FirebaseUI/Database/FirebaseDatabaseUI/FUISortedArray.h

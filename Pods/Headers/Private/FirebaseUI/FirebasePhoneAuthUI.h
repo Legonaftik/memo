@@ -1,1 +1,1 @@
-../../../FirebaseUI/FirebasePhoneAuthUI/FirebasePhoneAuthUI.h
+../../../FirebaseUI/PhoneAuth/FirebasePhoneAuthUI/FirebasePhoneAuthUI.h

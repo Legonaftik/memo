@@ -1,1 +1,1 @@
-../../../FirebaseUI/FirebaseFirestoreUI/FUIFirestoreTableViewDataSource.h
+../../../FirebaseUI/Firestore/FirebaseFirestoreUI/FUIFirestoreTableViewDataSource.h

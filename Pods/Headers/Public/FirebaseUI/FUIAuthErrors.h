@@ -1,1 +1,1 @@
-../../../FirebaseUI/FirebaseAuthUI/FUIAuthErrors.h
+../../../FirebaseUI/Auth/FirebaseAuthUI/FUIAuthErrors.h

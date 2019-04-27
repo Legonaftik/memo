@@ -1,1 +1,1 @@
-../../../FirebaseUI/FirebaseTwitterAuthUI/FUITwitterAuth.h
+../../../FirebaseUI/TwitterAuth/FirebaseTwitterAuthUI/FUITwitterAuth.h

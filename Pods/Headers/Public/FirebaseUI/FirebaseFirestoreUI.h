@@ -1,1 +1,1 @@
-../../../FirebaseUI/FirebaseFirestoreUI/FirebaseFirestoreUI.h
+../../../FirebaseUI/Firestore/FirebaseFirestoreUI/FirebaseFirestoreUI.h

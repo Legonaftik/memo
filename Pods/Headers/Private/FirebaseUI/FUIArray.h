@@ -1,1 +1,1 @@
-../../../FirebaseUI/FirebaseDatabaseUI/FUIArray.h
+../../../FirebaseUI/Database/FirebaseDatabaseUI/FUIArray.h
