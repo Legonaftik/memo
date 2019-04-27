@@ -1,4 +1,4 @@
-framework module FirebaseFirestore {
+module FirebaseFirestore {
   umbrella header "FirebaseFirestore-umbrella.h"
 
   export *

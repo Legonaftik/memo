@@ -1,5 +1,5 @@
 
-framework module grpc {
+module grpc {
   umbrella header "grpc.h"
 
   header "support/alloc.h"

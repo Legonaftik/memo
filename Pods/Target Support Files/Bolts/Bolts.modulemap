@@ -1,4 +1,4 @@
-framework module Bolts {
+module Bolts {
   umbrella header "Bolts-umbrella.h"
 
   export *

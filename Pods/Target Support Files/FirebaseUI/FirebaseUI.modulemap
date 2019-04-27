@@ -1,4 +1,4 @@
-framework module FirebaseUI {
+module FirebaseUI {
   umbrella header "FirebaseUI-umbrella.h"
 
   export *

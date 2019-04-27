@@ -1,4 +1,4 @@
-framework module grpcpp {
+module grpcpp {
   umbrella header "gRPC-C++-umbrella.h"
 
   export *
