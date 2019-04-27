@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4344DFC1221607D44305A628 /* libPods-Diary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE99855F8447D59B2A5760A /* libPods-Diary.a */; };
+		B45CC7D32FFEE41D86A8429C /* libPods-Diary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC2682112948FCE036D0198D /* libPods-Diary.a */; };
 		F31B6AB420D82A64004086AB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31B6AB320D82A64004086AB /* SettingsViewController.swift */; };
 		F31BB5081F8485D1000261A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BB5071F8485D1000261A1 /* AppDelegate.swift */; };
 		F31BB50D1F8485D1000261A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31BB50B1F8485D1000261A1 /* Main.storyboard */; };
@@ -48,9 +48,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8AE99855F8447D59B2A5760A /* libPods-Diary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Diary.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A6842E68EC2EF69F607F04DF /* Pods-Diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Diary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Diary/Pods-Diary.debug.xcconfig"; sourceTree = "<group>"; };
-		EBA339F7F28FCC9A59C64032 /* Pods-Diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Diary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Diary/Pods-Diary.release.xcconfig"; sourceTree = "<group>"; };
+		A64E4E9752A877098651F455 /* Pods-Diary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Diary.debug.xcconfig"; path = "Target Support Files/Pods-Diary/Pods-Diary.debug.xcconfig"; sourceTree = "<group>"; };
+		AC2682112948FCE036D0198D /* libPods-Diary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Diary.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF07B03DAA9D2268EDB814F8 /* Pods-Diary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Diary.release.xcconfig"; path = "Target Support Files/Pods-Diary/Pods-Diary.release.xcconfig"; sourceTree = "<group>"; };
 		F31B6AB320D82A64004086AB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F31BB5041F8485D1000261A1 /* Diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31BB5071F8485D1000261A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,28 +100,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4344DFC1221607D44305A628 /* libPods-Diary.a in Frameworks */,
+				B45CC7D32FFEE41D86A8429C /* libPods-Diary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		161F6D1C4FB2F96C1835B563 /* Frameworks */ = {
+		87B1E3FB690BF6748AC5E0BD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8AE99855F8447D59B2A5760A /* libPods-Diary.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		664F52AFE77CD21EE049328C /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				A6842E68EC2EF69F607F04DF /* Pods-Diary.debug.xcconfig */,
-				EBA339F7F28FCC9A59C64032 /* Pods-Diary.release.xcconfig */,
+				A64E4E9752A877098651F455 /* Pods-Diary.debug.xcconfig */,
+				DF07B03DAA9D2268EDB814F8 /* Pods-Diary.release.xcconfig */,
 			);
 			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		EA6AC3CA9EA0DC35B07B21E8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AC2682112948FCE036D0198D /* libPods-Diary.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F31B6AB220D82A41004086AB /* Settings */ = {
@@ -139,8 +140,8 @@
 				F3C0C205214328CF00F7C344 /* R.generated.swift */,
 				F31BB5061F8485D1000261A1 /* Diary */,
 				F31BB5051F8485D1000261A1 /* Products */,
-				664F52AFE77CD21EE049328C /* Pods */,
-				161F6D1C4FB2F96C1835B563 /* Frameworks */,
+				87B1E3FB690BF6748AC5E0BD /* Pods */,
+				EA6AC3CA9EA0DC35B07B21E8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -298,13 +299,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F31BB5161F8485D1000261A1 /* Build configuration list for PBXNativeTarget "Diary" */;
 			buildPhases = (
-				A859A0354A77EACC37301712 /* [CP] Check Pods Manifest.lock */,
+				6521DB863585F78F6F1B56A9 /* [CP] Check Pods Manifest.lock */,
 				F3F101FD20556F1E0052701E /* R.Swift */,
 				F31BB5001F8485D1000261A1 /* Sources */,
 				F31BB5011F8485D1000261A1 /* Frameworks */,
 				F31BB5021F8485D1000261A1 /* Resources */,
-				26A8A5DE48D4C6FF7B170551 /* [CP] Embed Pods Frameworks */,
-				5992E7513BF56679AE30C79D /* [CP] Copy Pods Resources */,
+				690DC3547F8833CAE5D80651 /* [CP] Embed Pods Frameworks */,
+				3F4E39A4A5C673472124313E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -373,30 +374,12 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		26A8A5DE48D4C6FF7B170551 /* [CP] Embed Pods Frameworks */ = {
+		3F4E39A4A5C673472124313E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Diary/Pods-Diary-frameworks.sh",
-				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Diary/Pods-Diary-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5992E7513BF56679AE30C79D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Diary/Pods-Diary-resources.sh",
@@ -413,6 +396,8 @@
 				"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/gRPCCertificates.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAnonymousAuthUI.bundle",
@@ -431,22 +416,50 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Diary/Pods-Diary-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A859A0354A77EACC37301712 /* [CP] Check Pods Manifest.lock */ = {
+		6521DB863585F78F6F1B56A9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Diary-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		690DC3547F8833CAE5D80651 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Diary/Pods-Diary-frameworks.sh",
+				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Diary/Pods-Diary-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F3F101FD20556F1E0052701E /* R.Swift */ = {
@@ -459,7 +472,7 @@
 			);
 			name = R.Swift;
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -647,7 +660,7 @@
 		};
 		F31BB5171F8485D1000261A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6842E68EC2EF69F607F04DF /* Pods-Diary.debug.xcconfig */;
+			baseConfigurationReference = A64E4E9752A877098651F455 /* Pods-Diary.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -666,7 +679,7 @@
 		};
 		F31BB5181F8485D1000261A1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EBA339F7F28FCC9A59C64032 /* Pods-Diary.release.xcconfig */;
+			baseConfigurationReference = DF07B03DAA9D2268EDB814F8 /* Pods-Diary.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
