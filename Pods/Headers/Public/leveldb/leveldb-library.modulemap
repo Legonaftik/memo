@@ -1,6 +1,1 @@
-module leveldb {
-  umbrella header "leveldb-library-umbrella.h"
-
-  export *
-  module * { export * }
-}
+../../../Target Support Files/leveldb-library/leveldb-library.modulemap

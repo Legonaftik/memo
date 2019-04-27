@@ -1,6 +1,1 @@
-module grpcpp {
-  umbrella header "gRPC-C++-umbrella.h"
-
-  export *
-  module * { export * }
-}
+../../../Target Support Files/gRPC-C++/gRPC-C++.modulemap

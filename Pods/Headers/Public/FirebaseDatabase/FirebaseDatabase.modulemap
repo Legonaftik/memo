@@ -1,6 +1,1 @@
-module FirebaseDatabase {
-  umbrella header "FirebaseDatabase-umbrella.h"
-
-  export *
-  module * { export * }
-}
+../../../Target Support Files/FirebaseDatabase/FirebaseDatabase.modulemap
