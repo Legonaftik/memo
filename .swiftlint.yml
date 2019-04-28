@@ -4,6 +4,8 @@ disabled_rules:
 
 opt_in_rules:
   - todo
+
+analyzer_rules:
   - unused_import
   - explicit_self
 
