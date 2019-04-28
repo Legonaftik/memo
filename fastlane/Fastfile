@@ -16,9 +16,16 @@
 default_platform(:ios)
 
 platform :ios do
+
+  desc "Run tests"
+  lane :tests do
+    scan(configuration: "Debug")
+  end
+
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    build_app(workspace: "Diary.xcworkspace", scheme: "Diary")
-    upload_to_testflight
+    increment_build_number(build_number: latest_testflight_build_number + 1)
+    gym
+    pilot
   end
 end
