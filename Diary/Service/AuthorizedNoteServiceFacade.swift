@@ -36,7 +36,7 @@ final class AuthorizedNoteServiceFacade: IAuthorizedNoteServiceFacade {
   }
 
   func syncNotes(completion: @escaping (Result<Void>) -> Void) {
-    authService.updateAccessToken { [unowned self] updateAccessTokenResult in
+    self.authService.updateAccessToken { [unowned self] updateAccessTokenResult in
       switch updateAccessTokenResult {
       case .failure(let error):
         completion(.failure(error))
@@ -47,23 +47,23 @@ final class AuthorizedNoteServiceFacade: IAuthorizedNoteServiceFacade {
   }
 
   func fetchNotes(for searchQuery: String) throws -> [Note] {
-    return try notesService.fetchNotes(for: searchQuery)
+    return try self.notesService.fetchNotes(for: searchQuery)
   }
 
   func fetchNotes(for date: Date) throws -> [Note] {
-    return try notesService.fetchNotes(for: date)
+    return try self.notesService.fetchNotes(for: date)
   }
 
   func dailyNotesInfo() throws -> [Date: (UInt, UInt)] {
-    return try notesService.dailyNotesInfo()
+    return try self.notesService.dailyNotesInfo()
   }
 
   func note(with localID: UUID) throws -> Note {
-    return try notesService.note(with: localID)
+    return try self.notesService.note(with: localID)
   }
 
   func create(_ note: Note, completion: @escaping (Result<Note>) -> Void) {
-    authService.updateAccessToken { [unowned self] updateAccessTokenResult in
+    self.authService.updateAccessToken { [unowned self] updateAccessTokenResult in
       switch updateAccessTokenResult {
       case .failure:
         self.notesService.create(note, token: nil, completion: completion)
@@ -74,7 +74,7 @@ final class AuthorizedNoteServiceFacade: IAuthorizedNoteServiceFacade {
   }
 
   func update(_ note: Note, completion: @escaping (Result<Note>) -> Void) {
-    authService.updateAccessToken { [unowned self] updateAccessTokenResult in
+    self.authService.updateAccessToken { [unowned self] updateAccessTokenResult in
       switch updateAccessTokenResult {
       case .failure:
         self.notesService.update(note, token: nil, completion: completion)
@@ -85,7 +85,7 @@ final class AuthorizedNoteServiceFacade: IAuthorizedNoteServiceFacade {
   }
 
   func deleteAllNotes(completion: @escaping (Result<Void>) -> Void) {
-    authService.updateAccessToken { [unowned self] updateTokenResult in
+    self.authService.updateAccessToken { [unowned self] updateTokenResult in
       switch updateTokenResult {
       case .failure(let error):
         completion(.failure(error))
@@ -98,10 +98,10 @@ final class AuthorizedNoteServiceFacade: IAuthorizedNoteServiceFacade {
   func image(with url: URL,
              for note: Note,
              completion: @escaping (Result<Data>) -> Void) {
-    notesService.image(with: url, for: note, completion: completion)
+    self.notesService.image(with: url, for: note, completion: completion)
   }
 
   func isValid(note: Note) -> Bool {
-    return notesService.isValid(note: note)
+    return self.notesService.isValid(note: note)
   }
 }

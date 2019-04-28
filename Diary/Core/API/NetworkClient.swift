@@ -37,7 +37,7 @@ final class NetworkClient: INetworkClient {
   }()
 
   func serverTime(completion: @escaping (Result<Date>) -> Void) {
-    let request = requestFactory.makeServerTimeRequest()
+    let request = self.requestFactory.makeServerTimeRequest()
 
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
       if let error = error {
@@ -61,7 +61,7 @@ final class NetworkClient: INetworkClient {
   }
 
   func notes(token: String, beginDate: Date? = nil, completion: @escaping (Result<NotesResponse>) -> Void) {
-    let request = requestFactory.makeNotesRequest(token: token, beginDate: beginDate)
+    let request = self.requestFactory.makeNotesRequest(token: token, beginDate: beginDate)
 
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
       if let error = error {
@@ -85,7 +85,7 @@ final class NetworkClient: INetworkClient {
   }
 
   func create(_ note: Note, token: String, completion: @escaping (Result<Note>) -> Void) {
-    guard let request = requestFactory.makeCreateNoteRequest(token: token, note: note) else {
+    guard let request = self.requestFactory.makeCreateNoteRequest(token: token, note: note) else {
       completion(.failure(NetworkClientError.requestConfigurationError))
       return
     }
@@ -114,9 +114,9 @@ final class NetworkClient: INetworkClient {
   func update(_ note: Note, token: String, completion: @escaping (Result<Note>) -> Void) {
     let req: URLRequest?
     if note.remoteID == 0 {
-      req = requestFactory.makeCreateNoteRequest(token: token, note: note)
+      req = self.requestFactory.makeCreateNoteRequest(token: token, note: note)
     } else {
-      req = requestFactory.makeUpdateNoteRequest(token: token, note: note)
+      req = self.requestFactory.makeUpdateNoteRequest(token: token, note: note)
     }
 
     guard let request = req else {
@@ -150,7 +150,7 @@ final class NetworkClient: INetworkClient {
       completion(.failure(NetworkClientError.logicalError))
       return
     }
-    let request = requestFactory.makeDeleteNoteRequest(token: token, remoteID: remoteID)
+    let request = self.requestFactory.makeDeleteNoteRequest(token: token, remoteID: remoteID)
 
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
       if let error = error {
@@ -174,7 +174,9 @@ final class NetworkClient: INetworkClient {
 
   func uploadImage(with imageData: Data, for note: Note, token: String,
                    completion: @escaping (Result<URL>) -> Void) {
-    let request = requestFactory.makeUploadImageRequest(token: token, imageJPEG: imageData, note: note)
+    let request = self.requestFactory.makeUploadImageRequest(token: token,
+                                                             imageJPEG: imageData,
+                                                             note: note)
 
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
       if let error = error {
@@ -223,7 +225,7 @@ final class NetworkClient: INetworkClient {
   // - Helpers
 
   private func noteWithUpdatedRemoteID(for note: Note, responseData data: Data) throws -> Note {
-    let createNoteResponse = try decoder.decode(CreateNoteResponse.self, from: data)
+    let createNoteResponse = try self.decoder.decode(CreateNoteResponse.self, from: data)
     var noteWithUpdatedRemoteID = note
     noteWithUpdatedRemoteID.remoteID = createNoteResponse.remoteID
     return noteWithUpdatedRemoteID

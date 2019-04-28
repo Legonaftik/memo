@@ -15,8 +15,8 @@ final class NoteEditingViewController: UIViewController {
   var noteLocalID: UUID? // If not set then we're in creating mode (not editing)
   private var existingNote: Note? {
     didSet {
-      if let existingNote = existingNote {
-        setupUIForNote(existingNote)
+      if let existingNote = self.existingNote {
+        self.setupUIForNote(existingNote)
       }
     }
   }
@@ -36,23 +36,23 @@ final class NoteEditingViewController: UIViewController {
   @IBOutlet private var moodControl: MoodControl!
 
   @IBAction private func cancel(_ sender: UIBarButtonItem) {
-    dismiss(animated: true)
+    self.dismiss(animated: true)
   }
 
   @IBAction private func done(_ sender: UIBarButtonItem) {
-    if let existingNote = existingNote {
-      editNote(existingNote)
+    if let existingNote = self.existingNote {
+      self.editNote(existingNote)
     } else {
-      createNewNote()
+      self.createNewNote()
     }
   }
 
   @IBAction private func selectPhoto(_ sender: UITapGestureRecognizer) {
-    presentPhotoSelectionActionSheet()
+    self.presentPhotoSelectionActionSheet()
   }
 
   @IBAction private func titleDidChange() {
-    updateDoneButtonAvailability()
+    self.updateDoneButtonAvailability()
   }
 
   // MARK: - View Controller lifecycle
@@ -60,17 +60,17 @@ final class NoteEditingViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    hideKeyboardWhenTappedAround()
-    addObserversForKeyboardAppearance()
+    self.hideKeyboardWhenTappedAround()
+    self.addObserversForKeyboardAppearance()
 
-    if let noteLocalID = noteLocalID {
-      getNote(with: noteLocalID)
-      contentTextView.textColor = .black
+    if let noteLocalID = self.noteLocalID {
+      self.getNote(with: noteLocalID)
+      self.contentTextView.textColor = .black
     } else {
-      dateLabel.text = dateFormatter.string(from: Date())
-      contentTextView.textColor = .lightGray
+      self.dateLabel.text = dateFormatter.string(from: Date())
+      self.contentTextView.textColor = .lightGray
     }
-    contentLengthLeftLabel.text = String(maximumContentLength - contentTextView.text.count)
+    self.contentLengthLeftLabel.text = String(self.maximumContentLength - self.contentTextView.text.count)
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -84,22 +84,22 @@ final class NoteEditingViewController: UIViewController {
 
   private func editNote(_ note: Note) {
     let image: MemoImage?
-    if photoImageView.image!.isEqual(R.image.photoPlaceholder()) {
+    if self.photoImageView.image!.isEqual(R.image.photoPlaceholder()) {
       image = nil
     } else {
-      let jpegData = photoImageView.image!.jpegData(compressionQuality: 1)!
+      let jpegData = self.photoImageView.image!.jpegData(compressionQuality: 1)!
       image = MemoImage(jpegData: jpegData, remoteURL: nil)
     }
 
-    let updatedNote = Note(localID: note.localID, remoteID: note.remoteID, content: contentTextView.text,
-                           creationDate: dateFormatter.date(from: dateLabel.text!) ?? Date(),
-                           image: image, mood: UInt8(moodControl.selectedSegmentIndex),
-                           title: titleLabel.text, isSynced: false, toBeDeleted: false)
+    let updatedNote = Note(localID: note.localID, remoteID: note.remoteID, content: self.contentTextView.text,
+                           creationDate: dateFormatter.date(from: self.dateLabel.text!) ?? Date(),
+                           image: image, mood: UInt8(self.moodControl.selectedSegmentIndex),
+                           title: self.titleLabel.text, isSynced: false, toBeDeleted: false)
 
-    cancelButton.isEnabled = false
-    doneButton.isEnabled = false
-    notesService.update(updatedNote) { [weak self] updateResult in
-      guard let `self` = self else { return }
+    self.cancelButton.isEnabled = false
+    self.doneButton.isEnabled = false
+    self.notesService.update(updatedNote) { [weak self] updateResult in
+      guard let self = self else { return }
 
       DispatchQueue.main.async {
         switch updateResult {
@@ -116,10 +116,10 @@ final class NoteEditingViewController: UIViewController {
   }
 
   private func createNewNote() {
-    cancelButton.isEnabled = false
-    doneButton.isEnabled = false
-    notesService.create(makeNoteFromUIState()) { [weak self] createResult in
-      guard let `self` = self else { return }
+    self.cancelButton.isEnabled = false
+    self.doneButton.isEnabled = false
+    self.notesService.create(self.makeNoteFromUIState()) { [weak self] createResult in
+      guard let self = self else { return }
 
       DispatchQueue.main.async {
         switch createResult {
@@ -138,22 +138,22 @@ final class NoteEditingViewController: UIViewController {
   // MARK: - Helpers
 
   private func getNote(with localID: UUID) {
-    doneButton.isEnabled = false
+    self.doneButton.isEnabled = false
     do {
-      existingNote = try notesService.note(with: localID)
+      self.existingNote = try self.notesService.note(with: localID)
     } catch {
-      displayAlert(message: error.localizedDescription)
+      self.displayAlert(message: error.localizedDescription)
     }
-    doneButton.isEnabled = true
+    self.doneButton.isEnabled = true
   }
 
   private func setupUIForNote(_ note: Note) {
-    dateLabel.text = dateFormatter.string(from: note.creationDate)
-    titleLabel.text = note.title
-    contentTextView.text = note.content
-    moodControl.selectedSegmentIndex = Int(note.mood)
+    self.dateLabel.text = dateFormatter.string(from: note.creationDate)
+    self.titleLabel.text = note.title
+    self.contentTextView.text = note.content
+    self.moodControl.selectedSegmentIndex = Int(note.mood)
     if let jpegData = note.image?.jpegData {
-      photoImageView.image = UIImage(data: jpegData)
+      self.photoImageView.image = UIImage(data: jpegData)
     }
   }
 
@@ -180,33 +180,33 @@ final class NoteEditingViewController: UIViewController {
     alertController.addAction(cameraAction)
     alertController.addAction(cancelAction)
 
-    present(alertController, animated: true)
+    self.present(alertController, animated: true)
   }
 
   private func makeNoteFromUIState() -> Note {
     let content: String?
-    if !contentTextView.text.isEmpty && contentTextView.text != R.string.localizable.howAreYou() {
-      content = contentTextView.text
+    if !self.contentTextView.text.isEmpty && self.contentTextView.text != R.string.localizable.howAreYou() {
+      content = self.contentTextView.text
     } else {
       content = nil
     }
 
     let image: MemoImage?
-    if photoImageView.image!.isEqual(R.image.photoPlaceholder()) {
+    if self.photoImageView.image!.isEqual(R.image.photoPlaceholder()) {
       image = nil
     } else {
-      let jpegData = photoImageView.image!.jpegData(compressionQuality: 1)!
+      let jpegData = self.photoImageView.image!.jpegData(compressionQuality: 1)!
       image = MemoImage(jpegData: jpegData, remoteURL: nil)
     }
 
     return Note(localID: UUID(), remoteID: nil, content: content,
                 creationDate: dateFormatter.date(from: dateLabel.text!) ?? Date(),
-                image: image, mood: UInt8(moodControl.selectedSegmentIndex),
-                title: titleLabel.text, isSynced: false, toBeDeleted: false)
+                image: image, mood: UInt8(self.moodControl.selectedSegmentIndex),
+                title: self.titleLabel.text, isSynced: false, toBeDeleted: false)
   }
 
   private func updateDoneButtonAvailability() {
-    doneButton.isEnabled = notesService.isValid(note: makeNoteFromUIState())
+    self.doneButton.isEnabled = self.notesService.isValid(note: self.makeNoteFromUIState())
   }
 }
 
@@ -221,9 +221,9 @@ extension NoteEditingViewController: UITextFieldDelegate {
                  shouldChangeCharactersIn range: NSRange,
                  replacementString string: String) -> Bool {
     guard let textFieldText = textField.text else {
-      return string.count <= maximumTitleLength
+      return string.count <= self.maximumTitleLength
     }
-    return textFieldText.count + string.count <= maximumTitleLength
+    return textFieldText.count + string.count <= self.maximumTitleLength
   }
 }
 
@@ -241,18 +241,18 @@ extension NoteEditingViewController: UITextViewDelegate {
       textView.text = R.string.localizable.howAreYou()
       textView.textColor = .lightGray
     }
-    updateDoneButtonAvailability()
+    self.updateDoneButtonAvailability()
   }
 
   func textViewDidChange(_ textView: UITextView) {
-    contentLengthLeftLabel.text = String(maximumContentLength - textView.text.count)
-    updateDoneButtonAvailability()
+    self.contentLengthLeftLabel.text = String(self.maximumContentLength - textView.text.count)
+    self.updateDoneButtonAvailability()
   }
 
   func textView(_ textView: UITextView,
                 shouldChangeTextIn range: NSRange,
                 replacementText text: String) -> Bool {
-    return textView.text.count + text.count <= maximumContentLength
+    return textView.text.count + text.count <= self.maximumContentLength
   }
 }
 
@@ -261,22 +261,22 @@ extension NoteEditingViewController: UIImagePickerControllerDelegate, UINavigati
   func imagePickerController(_ picker: UIImagePickerController,
                              didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
     if let image = info[.originalImage] as? UIImage {
-      photoImageView.image = image
+      self.photoImageView.image = image
     }
-    updateDoneButtonAvailability()
-    dismiss(animated: true)
+    self.updateDoneButtonAvailability()
+    self.dismiss(animated: true)
   }
 
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-    updateDoneButtonAvailability()
-    dismiss(animated: true)
+    self.updateDoneButtonAvailability()
+    self.dismiss(animated: true)
   }
 }
 
 extension NoteEditingViewController: DatePickerViewControllerDelegate {
 
   func datePicker(_ datePicker: DatePickerViewController, didSelect date: Date) {
-    dateLabel.text = dateFormatter.string(from: date)
+    self.dateLabel.text = dateFormatter.string(from: date)
   }
 }
 

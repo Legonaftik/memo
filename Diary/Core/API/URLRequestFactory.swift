@@ -17,11 +17,11 @@ struct URLRequestFactory {
   }
 
   func makeServerTimeRequest() -> URLRequest {
-    return URLRequest(url: baseURL.appendingPathComponent("get_server_time"))
+    return URLRequest(url: self.baseURL.appendingPathComponent("get_server_time"))
   }
 
   func makeNotesRequest(token: String, beginDate: Date? = nil) -> URLRequest {
-    let url = baseURL.appendingPathComponent(PathComponent.notes.rawValue)
+    let url = self.baseURL.appendingPathComponent(PathComponent.notes.rawValue)
 
     var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
     if let beginDate = beginDate {
@@ -35,7 +35,7 @@ struct URLRequestFactory {
   }
 
   func makeCreateNoteRequest(token: String, note: Note, timeoutInterval: TimeInterval = 30) -> URLRequest? {
-    var request = URLRequest(url: baseURL.appendingPathComponent(PathComponent.note.rawValue),
+    var request = URLRequest(url: self.baseURL.appendingPathComponent(PathComponent.note.rawValue),
                              cachePolicy: .useProtocolCachePolicy,
                              timeoutInterval: timeoutInterval)
     request.httpMethod = HTTPMethod.post.rawValue
@@ -54,7 +54,7 @@ struct URLRequestFactory {
   }
 
   func makeUpdateNoteRequest(token: String, note: Note, timeoutInterval: TimeInterval = 30) -> URLRequest? {
-    var request = URLRequest(url: baseURL.appendingPathComponent(PathComponent.note.rawValue),
+    var request = URLRequest(url: self.baseURL.appendingPathComponent(PathComponent.note.rawValue),
                              cachePolicy: .useProtocolCachePolicy,
                              timeoutInterval: timeoutInterval)
     request.httpMethod = HTTPMethod.patch.rawValue
@@ -73,7 +73,7 @@ struct URLRequestFactory {
   }
 
   func makeDeleteNoteRequest(token: String, remoteID: UInt) -> URLRequest {
-    var urlComponents = URLComponents(url: baseURL.appendingPathComponent(PathComponent.note.rawValue),
+    var urlComponents = URLComponents(url: self.baseURL.appendingPathComponent(PathComponent.note.rawValue),
                                       resolvingAgainstBaseURL: false)!
     let remoteIDQueryItem = URLQueryItem(name: "remote_id", value: String(remoteID))
     urlComponents.queryItems = [remoteIDQueryItem]
@@ -85,7 +85,7 @@ struct URLRequestFactory {
   }
 
   func makeUploadImageRequest(token: String, imageJPEG: Data, note: Note) -> URLRequest {
-    let url = baseURL.appendingPathComponent(PathComponent.image.rawValue)
+    let url = self.baseURL.appendingPathComponent(PathComponent.image.rawValue)
     var urlComponents = URLComponents(url: url,
                                       resolvingAgainstBaseURL: false)!
 

@@ -29,7 +29,7 @@ final class CoreDataNotesStorage: INotesStorage {
       request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, contentPredicate])
     }
 
-    let notes = try context.fetch(request)
+    let notes = try self.context.fetch(request)
     let plainNotes = notes.map { Diary.note(from: $0) }
     return plainNotes
   }
@@ -49,7 +49,7 @@ final class CoreDataNotesStorage: INotesStorage {
     let toPredicate = NSPredicate(format: "%K < %@", argumentArray: [#keyPath(NoteMO.creationDate), dateTo])
     request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
 
-    let notes = try context.fetch(request)
+    let notes = try self.context.fetch(request)
     let plainNotes = notes.map { Diary.note(from: $0) }
     return plainNotes
   }
@@ -58,7 +58,7 @@ final class CoreDataNotesStorage: INotesStorage {
     let request: NSFetchRequest<NoteMO> = NoteMO.fetchRequest()
     request.returnsObjectsAsFaults = false
 
-    let notes = try context.fetch(request)
+    let notes = try self.context.fetch(request)
 
     var result: [Date: (UInt, UInt)] = [:]
     for note in notes {
@@ -86,9 +86,9 @@ final class CoreDataNotesStorage: INotesStorage {
   }
 
   func create(_ note: Note) throws -> Note {
-    let noteMO = NoteMO(context: context)
+    let noteMO = NoteMO(context: self.context)
     updateNoteMO(noteMO, with: note)
-    try context.save()
+    try self.context.save()
     return note
   }
 
@@ -97,11 +97,11 @@ final class CoreDataNotesStorage: INotesStorage {
     request.returnsObjectsAsFaults = false
     request.predicate = NSPredicate(format: "%K == %@", #keyPath(NoteMO.localID), note.localID as CVarArg)
 
-    let notes = try context.fetch(request)
+    let notes = try self.context.fetch(request)
     guard notes.count == 1 else { fatalError("Database contains duplicates") }
     guard let noteMO = notes.first else { throw NotesStorageError.noteNotFound }
     updateNoteMO(noteMO, with: note)
-    try context.save()
+    try self.context.save()
     return note
   }
 
@@ -112,7 +112,7 @@ final class CoreDataNotesStorage: INotesStorage {
     request.predicate = NSPredicate(format: "%K IN %@", #keyPath(NoteMO.localID), localIDs)
 
     // Update existing notes
-    let outdatedNotesMOs = try context.fetch(request)
+    let outdatedNotesMOs = try self.context.fetch(request)
     for outdatedNoteMO in outdatedNotesMOs {
       guard let note = findNote(with: outdatedNoteMO.localID!, in: notes) else { continue }
       updateNoteMO(outdatedNoteMO, with: note)
@@ -122,11 +122,11 @@ final class CoreDataNotesStorage: INotesStorage {
     let processedNotesIDs = outdatedNotesMOs.compactMap { $0.localID }
     let newNotes = notes.filter { !processedNotesIDs.contains($0.localID) }
     for newNote in newNotes {
-      let newNoteMO = NoteMO(context: context)
+      let newNoteMO = NoteMO(context: self.context)
       updateNoteMO(newNoteMO, with: newNote)
     }
 
-    try context.save()
+    try self.context.save()
   }
 
   func outdatedNotes() throws -> [Note] {
@@ -134,7 +134,7 @@ final class CoreDataNotesStorage: INotesStorage {
     request.returnsObjectsAsFaults = false
     request.predicate = NSPredicate(format: "%K == false", #keyPath(NoteMO.isSynced))
 
-    let notes = try context.fetch(request)
+    let notes = try self.context.fetch(request)
     let plainNotes = notes.map { Diary.note(from: $0) }
     return plainNotes
   }
@@ -144,13 +144,13 @@ final class CoreDataNotesStorage: INotesStorage {
     request.returnsObjectsAsFaults = false
     request.predicate = NSPredicate(format: "%K == %@", #keyPath(NoteMO.localID), note.localID as CVarArg)
 
-    let notes = try context.fetch(request)
+    let notes = try self.context.fetch(request)
     guard notes.count <= 1 else { fatalError("Database contains duplicates") }
     guard let noteMO = notes.first else {
       throw NotesStorageError.noteNotFound
     }
-    context.delete(noteMO)
-    try context.save()
+    self.context.delete(noteMO)
+    try self.context.save()
     return true
   }
 
@@ -164,18 +164,18 @@ final class CoreDataNotesStorage: INotesStorage {
       ]
     )
 
-    let notesMOs = try context.fetch(request)
+    let notesMOs = try self.context.fetch(request)
     for noteMO in notesMOs {
-      context.delete(noteMO)
+      self.context.delete(noteMO)
     }
-    try context.save()
+    try self.context.save()
   }
 
   func deleteAllNotes() throws {
     let notesRequest: NSFetchRequest<NSFetchRequestResult> = NoteMO.fetchRequest()
     let deleteRequest = NSBatchDeleteRequest(fetchRequest: notesRequest)
-    try context.execute(deleteRequest)
-    try context.save()
+    try self.context.execute(deleteRequest)
+    try self.context.save()
   }
 }
 

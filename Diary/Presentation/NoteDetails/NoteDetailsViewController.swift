@@ -14,7 +14,9 @@ final class NoteDetailsViewController: UIViewController {
   var noteID: UUID!
   private var note: Note? {
     didSet {
-      if note != nil { setupUI(with: note!) }
+      if let note = self.note {
+        self.setupUI(with: note)
+      }
     }
   }
 
@@ -38,14 +40,14 @@ final class NoteDetailsViewController: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    getNote(with: noteID)
+    self.getNote(with: self.noteID)
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let editNoteSegue = R.segue.noteDetailsViewController.editNote(segue: segue) {
       let noteEditingViewController = editNoteSegue.destination.topViewController as! NoteEditingViewController
-      noteEditingViewController.notesService = notesService
-      noteEditingViewController.noteLocalID = noteID
+      noteEditingViewController.notesService = self.notesService
+      noteEditingViewController.noteLocalID = self.noteID
     }
   }
 
@@ -53,20 +55,20 @@ final class NoteDetailsViewController: UIViewController {
 
   private func getNote(with localID: UUID) {
     do {
-      note = try notesService.note(with: noteID)
+      self.note = try self.notesService.note(with: self.noteID)
     } catch {
-      displayAlert(message: error.localizedDescription)
+      self.displayAlert(message: error.localizedDescription)
     }
   }
 
   private func setupUI(with note: Note) {
-    dateLabel.text = dateFormatter.string(from: note.creationDate)
-    titleLabel.text = note.title
-    contentTextView.text = note.content
-    moodControl.selectedSegmentIndex = Int(note.mood)
+    self.dateLabel.text = self.dateFormatter.string(from: note.creationDate)
+    self.titleLabel.text = note.title
+    self.contentTextView.text = note.content
+    self.moodControl.selectedSegmentIndex = Int(note.mood)
 
     if let jpegData = note.image?.jpegData {
-      photoImageView.image = UIImage(data: jpegData)
+      self.photoImageView.image = UIImage(data: jpegData)
     }
   }
 }

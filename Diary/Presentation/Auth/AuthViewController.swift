@@ -12,7 +12,7 @@ import LocalAuthentication
 final class AuthViewController: UIViewController {
 
   @IBAction private func logIn() {
-    startLocalAuthentication()
+    self.startLocalAuthentication()
   }
 
   private func startLocalAuthentication() {

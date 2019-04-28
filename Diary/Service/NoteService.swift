@@ -44,7 +44,7 @@ final class NoteService: INoteService {
       return
     }
 
-    networkClient.serverTime { [unowned self] serverTimeResult in
+    self.networkClient.serverTime { [unowned self] serverTimeResult in
       switch serverTimeResult {
       case .failure(let error):
         completion(.failure(error))
@@ -84,28 +84,28 @@ final class NoteService: INoteService {
   }
 
   func fetchNotes(for searchQuery: String) throws -> [Note] {
-    return try notesStorage.notes(for: searchQuery)
+    return try self.notesStorage.notes(for: searchQuery)
   }
 
   func fetchNotes(for date: Date) throws -> [Note] {
-    return try notesStorage.notes(for: date)
+    return try self.notesStorage.notes(for: date)
   }
 
   func dailyNotesInfo() throws -> [Date: (UInt, UInt)] {
-    return try notesStorage.dailyNotesInfo()
+    return try self.notesStorage.dailyNotesInfo()
   }
 
   func note(with localID: UUID) throws -> Note {
-    return try notesStorage.note(with: localID)
+    return try self.notesStorage.note(with: localID)
   }
 
   func create(_ note: Note, token: String?, completion: @escaping (Result<Note>) -> Void) {
     guard let token = token else {
-      completion(createLocally(note, isSynced: false))
+      completion(self.createLocally(note, isSynced: false))
       return
     }
 
-    networkClient.create(note, token: token) { [unowned self] createNoteResult in
+    self.networkClient.create(note, token: token) { [unowned self] createNoteResult in
       switch createNoteResult {
       case .failure:
         completion(self.createLocally(note, isSynced: false))
@@ -129,11 +129,11 @@ final class NoteService: INoteService {
 
   func update(_ note: Note, token: String?, completion: @escaping (Result<Note>) -> Void) {
     guard let token = token else {
-      completion(updateLocally(note, isSynced: false))
+      completion(self.updateLocally(note, isSynced: false))
       return
     }
 
-    networkClient.update(note, token: token) { [unowned self] result in
+    self.networkClient.update(note, token: token) { [unowned self] result in
       switch result {
       case .failure:
         completion(self.updateLocally(note, isSynced: false))
@@ -156,7 +156,7 @@ final class NoteService: INoteService {
   }
 
   func deleteAllNotes(token: String, completion: @escaping (Result<Void>) -> Void) {
-    networkClient.deleteAllNotes(token: token) { [unowned self] result in
+    self.networkClient.deleteAllNotes(token: token) { [unowned self] result in
       switch result {
       case .failure(let error):
         completion(.failure(error))
@@ -169,7 +169,7 @@ final class NoteService: INoteService {
   func image(with url: URL,
              for note: Note,
              completion: @escaping (Result<Data>) -> Void) {
-    networkClient.image(with: url) { [unowned self] result in
+    self.networkClient.image(with: url) { [unowned self] result in
       switch result {
       case .failure(let error):
         completion(.failure(error))
@@ -184,7 +184,7 @@ final class NoteService: INoteService {
   }
 
   func resetSyncState() {
-    userPreferencesStorage.lastNotesSyncDate = nil
+    self.userPreferencesStorage.lastNotesSyncDate = nil
   }
 
   func isValid(note: Note) -> Bool {
@@ -199,18 +199,18 @@ final class NoteService: INoteService {
   private func createLocally(_ note: Note, isSynced: Bool) -> Result<Note> {
     var noteWithCorrectSyncStatus = note
     noteWithCorrectSyncStatus.isSynced = isSynced
-    return tryToCreateNote(noteWithCorrectSyncStatus)
+    return self.tryToCreateNote(noteWithCorrectSyncStatus)
   }
 
   private func updateLocally(_ note: Note, isSynced: Bool) -> Result<Note> {
     var noteWithCorrectSyncStatus = note
     noteWithCorrectSyncStatus.isSynced = isSynced
-    return tryToUpdateNote(noteWithCorrectSyncStatus)
+    return self.tryToUpdateNote(noteWithCorrectSyncStatus)
   }
 
   private func tryToFetchNotes() -> Result<[Note]> {
     do {
-      let localNotes = try fetchNotes(for: "")
+      let localNotes = try self.fetchNotes(for: "")
       return .success(localNotes)
     } catch {
       return .failure(error)
@@ -219,7 +219,7 @@ final class NoteService: INoteService {
 
   private func tryToCreateNote(_ note: Note) -> Result<Note> {
     do {
-      let savedNote = try notesStorage.create(note)
+      let savedNote = try self.notesStorage.create(note)
       return .success(savedNote)
     } catch {
       return .failure(error)
@@ -228,7 +228,7 @@ final class NoteService: INoteService {
 
   private func tryToUpdateNote(_ note: Note) -> Result<Note> {
     do {
-      let savedNote = try notesStorage.update(note)
+      let savedNote = try self.notesStorage.update(note)
       return .success(savedNote)
     } catch {
       return .failure(error)
@@ -237,7 +237,7 @@ final class NoteService: INoteService {
 
   private func tryToDeleteNote(_ note: Note) -> Result<Void> {
     do {
-      _ = try notesStorage.delete(note)
+      _ = try self.notesStorage.delete(note)
       return .success(())
     } catch {
       assertionFailure("Couldn't delete not from the local DB")
@@ -247,7 +247,7 @@ final class NoteService: INoteService {
 
   private func tryToDeleteAllNotes() -> Result<Void> {
     do {
-      try notesStorage.deleteAllNotes()
+      try self.notesStorage.deleteAllNotes()
       return .success(())
     } catch {
       assertionFailure("Couldn't deletes not from the local DB")
@@ -264,7 +264,7 @@ final class NoteService: INoteService {
       dispatchGroup.enter()
 
       if note.toBeDeleted {
-        networkClient.delete(note, token: token) { [unowned self] result in
+        self.networkClient.delete(note, token: token) { [unowned self] result in
           switch result {
           case .failure:
             // If we locally delete a note which wasn't deleted remotely it will stay on the server forever.
@@ -277,7 +277,7 @@ final class NoteService: INoteService {
           dispatchGroup.leave()
         }
       } else {
-        networkClient.update(note, token: token) { [unowned self] result in
+        self.networkClient.update(note, token: token) { [unowned self] result in
           switch result {
           case .failure:
             break

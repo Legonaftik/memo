@@ -6,7 +6,6 @@
 //  Copyright © 2017 Vladimir Pavlov. All rights reserved.
 //
 
-import UIKit
 import Firebase
 import FirebaseUI
 

@@ -16,6 +16,6 @@ extension UIViewController {
                                             preferredStyle: .alert)
     let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
     alertController.addAction(okAction)
-    present(alertController, animated: true, completion: completion)
+    self.present(alertController, animated: true, completion: completion)
   }
 }

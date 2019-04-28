@@ -6,7 +6,6 @@
 //  Copyright © 2018 Vladimir Pavlov. All rights reserved.
 //
 
-import Foundation
 import CoreData
 
 final class AppFactory {
@@ -23,14 +22,14 @@ final class AppFactory {
   }
 
   func makeAuthorizedNotesService() -> IAuthorizedNoteServiceFacade {
-    return AuthorizedNoteServiceFacade(authService: makeAuthService(),
-                                       notesService: makeNotesService())
+    return AuthorizedNoteServiceFacade(authService: self.makeAuthService(),
+                                       notesService: self.makeNotesService())
   }
 
   func makeNotesService() -> INoteService {
-    return NoteService(networkClient: networkClient,
-                       notesStorage: coreDataStorage,
-                       userPreferencesStorage: userPreferencesStorage)
+    return NoteService(networkClient: self.networkClient,
+                       notesStorage: self.coreDataStorage,
+                       userPreferencesStorage: self.userPreferencesStorage)
   }
 
   // MARK: - Core Components

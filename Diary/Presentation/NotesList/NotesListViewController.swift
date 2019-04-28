@@ -22,13 +22,18 @@ final class NotesListViewController: UITableViewController {
 
   var dateToDisplay: Date? {
     didSet {
-      if dateToDisplay != nil { showOnlyNotesOfDateDay(dateToDisplay!) }
+      if let dateToDisplay = self.dateToDisplay {
+        self.showOnlyNotesOfDateDay(dateToDisplay)
+      }
     }
   }
 
   private var notes: [Note] = [] {
-    didSet { tableView.reloadData() }
+    didSet {
+      self.tableView.reloadData()
+    }
   }
+
   private let searchController = UISearchController(searchResultsController: nil)
 
   // This property is used to notify a delegate only when content height actually changes
@@ -38,33 +43,33 @@ final class NotesListViewController: UITableViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupSearchController()
+    self.setupSearchController()
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    updateNotesList()
+    self.updateNotesList()
     // Avoid the state when both navigation bar and search controller are visible
-    navigationController?.isNavigationBarHidden = searchController.isActive
+    self.navigationController?.isNavigationBarHidden = self.searchController.isActive
   }
 
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     // Otherwise navigation controller will be hidden for the next VC
-    navigationController?.isNavigationBarHidden = false
+    self.navigationController?.isNavigationBarHidden = false
   }
 
   override func viewWillLayoutSubviews() {
     super.viewWillLayoutSubviews()
-    notifyDelegateAboutNewContentHeightAndSaveIt()
+    self.notifyDelegateAboutNewContentHeightAndSaveIt()
   }
 
   // MARK: - Helpers
 
   private func updateNotesList() {
-    fetchNotes(for: "")
+    self.fetchNotes(for: "")
 
-    notesService.syncNotes { updateNotesResult in
+    self.notesService.syncNotes { updateNotesResult in
       switch updateNotesResult {
       case .success:
         DispatchQueue.main.async { self.fetchNotes(for: "") }
@@ -76,34 +81,34 @@ final class NotesListViewController: UITableViewController {
 
   private func fetchNotes(for searchQuery: String) {
     do {
-      notes = try notesService.fetchNotes(for: searchQuery)
+      self.notes = try self.notesService.fetchNotes(for: searchQuery)
     } catch {
-      displayAlert(message: error.localizedDescription)
+      self.displayAlert(message: error.localizedDescription)
     }
   }
 
   private func showOnlyNotesOfDateDay(_ date: Date) {
     do {
-      notes = try notesService.fetchNotes(for: date)
+      self.notes = try self.notesService.fetchNotes(for: date)
     } catch {
-      displayAlert(message: error.localizedDescription)
+      self.displayAlert(message: error.localizedDescription)
     }
   }
 
   private func notifyDelegateAboutNewContentHeightAndSaveIt() {
-    let newContentHeight = tableView.contentSize.height
-    if newContentHeight != savedTableContenHeight {
-      delegate?.notesListViewController?(self, didUpdate: newContentHeight)
-      savedTableContenHeight = newContentHeight
+    let newContentHeight = self.tableView.contentSize.height
+    if newContentHeight != self.savedTableContenHeight {
+      self.delegate?.notesListViewController?(self, didUpdate: newContentHeight)
+      self.savedTableContenHeight = newContentHeight
     }
   }
 
   private func setupSearchController() {
-    tableView.tableHeaderView = searchController.searchBar
-    searchController.searchBar.delegate = self
-    searchController.obscuresBackgroundDuringPresentation = false
+    self.tableView.tableHeaderView = self.searchController.searchBar
+    self.searchController.searchBar.delegate = self
+    self.searchController.obscuresBackgroundDuringPresentation = false
 //    searchController.hidesNavigationBarDuringPresentation = false
-    definesPresentationContext = true
+    self.definesPresentationContext = true
   }
 
   private func setImage(for note: Note, in cell: NoteTableViewCell) {
@@ -111,7 +116,7 @@ final class NotesListViewController: UITableViewController {
       let remoteURL = image.remoteURL,
       image.jpegData == nil else { return }
 
-    notesService.image(with: remoteURL, for: note) { result in
+    self.notesService.image(with: remoteURL, for: note) { result in
       switch result {
       case .success(let data):
         DispatchQueue.main.async { cell.setImage(with: data) }
@@ -124,62 +129,62 @@ final class NotesListViewController: UITableViewController {
   // MARK: - UITableView
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return notes.count
+    return self.notes.count
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let note = notes[indexPath.row]
+    let note = self.notes[indexPath.row]
 
     if let title = note.title, !title.isEmpty, note.image != nil, let content = note.content, !content.isEmpty {
       let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.noteTitleImageContent, for: indexPath)!
       cell.configure(with: note)
-      setImage(for: note, in: cell)
+      self.setImage(for: note, in: cell)
       return cell
     } else if let title = note.title, !title.isEmpty, note.image != nil {
       let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.noteTitleImage, for: indexPath)!
       cell.configure(with: note)
-      setImage(for: note, in: cell)
+      self.setImage(for: note, in: cell)
       return cell
     } else if let title = note.title, !title.isEmpty, let content = note.content, !content.isEmpty {
       let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.noteTitleContent, for: indexPath)!
       cell.configure(with: note)
-      setImage(for: note, in: cell)
+      self.setImage(for: note, in: cell)
       return cell
     } else if note.image != nil, let content = note.content, !content.isEmpty {
       let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.noteImageContent, for: indexPath)!
       cell.configure(with: note)
-      setImage(for: note, in: cell)
+      self.setImage(for: note, in: cell)
       return cell
     } else if let title = note.title, !title.isEmpty {
       let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.noteTitle, for: indexPath)!
       cell.configure(with: note)
-      setImage(for: note, in: cell)
+      self.setImage(for: note, in: cell)
       return cell
     } else if note.image != nil {
       let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.noteImage, for: indexPath)!
       cell.configure(with: note)
-      setImage(for: note, in: cell)
+      self.setImage(for: note, in: cell)
       return cell
     } else {
       let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.noteContent, for: indexPath)!
       cell.configure(with: note)
-      setImage(for: note, in: cell)
+      self.setImage(for: note, in: cell)
       return cell
     }
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    delegate?.notesListViewController?(self, didSelectNoteWith: notes[indexPath.row].localID)
+    self.delegate?.notesListViewController?(self, didSelectNoteWith: notes[indexPath.row].localID)
   }
 }
 
 extension NotesListViewController: UISearchBarDelegate {
 
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    fetchNotes(for: searchBar.text!)
+    self.fetchNotes(for: searchBar.text!)
   }
 
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-    updateNotesList()
+    self.updateNotesList()
   }
 }

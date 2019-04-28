@@ -18,15 +18,15 @@ final class NoteTableViewCell: UITableViewCell {
 
   override func awakeFromNib() {
     super.awakeFromNib()
-    setRoundedCornersWithShadow()
+    self.setRoundedCornersWithShadow()
   }
 
   private func setRoundedCornersWithShadow() {
-    containerView.layer.cornerRadius = 8
-    containerView.layer.masksToBounds = false
-    containerView.layer.shadowOffset = CGSize(width: 3, height: 3)
-    containerView.layer.shadowRadius = 4
-    containerView.layer.shadowOpacity = 0.3
+    self.containerView.layer.cornerRadius = 8
+    self.containerView.layer.masksToBounds = false
+    self.containerView.layer.shadowOffset = CGSize(width: 3, height: 3)
+    self.containerView.layer.shadowRadius = 4
+    self.containerView.layer.shadowOpacity = 0.3
   }
 }
 
@@ -38,25 +38,25 @@ extension NoteTableViewCell {
   ///
   /// - Parameter note: Note model object which is used to configure cell.
   func configure(with note: Note) {
-    containerView.alpha = note.isSynced ? 1.0 : 0.5
+    self.containerView.alpha = note.isSynced ? 1.0 : 0.5
 
-    dateLabel.text = dateFormatter.string(from: note.creationDate)
+    self.dateLabel.text = dateFormatter.string(from: note.creationDate)
 
     if let title = note.title, !title.isEmpty {
-      titleLabel.text = title
+      self.titleLabel.text = title
     }
 
     if let content = note.content, !content.isEmpty {
-      contentLabel.text = note.content
+      self.contentLabel.text = note.content
     }
 
     if let image = note.image, let jpegData = image.jpegData {
-      photoImageView.image = UIImage(data: jpegData)
+      self.photoImageView.image = UIImage(data: jpegData)
     }
   }
 
   func setImage(with data: Data) {
-    photoImageView.image = UIImage(data: data)
+    self.photoImageView.image = UIImage(data: data)
   }
 }
 

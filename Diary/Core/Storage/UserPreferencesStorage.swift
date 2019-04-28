@@ -23,10 +23,10 @@ final class UserPreferencesStorage: IUserPreferencesStorage {
 
   var lastNotesSyncDate: Date? {
     get {
-      return userDefaults.value(forKey: Key.lastNotesSyncDate.rawValue) as? Date
+      return self.userDefaults.value(forKey: Key.lastNotesSyncDate.rawValue) as? Date
     }
     set {
-      userDefaults.set(newValue, forKey: Key.lastNotesSyncDate.rawValue)
+      self.userDefaults.set(newValue, forKey: Key.lastNotesSyncDate.rawValue)
     }
   }
 }

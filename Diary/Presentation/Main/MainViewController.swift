@@ -38,9 +38,9 @@ final class MainViewController: UIViewController {
         oldVC.removeFromParent()
       }
       if let newVC = containedController {
-        addChild(newVC)
-        view.addSubview(newVC.view)
-        newVC.view.frame = view.bounds
+        self.addChild(newVC)
+        self.view.addSubview(newVC.view)
+        newVC.view.frame = self.view.bounds
         newVC.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         newVC.didMove(toParent: self)
       }
@@ -53,48 +53,49 @@ final class MainViewController: UIViewController {
     let page = Page(rawValue: sender.selectedSegmentIndex)!
     switch page {
     case .list:
-      containedController = notesListViewController
+      self.containedController = self.notesListViewController
     case .calendar:
-      containedController = calendarViewController
+      self.containedController = self.calendarViewController
     }
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    containedController = notesListViewController
-    notesListViewController.delegate = self
+    self.containedController = self.notesListViewController
+    self.notesListViewController.delegate = self
 
     if !authService.isLoggedIn() {
-      present(authService.createAuthScreen(), animated: true)
+      self.present(self.authService.createAuthScreen(), animated: true)
     }
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let newNoteSegue = R.segue.mainViewController.newNote(segue: segue) {
       let noteEditingViewController = newNoteSegue.destination.topViewController as! NoteEditingViewController
-      noteEditingViewController.notesService = noteService
+      noteEditingViewController.notesService = self.noteService
       return
     }
 
     if let noteDetailsSegue = R.segue.mainViewController.noteDetails(segue: segue) {
-      noteDetailsSegue.destination.notesService = noteService
+      noteDetailsSegue.destination.notesService = self.noteService
       noteDetailsSegue.destination.noteID = (sender as! UUID)
     }
   }
 
   private func signOut() {
     do {
-      try authService.signOut()
-      displayAlert(message: R.string.localizable.youHaveSuccessfullyLoggedOut())
+      try self.authService.signOut()
+      self.displayAlert(message: R.string.localizable.youHaveSuccessfullyLoggedOut())
     } catch {
-      displayAlert(message: error.localizedDescription)
+      self.displayAlert(message: error.localizedDescription)
     }
   }
 }
 
 extension MainViewController: NotesListViewControllerDelegate {
 
-  func notesListViewController(_ notesListVC: NotesListViewController, didSelectNoteWith localID: UUID) {
-    performSegue(withIdentifier: R.segue.mainViewController.noteDetails, sender: localID)
+  func notesListViewController(_ notesListVC: NotesListViewController,
+                               didSelectNoteWith localID: UUID) {
+    self.performSegue(withIdentifier: R.segue.mainViewController.noteDetails, sender: localID)
   }
 }

@@ -10,6 +10,16 @@ import UIKit
 
 final class SettingsViewController: UITableViewController {
 
+  // MARK: - Interface
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    let buttonTitle = self.authService.isLoggedIn() ? R.string.localizable.logOut() : R.string.localizable.logIn()
+    self.logInOrOutButton.setTitle(buttonTitle, for: .normal)
+  }
+
+  // MARK: - Private
+
   private let authService: IAuthService = AppFactory.factory.makeAuthService()
   private let noteService: IAuthorizedNoteServiceFacade = AppFactory.factory.makeAuthorizedNotesService()
   private let unauthorizedNoteService: INoteService = AppFactory.factory.makeNotesService()
@@ -18,15 +28,15 @@ final class SettingsViewController: UITableViewController {
 
   @IBAction private func syncNotes(_ sender: UIButton) {
     sender.isEnabled = false
-    unauthorizedNoteService.resetSyncState()
-    displayAlert(message: R.string.localizable.resetSyncDate())
+    self.unauthorizedNoteService.resetSyncState()
+    self.displayAlert(message: R.string.localizable.resetSyncDate())
     sender.isEnabled = true
   }
 
   @IBAction private func deleteAllNotes(_ sender: UIButton) {
     sender.isEnabled = false
-    noteService.deleteAllNotes { [weak self] result in
-      guard let `self` = self else { return }
+    self.noteService.deleteAllNotes { [weak self] result in
+      guard let self = self else { return }
 
       DispatchQueue.main.async {
         let alertMessage: String
@@ -44,27 +54,21 @@ final class SettingsViewController: UITableViewController {
   }
 
   @IBAction private func logInOrOut(_ sender: UIButton) {
-    if authService.isLoggedIn() {
+    if self.authService.isLoggedIn() {
       do {
-        try authService.signOut()
+        try self.authService.signOut()
         sender.setTitle(R.string.localizable.logIn(), for: .normal)
-        displayAlert(message: R.string.localizable.youHaveSuccessfullyLoggedOut())
+        self.displayAlert(message: R.string.localizable.youHaveSuccessfullyLoggedOut())
       } catch {
-        displayAlert(message: error.localizedDescription)
+        self.displayAlert(message: error.localizedDescription)
       }
     } else {
       let authScreen = authService.createAuthScreen()
-      present(authScreen, animated: true)
+      self.present(authScreen, animated: true)
     }
   }
 
   @IBAction private func done(_ sender: UIBarButtonItem) {
-    dismiss(animated: true)
-  }
-
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    let buttonTitle = authService.isLoggedIn() ? R.string.localizable.logOut() : R.string.localizable.logIn()
-    logInOrOutButton.setTitle(buttonTitle, for: .normal)
+    self.dismiss(animated: true)
   }
 }

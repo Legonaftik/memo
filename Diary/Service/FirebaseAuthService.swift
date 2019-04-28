@@ -28,7 +28,7 @@ final class FirebaseAuthService: NSObject, IAuthService {
   }
 
   func isLoggedIn() -> Bool {
-    return user != nil
+    return self.user != nil
   }
 
   func createAuthScreen() -> UIViewController {
@@ -38,7 +38,7 @@ final class FirebaseAuthService: NSObject, IAuthService {
   }
 
   func updateAccessToken(completion: @escaping (Result<String>) -> Void) {
-    guard let user = user else {
+    guard let user = self.user else {
       completion(.failure(AuthError.noUserInfoAvailable))
       return
     }

@@ -19,16 +19,16 @@ final class DatePickerViewController: UIViewController {
   @IBOutlet private var datePicker: UIDatePicker!
 
   @IBAction private func cancel(_ sender: UIBarButtonItem) {
-    dismiss(animated: true, completion: nil)
+    self.dismiss(animated: true, completion: nil)
   }
 
   @IBAction private func done(_ sender: UIBarButtonItem) {
-    delegate?.datePicker(self, didSelect: datePicker.date)
-    dismiss(animated: true, completion: nil)
+    self.delegate?.datePicker(self, didSelect: self.datePicker.date)
+    self.dismiss(animated: true, completion: nil)
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    datePicker.maximumDate = Date()
+    self.datePicker.maximumDate = Date()
   }
 }

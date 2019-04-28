@@ -14,7 +14,7 @@ extension UIViewController {
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(
       target: self, action: #selector(UIViewController.dismissKeyboard))
     tap.cancelsTouchesInView = false
-    view.addGestureRecognizer(tap)
+    self.view.addGestureRecognizer(tap)
   }
 
   func addObserversForKeyboardAppearance() {
@@ -28,11 +28,11 @@ extension UIViewController {
     if let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?
         .cgRectValue.height {
       let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
-      view.frame.origin.y = isKeyboardShowing ? -(keyboardHeight-150) : 0.0
+      self.view.frame.origin.y = isKeyboardShowing ? -(keyboardHeight-150) : 0.0
     }
   }
 
   @objc private func dismissKeyboard() {
-    view.endEditing(true)
+    self.view.endEditing(true)
   }
 }
