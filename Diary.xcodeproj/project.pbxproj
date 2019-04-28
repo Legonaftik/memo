@@ -298,6 +298,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F31BB5161F8485D1000261A1 /* Build configuration list for PBXNativeTarget "Diary" */;
 			buildPhases = (
+				D418BED82276018B00F18239 /* SwiftLint */,
 				6521DB863585F78F6F1B56A9 /* [CP] Check Pods Manifest.lock */,
 				F3F101FD20556F1E0052701E /* R.Swift */,
 				F31BB5001F8485D1000261A1 /* Sources */,
@@ -460,6 +461,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Diary/Pods-Diary-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		D418BED82276018B00F18239 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		F3F101FD20556F1E0052701E /* R.Swift */ = {
 			isa = PBXShellScriptBuildPhase;
