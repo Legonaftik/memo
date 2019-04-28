@@ -176,7 +176,7 @@ final class NetworkClient: INetworkClient {
                    completion: @escaping (Result<URL>) -> Void) {
     let request = requestFactory.makeUploadImageRequest(token: token, imageJPEG: imageData, note: note)
 
-    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+    let task = URLSession.shared.dataTask(with: request) { data, _, error in
       if let error = error {
         completion(.failure(error))
         return

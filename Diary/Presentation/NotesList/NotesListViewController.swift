@@ -130,7 +130,7 @@ final class NotesListViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let note = notes[indexPath.row]
 
-    if let title = note.title, !title.isEmpty, note.image != nil, let content = note.content, !content.isEmpty  {
+    if let title = note.title, !title.isEmpty, note.image != nil, let content = note.content, !content.isEmpty {
       let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.noteTitleImageContent, for: indexPath)!
       cell.configure(with: note)
       setImage(for: note, in: cell)

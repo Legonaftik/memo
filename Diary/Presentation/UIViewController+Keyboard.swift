@@ -25,7 +25,8 @@ extension UIViewController {
   }
 
   @objc func handleKeyboardNotification(_ notification: NSNotification) {
-    if let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
+    if let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?
+        .cgRectValue.height {
       let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
       view.frame.origin.y = isKeyboardShowing ? -(keyboardHeight-150) : 0.0
     }

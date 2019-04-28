@@ -230,14 +230,14 @@ extension NoteEditingViewController: UITextFieldDelegate {
 extension NoteEditingViewController: UITextViewDelegate {
 
   func textViewDidBeginEditing(_ textView: UITextView) {
-    if (textView.text == R.string.localizable.howAreYou()) {
+    if textView.text == R.string.localizable.howAreYou() {
       textView.text = ""
       textView.textColor = .black
     }
   }
 
   func textViewDidEndEditing(_ textView: UITextView) {
-    if (textView.text.isEmpty) {
+    if textView.text.isEmpty {
       textView.text = R.string.localizable.howAreYou()
       textView.textColor = .lightGray
     }
