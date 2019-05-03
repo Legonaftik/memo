@@ -348,8 +348,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F31BB5161F8485D1000261A1 /* Build configuration list for PBXNativeTarget "Diary" */;
 			buildPhases = (
-				D418BED82276018B00F18239 /* SwiftLint */,
 				6521DB863585F78F6F1B56A9 /* [CP] Check Pods Manifest.lock */,
+				D418BED82276018B00F18239 /* SwiftLint */,
 				F3F101FD20556F1E0052701E /* R.Swift */,
 				F31BB5001F8485D1000261A1 /* Sources */,
 				F31BB5011F8485D1000261A1 /* Frameworks */,
@@ -553,7 +553,7 @@
 			);
 			name = R.Swift;
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -762,7 +762,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -809,7 +809,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
