@@ -1,0 +1,6 @@
+module Pods_memo {
+  umbrella header "Pods-memo-umbrella.h"
+
+  export *
+  module * { export * }
+}
