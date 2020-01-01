@@ -17,26 +17,13 @@ final class AppFactory {
 
   // MARK: - Services
 
-  func makeAuthService() -> IAuthService {
-    return FirebaseAuthService()
-  }
-
-  func makeAuthorizedNotesService() -> IAuthorizedNoteServiceFacade {
-    return AuthorizedNoteServiceFacade(authService: self.makeAuthService(),
-                                       notesService: self.makeNotesService())
-  }
-
   func makeNotesService() -> INoteService {
-    return NoteService(networkClient: self.networkClient,
-                       notesStorage: self.coreDataStorage,
-                       userPreferencesStorage: self.userPreferencesStorage)
+    return NoteService(notesStorage: self.coreDataStorage)
   }
 
   // MARK: - Core Components
 
-  private lazy var networkClient: INetworkClient = NetworkClient()
-  private lazy var coreDataStorage: INotesStorage = CoreDataNotesStorage(persistentContainer: self.persistentContainer)
-  private lazy var userPreferencesStorage: IUserPreferencesStorage = UserPreferencesStorage()
+  private lazy var coreDataStorage = CoreDataNotesStorage(persistentContainer: self.persistentContainer)
 
   private lazy var persistentContainer: NSPersistentContainer = {
     let container = NSPersistentContainer(name: "memo")

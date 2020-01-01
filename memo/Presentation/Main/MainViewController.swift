@@ -15,8 +15,7 @@ final class MainViewController: UIViewController {
     case calendar
   }
 
-  private let authService: IAuthService = AppFactory.factory.makeAuthService()
-  private let noteService: IAuthorizedNoteServiceFacade = AppFactory.factory.makeAuthorizedNotesService()
+  private let noteService = AppFactory.factory.makeNotesService()
 
   private lazy var notesListViewController: NotesListViewController = {
     let notesListVC = R.storyboard.main.notesListViewController()!
@@ -61,12 +60,9 @@ final class MainViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.containedController = self.notesListViewController
-    self.notesListViewController.delegate = self
 
-    if !authService.isLoggedIn() {
-      self.present(self.authService.createAuthScreen(), animated: true)
-    }
+    containedController = notesListViewController
+    notesListViewController.delegate = self
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -81,21 +77,14 @@ final class MainViewController: UIViewController {
       noteDetailsSegue.destination.noteID = (sender as! UUID)
     }
   }
-
-  private func signOut() {
-    do {
-      try self.authService.signOut()
-      self.displayAlert(message: R.string.localizable.youHaveSuccessfullyLoggedOut())
-    } catch {
-      self.displayAlert(message: error.localizedDescription)
-    }
-  }
 }
 
 extension MainViewController: NotesListViewControllerDelegate {
 
-  func notesListViewController(_ notesListVC: NotesListViewController,
-                               didSelectNoteWith localID: UUID) {
-    self.performSegue(withIdentifier: R.segue.mainViewController.noteDetails, sender: localID)
+  func notesListViewController(
+    _ notesListVC: NotesListViewController,
+    didSelectNoteWith localID: UUID
+  ) {
+    performSegue(withIdentifier: R.segue.mainViewController.noteDetails, sender: localID)
   }
 }

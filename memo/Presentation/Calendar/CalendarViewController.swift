@@ -11,7 +11,7 @@ import FSCalendar
 
 final class CalendarViewController: UIViewController {
 
-  var notesService: IAuthorizedNoteServiceFacade!
+  var notesService: INoteService!
 
   @IBOutlet private var calendarView: FSCalendar!
   @IBOutlet private var notesListHeightConstraint: NSLayoutConstraint!

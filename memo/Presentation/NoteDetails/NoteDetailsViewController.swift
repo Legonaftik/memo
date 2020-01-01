@@ -10,7 +10,7 @@ import UIKit
 
 final class NoteDetailsViewController: UIViewController {
 
-  var notesService: IAuthorizedNoteServiceFacade!
+  var notesService: INoteService!
   var noteID: UUID!
   private var note: Note? {
     didSet {

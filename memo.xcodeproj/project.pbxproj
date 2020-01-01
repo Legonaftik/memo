@@ -20,32 +20,20 @@
 		F34504E720D65D3C007479B8 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34504E620D65D3C007479B8 /* Result.swift */; };
 		F34C4C08205D533400470AFE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34C4C07205D533400470AFE /* MainViewController.swift */; };
 		F34C4C0A205D553600470AFE /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34C4C09205D553600470AFE /* CalendarViewController.swift */; };
-		F34CDB4B209EE3DF00E457A1 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34CDB4A209EE3DF00E457A1 /* FirebaseAuthService.swift */; };
-		F34DCBFB21443323000A26FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F34DCBFA21443323000A26FA /* GoogleService-Info.plist */; };
 		F355AEB72030DC7E00CED9BE /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F355AEB62030DC7E00CED9BE /* UIViewController+Keyboard.swift */; };
 		F355AEB92030DCD000CED9BE /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F355AEB82030DCD000CED9BE /* UIViewController+Alert.swift */; };
 		F36B2B7C20D7E9D3005C309D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F36B2B7E20D7E9D3005C309D /* Localizable.strings */; };
 		F36E96AA205C7442004AA16E /* NoteDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36E96A9205C7442004AA16E /* NoteDetailsViewController.swift */; };
-		F3AB38F220C3EC2600732039 /* UserPreferencesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AB38F120C3EC2600732039 /* UserPreferencesStorage.swift */; };
 		F3BBD3B8202E5C2C00E65BEF /* NoteEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BBD3B7202E5C2C00E65BEF /* NoteEditingViewController.swift */; };
 		F3C0C206214328CF00F7C344 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C0C205214328CF00F7C344 /* R.generated.swift */; };
 		F3C9BF632042ECD600D58192 /* NoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C9BF622042ECD600D58192 /* NoteService.swift */; };
 		F3C9BF692042EDA600D58192 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C9BF682042EDA600D58192 /* Note.swift */; };
-		F3C9BF6B2042EF9A00D58192 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C9BF6A2042EF9A00D58192 /* NetworkClient.swift */; };
-		F3C9BF6D2042EFB100D58192 /* INotesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C9BF6C2042EFB100D58192 /* INotesStorage.swift */; };
-		F3CBC6E42165260100D7C7A5 /* CreateNoteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CBC6E32165260100D7C7A5 /* CreateNoteResponse.swift */; };
-		F3CBC6E721674F4000D7C7A5 /* ImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CBC6E621674F4000D7C7A5 /* ImageResponse.swift */; };
 		F3CBC6EB216A437900D7C7A5 /* MemoImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CBC6EA216A437900D7C7A5 /* MemoImage.swift */; };
-		F3CCDD8320A870160059F37F /* AuthorizedNoteServiceFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CCDD8220A870160059F37F /* AuthorizedNoteServiceFacade.swift */; };
 		F3D34C322030C2EE0096D8AC /* MoodControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D34C312030C2EE0096D8AC /* MoodControl.swift */; };
 		F3F10201205574430052701E /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F10200205574430052701E /* AppFactory.swift */; };
 		F3F10209205596360052701E /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F10208205596360052701E /* DatePickerViewController.swift */; };
-		F3F13E9D20A8C58000FC6A34 /* URLRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F13E9C20A8C58000FC6A34 /* URLRequestFactory.swift */; };
-		F3F825C520B98FA000173855 /* ServerTimeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F825C420B98FA000173855 /* ServerTimeResponse.swift */; };
-		F3F825C720B996F400173855 /* NotesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F825C620B996F400173855 /* NotesResponse.swift */; };
 		F3FF97581F848B0400350881 /* NotesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FF97571F848B0400350881 /* NotesListViewController.swift */; };
 		F3FF975C1F848DF800350881 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FF975B1F848DF800350881 /* NoteTableViewCell.swift */; };
-		F3FF975E1F850DED00350881 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FF975D1F850DEC00350881 /* AuthViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,33 +68,21 @@
 		F34504E620D65D3C007479B8 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		F34C4C07205D533400470AFE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F34C4C09205D553600470AFE /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		F34CDB4A209EE3DF00E457A1 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
-		F34DCBFA21443323000A26FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F355AEB62030DC7E00CED9BE /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
 		F355AEB82030DCD000CED9BE /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		F36B2B7F20D7E9D6005C309D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F36B2B8020D7EA0D005C309D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F36E96A9205C7442004AA16E /* NoteDetailsViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NoteDetailsViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
-		F3AB38F120C3EC2600732039 /* UserPreferencesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferencesStorage.swift; sourceTree = "<group>"; };
 		F3BBD3B7202E5C2C00E65BEF /* NoteEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditingViewController.swift; sourceTree = "<group>"; };
 		F3C0C205214328CF00F7C344 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		F3C9BF622042ECD600D58192 /* NoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteService.swift; sourceTree = "<group>"; };
 		F3C9BF682042EDA600D58192 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
-		F3C9BF6A2042EF9A00D58192 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
-		F3C9BF6C2042EFB100D58192 /* INotesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INotesStorage.swift; sourceTree = "<group>"; };
-		F3CBC6E32165260100D7C7A5 /* CreateNoteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNoteResponse.swift; sourceTree = "<group>"; };
-		F3CBC6E621674F4000D7C7A5 /* ImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponse.swift; sourceTree = "<group>"; };
 		F3CBC6EA216A437900D7C7A5 /* MemoImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoImage.swift; sourceTree = "<group>"; };
-		F3CCDD8220A870160059F37F /* AuthorizedNoteServiceFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedNoteServiceFacade.swift; sourceTree = "<group>"; };
 		F3D34C312030C2EE0096D8AC /* MoodControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodControl.swift; sourceTree = "<group>"; };
 		F3F10200205574430052701E /* AppFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
 		F3F10208205596360052701E /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
-		F3F13E9C20A8C58000FC6A34 /* URLRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestFactory.swift; sourceTree = "<group>"; };
-		F3F825C420B98FA000173855 /* ServerTimeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerTimeResponse.swift; sourceTree = "<group>"; };
-		F3F825C620B996F400173855 /* NotesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesResponse.swift; sourceTree = "<group>"; };
 		F3FF97571F848B0400350881 /* NotesListViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NotesListViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		F3FF975B1F848DF800350881 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
-		F3FF975D1F850DEC00350881 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,7 +163,6 @@
 		F31BB5061F8485D1000261A1 /* memo */ = {
 			isa = PBXGroup;
 			children = (
-				F34DCBFA21443323000A26FA /* GoogleService-Info.plist */,
 				F31BB5131F8485D1000261A1 /* Info.plist */,
 				F31BB50E1F8485D1000261A1 /* Assets.xcassets */,
 				F3F10200205574430052701E /* AppFactory.swift */,
@@ -224,25 +199,6 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		F3AEC3CA20AC5C250094DC49 /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				F3FF975D1F850DEC00350881 /* AuthViewController.swift */,
-			);
-			path = Auth;
-			sourceTree = "<group>";
-		};
-		F3CBC6E521674F0F00D7C7A5 /* Response */ = {
-			isa = PBXGroup;
-			children = (
-				F3F825C620B996F400173855 /* NotesResponse.swift */,
-				F3F825C420B98FA000173855 /* ServerTimeResponse.swift */,
-				F3CBC6E32165260100D7C7A5 /* CreateNoteResponse.swift */,
-				F3CBC6E621674F4000D7C7A5 /* ImageResponse.swift */,
-			);
-			path = Response;
-			sourceTree = "<group>";
-		};
 		F3F101F620555CF70052701E /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,7 +206,6 @@
 				F31BB5101F8485D1000261A1 /* LaunchScreen.storyboard */,
 				F36B2B7E20D7E9D3005C309D /* Localizable.strings */,
 				F31B6AB220D82A41004086AB /* Settings */,
-				F3AEC3CA20AC5C250094DC49 /* Auth */,
 				F3AEC3BB20AA112C0094DC49 /* Main */,
 				F3F101FB20555D7E0052701E /* NotesList */,
 				F34C4C0B205D554A00470AFE /* Calendar */,
@@ -266,8 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				F3C9BF622042ECD600D58192 /* NoteService.swift */,
-				F3CCDD8220A870160059F37F /* AuthorizedNoteServiceFacade.swift */,
-				F34CDB4A209EE3DF00E457A1 /* FirebaseAuthService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -278,19 +231,8 @@
 				F3C9BF682042EDA600D58192 /* Note.swift */,
 				F3CBC6EA216A437900D7C7A5 /* MemoImage.swift */,
 				F3F101FA20555D280052701E /* Storage */,
-				F3F101F920555D210052701E /* API */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		F3F101F920555D210052701E /* API */ = {
-			isa = PBXGroup;
-			children = (
-				F3CBC6E521674F0F00D7C7A5 /* Response */,
-				F3F13E9C20A8C58000FC6A34 /* URLRequestFactory.swift */,
-				F3C9BF6A2042EF9A00D58192 /* NetworkClient.swift */,
-			);
-			path = API;
 			sourceTree = "<group>";
 		};
 		F3F101FA20555D280052701E /* Storage */ = {
@@ -298,8 +240,6 @@
 			children = (
 				F343134320CF1AF900A3235B /* memo.xcdatamodeld */,
 				F343134120CF18EF00A3235B /* CoreDataNotesStorage.swift */,
-				F3C9BF6C2042EFB100D58192 /* INotesStorage.swift */,
-				F3AB38F120C3EC2600732039 /* UserPreferencesStorage.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -354,8 +294,6 @@
 				F31BB5001F8485D1000261A1 /* Sources */,
 				F31BB5011F8485D1000261A1 /* Frameworks */,
 				F31BB5021F8485D1000261A1 /* Resources */,
-				A1A26DAFA995E442FAC2C398 /* [CP] Embed Pods Frameworks */,
-				2A74EED20DC5C68C9BD61773 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -430,55 +368,12 @@
 				F3294F3520D90A74002EE9BD /* Settings.storyboard in Resources */,
 				F31BB50F1F8485D1000261A1 /* Assets.xcassets in Resources */,
 				F31BB50D1F8485D1000261A1 /* Main.storyboard in Resources */,
-				F34DCBFB21443323000A26FA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2A74EED20DC5C68C9BD61773 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-memo/Pods-memo-resources.sh",
-				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAnonymousAuthUI.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseEmailAuthUI.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseFacebookAuthUI.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseGoogleAuthUI.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebasePhoneAuthUI.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseTwitterAuthUI.bundle",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/gRPCCertificates.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAnonymousAuthUI.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseEmailAuthUI.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseFacebookAuthUI.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseGoogleAuthUI.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebasePhoneAuthUI.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseTwitterAuthUI.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-memo/Pods-memo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		83696AF74E645FDBFDFC8608 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -499,30 +394,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A1A26DAFA995E442FAC2C398 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-memo/Pods-memo-frameworks.sh",
-				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-memo/Pods-memo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D418BED82276018B00F18239 /* SwiftLint */ = {
@@ -574,35 +445,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3C9BF6B2042EF9A00D58192 /* NetworkClient.swift in Sources */,
-				F3FF975E1F850DED00350881 /* AuthViewController.swift in Sources */,
 				F355AEB72030DC7E00CED9BE /* UIViewController+Keyboard.swift in Sources */,
-				F3F825C520B98FA000173855 /* ServerTimeResponse.swift in Sources */,
 				F3F10209205596360052701E /* DatePickerViewController.swift in Sources */,
-				F3F825C720B996F400173855 /* NotesResponse.swift in Sources */,
-				F3AB38F220C3EC2600732039 /* UserPreferencesStorage.swift in Sources */,
 				F355AEB92030DCD000CED9BE /* UIViewController+Alert.swift in Sources */,
 				F34504E720D65D3C007479B8 /* Result.swift in Sources */,
 				F343134520CF1AF900A3235B /* memo.xcdatamodeld in Sources */,
-				F34CDB4B209EE3DF00E457A1 /* FirebaseAuthService.swift in Sources */,
 				F3C0C206214328CF00F7C344 /* R.generated.swift in Sources */,
-				F3CBC6E42165260100D7C7A5 /* CreateNoteResponse.swift in Sources */,
 				F3D34C322030C2EE0096D8AC /* MoodControl.swift in Sources */,
 				F31BB5081F8485D1000261A1 /* AppDelegate.swift in Sources */,
 				F36E96AA205C7442004AA16E /* NoteDetailsViewController.swift in Sources */,
-				F3F13E9D20A8C58000FC6A34 /* URLRequestFactory.swift in Sources */,
-				F3CBC6E721674F4000D7C7A5 /* ImageResponse.swift in Sources */,
 				F3FF97581F848B0400350881 /* NotesListViewController.swift in Sources */,
 				F34C4C0A205D553600470AFE /* CalendarViewController.swift in Sources */,
 				F3C9BF692042EDA600D58192 /* Note.swift in Sources */,
-				F3CCDD8320A870160059F37F /* AuthorizedNoteServiceFacade.swift in Sources */,
 				F3F10201205574430052701E /* AppFactory.swift in Sources */,
 				F3C9BF632042ECD600D58192 /* NoteService.swift in Sources */,
 				F31B6AB420D82A64004086AB /* SettingsViewController.swift in Sources */,
 				F3FF975C1F848DF800350881 /* NoteTableViewCell.swift in Sources */,
 				F34C4C08205D533400470AFE /* MainViewController.swift in Sources */,
 				F3BBD3B8202E5C2C00E65BEF /* NoteEditingViewController.swift in Sources */,
-				F3C9BF6D2042EFB100D58192 /* INotesStorage.swift in Sources */,
 				F3CBC6EB216A437900D7C7A5 /* MemoImage.swift in Sources */,
 				F343134220CF18EF00A3235B /* CoreDataNotesStorage.swift in Sources */,
 			);
@@ -683,7 +543,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.legonaftik.memo-tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/memo.app/memo";
 			};
@@ -713,7 +572,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.legonaftik.memo-tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/memo.app/memo";
 			};
@@ -762,12 +620,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -809,11 +669,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -836,8 +698,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.legonaftik.memo.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -860,8 +720,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.legonaftik.memo.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

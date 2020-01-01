@@ -67,20 +67,6 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.file` struct is generated, and contains static references to 1 files.
-  struct file {
-    /// Resource file `GoogleService-Info.plist`.
-    static let googleServiceInfoPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "GoogleService-Info", pathExtension: "plist")
-    
-    /// `bundle.url(forResource: "GoogleService-Info", withExtension: "plist")`
-    static func googleServiceInfoPlist(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.googleServiceInfoPlist
-      return fileResource.bundle.url(forResource: fileResource)
-    }
-    
-    fileprivate init() {}
-  }
-  
   /// This `R.image` struct is generated, and contains static references to 3 images.
   struct image {
     /// Image `photoPlaceholder`.
@@ -688,15 +674,10 @@ struct _R: Rswift.Validatable {
     struct main: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
       typealias InitialController = UIKit.UINavigationController
       
-      let authViewController = StoryboardViewControllerResource<AuthViewController>(identifier: "AuthViewController")
       let bundle = R.hostingBundle
       let calendarViewController = StoryboardViewControllerResource<CalendarViewController>(identifier: "CalendarViewController")
       let name = "Main"
       let notesListViewController = StoryboardViewControllerResource<NotesListViewController>(identifier: "NotesListViewController")
-      
-      func authViewController(_: Void = ()) -> AuthViewController? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: authViewController)
-      }
       
       func calendarViewController(_: Void = ()) -> CalendarViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: calendarViewController)
@@ -712,7 +693,6 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "smiling", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'smiling' is used in storyboard 'Main', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
-        if _R.storyboard.main().authViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'authViewController' could not be loaded from storyboard 'Main' as 'AuthViewController'.") }
         if _R.storyboard.main().calendarViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'calendarViewController' could not be loaded from storyboard 'Main' as 'CalendarViewController'.") }
         if _R.storyboard.main().notesListViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'notesListViewController' could not be loaded from storyboard 'Main' as 'NotesListViewController'.") }
       }

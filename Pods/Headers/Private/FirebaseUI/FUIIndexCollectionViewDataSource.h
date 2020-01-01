@@ -1,1 +1,0 @@
-../../../FirebaseUI/Database/FirebaseDatabaseUI/FUIIndexCollectionViewDataSource.h

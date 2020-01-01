@@ -18,7 +18,7 @@ import UIKit
 final class NotesListViewController: UITableViewController {
 
   weak var delegate: NotesListViewControllerDelegate?
-  var notesService: IAuthorizedNoteServiceFacade!
+  var notesService: INoteService!
 
   var dateToDisplay: Date? {
     didSet {
@@ -67,16 +67,7 @@ final class NotesListViewController: UITableViewController {
   // MARK: - Helpers
 
   private func updateNotesList() {
-    self.fetchNotes(for: "")
-
-    self.notesService.syncNotes { updateNotesResult in
-      switch updateNotesResult {
-      case .success:
-        DispatchQueue.main.async { self.fetchNotes(for: "") }
-      case .failure:
-        break
-      }
-    }
+    fetchNotes(for: "")
   }
 
   private func fetchNotes(for searchQuery: String) {

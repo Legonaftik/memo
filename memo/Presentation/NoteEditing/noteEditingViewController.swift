@@ -10,7 +10,7 @@ import UIKit
 
 final class NoteEditingViewController: UIViewController {
 
-  var notesService: IAuthorizedNoteServiceFacade!
+  var notesService: INoteService!
 
   var noteLocalID: UUID? // If not set then we're in creating mode (not editing)
   private var existingNote: Note? {
