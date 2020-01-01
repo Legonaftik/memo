@@ -9,7 +9,5 @@
 import Foundation
 
 struct MemoImage {
-
-  var jpegData: Data?
-  let remoteURL: URL?
+    var jpegData: Data
 }

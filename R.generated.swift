@@ -281,6 +281,15 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
+  /// This `R.entitlements` struct is generated, and contains static references to 3 properties.
+  struct entitlements {
+    static let comAppleSecurityAppSandbox = true
+    static let comAppleSecurityDeviceCamera = true
+    static let comAppleSecurityNetworkClient = true
+
+    fileprivate init() {}
+  }
+
   /// This `R.image` struct is generated, and contains static references to 3 images.
   struct image {
     /// Image `photoPlaceholder`.

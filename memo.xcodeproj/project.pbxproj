@@ -52,8 +52,9 @@
 		D418BEDD227634DC00F18239 /* memo-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "memo-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D418BEDF227634DC00F18239 /* MemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTests.swift; sourceTree = "<group>"; };
 		D418BEE1227634DC00F18239 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D451342723BD3A5D006F8470 /* memo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = memo.entitlements; sourceTree = "<group>"; };
 		D540E3F02F5D7C23BA2731FE /* Pods-memo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memo.debug.xcconfig"; path = "Target Support Files/Pods-memo/Pods-memo.debug.xcconfig"; sourceTree = "<group>"; };
-		F31B6AB320D82A64004086AB /* SettingsViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
+		F31B6AB320D82A64004086AB /* SettingsViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		F31BB5041F8485D1000261A1 /* memo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = memo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31BB5071F8485D1000261A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F31BB50C1F8485D1000261A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -72,7 +73,7 @@
 		F355AEB82030DCD000CED9BE /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		F36B2B7F20D7E9D6005C309D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F36B2B8020D7EA0D005C309D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F36E96A9205C7442004AA16E /* NoteDetailsViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NoteDetailsViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
+		F36E96A9205C7442004AA16E /* NoteDetailsViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = NoteDetailsViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		F3BBD3B7202E5C2C00E65BEF /* NoteEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditingViewController.swift; sourceTree = "<group>"; };
 		F3C0C205214328CF00F7C344 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		F3C9BF622042ECD600D58192 /* NoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteService.swift; sourceTree = "<group>"; };
@@ -81,7 +82,7 @@
 		F3D34C312030C2EE0096D8AC /* MoodControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodControl.swift; sourceTree = "<group>"; };
 		F3F10200205574430052701E /* AppFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
 		F3F10208205596360052701E /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
-		F3FF97571F848B0400350881 /* NotesListViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NotesListViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
+		F3FF97571F848B0400350881 /* NotesListViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = NotesListViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		F3FF975B1F848DF800350881 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,6 +164,7 @@
 		F31BB5061F8485D1000261A1 /* memo */ = {
 			isa = PBXGroup;
 			children = (
+				D451342723BD3A5D006F8470 /* memo.entitlements */,
 				F31BB5131F8485D1000261A1 /* Info.plist */,
 				F31BB50E1F8485D1000261A1 /* Assets.xcassets */,
 				F3F10200205574430052701E /* AppFactory.swift */,
@@ -686,9 +688,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = memo/memo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 3UUNPVRU82;
 				INFOPLIST_FILE = "$(SRCROOT)/memo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -698,6 +702,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.legonaftik.memo.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -708,9 +713,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = memo/memo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 3UUNPVRU82;
 				INFOPLIST_FILE = "$(SRCROOT)/memo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -720,6 +727,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.legonaftik.memo.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

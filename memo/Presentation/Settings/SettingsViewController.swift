@@ -10,32 +10,32 @@ import UIKit
 
 final class SettingsViewController: UITableViewController {
 
-  // MARK: - Private
+    // MARK: - Private
 
-  private let unauthorizedNoteService: INoteService = AppFactory.factory.makeNotesService()
+    private let noteService = AppFactory.shared.makeNotesService()
 
-  @IBAction private func deleteAllNotes(_ sender: UIButton) {
-    sender.isEnabled = false
+    @IBAction private func deleteAllNotes(_ sender: UIButton) {
+        sender.isEnabled = false
 
-    unauthorizedNoteService.deleteAllNotes { [weak self] result in
-      guard let self = self else { return }
+        noteService.deleteAllNotes { [weak self] result in
+            guard let self = self else { return }
 
-      DispatchQueue.main.async {
-        let alertMessage: String
-        switch result {
-        case .failure(let error):
-          alertMessage = error.localizedDescription
-        case .success:
-          alertMessage = R.string.localizable.allTheNotesWereDeleted()
+            DispatchQueue.main.async {
+                let alertMessage: String
+                switch result {
+                case .failure(let error):
+                    alertMessage = error.localizedDescription
+                case .success:
+                    alertMessage = R.string.localizable.allTheNotesWereDeleted()
+                }
+                self.displayAlert(message: alertMessage)
+
+                sender.isEnabled = true
+            }
         }
-        self.displayAlert(message: alertMessage)
-
-        sender.isEnabled = true
-      }
     }
-  }
 
-  @IBAction private func done(_ sender: UIBarButtonItem) {
-    dismiss(animated: true)
-  }
+    @IBAction private func done(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
+    }
 }

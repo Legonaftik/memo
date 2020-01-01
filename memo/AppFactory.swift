@@ -10,28 +10,28 @@ import CoreData
 
 final class AppFactory {
 
-  // MARK: - Singleton
+    // MARK: - Singleton
 
-  static let factory = AppFactory()
-  private init() {}
+    static let shared = AppFactory()
+    private init() {}
 
-  // MARK: - Services
+    // MARK: - Services
 
-  func makeNotesService() -> INoteService {
-    return NoteService(notesStorage: self.coreDataStorage)
-  }
-
-  // MARK: - Core Components
-
-  private lazy var coreDataStorage = CoreDataNotesStorage(persistentContainer: self.persistentContainer)
-
-  private lazy var persistentContainer: NSPersistentContainer = {
-    let container = NSPersistentContainer(name: "memo")
-    container.loadPersistentStores { _, error in
-      if let error = error {
-        fatalError("Unable to load persistent stores: \(error)")
-      }
+    func makeNotesService() -> INoteService {
+        return NoteService(notesStorage: coreDataStorage)
     }
-    return container
-  }()
+
+    // MARK: - Core Components
+
+    private lazy var coreDataStorage = CoreDataNotesStorage(persistentContainer: persistentContainer)
+
+    private lazy var persistentContainer: NSPersistentCloudKitContainer = {
+        let container = NSPersistentCloudKitContainer(name: "memo")
+        container.loadPersistentStores { _, error in
+            if let error = error {
+                fatalError(error.localizedDescription)
+            }
+        }
+        return container
+    }()
 }

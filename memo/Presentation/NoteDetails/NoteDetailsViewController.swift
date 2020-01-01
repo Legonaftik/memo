@@ -10,65 +10,66 @@ import UIKit
 
 final class NoteDetailsViewController: UIViewController {
 
-  var notesService: INoteService!
-  var noteID: UUID!
-  private var note: Note? {
-    didSet {
-      if let note = self.note {
-        self.setupUI(with: note)
-      }
+    var notesService: INoteService!
+    var noteID: UUID!
+    private var note: Note? {
+        didSet {
+            if let note = note {
+                setupUI(with: note)
+            }
+        }
     }
-  }
 
-  private let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.timeStyle = .short
-    formatter.dateStyle = .short
-    return formatter
-  }()
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.dateStyle = .short
+        return formatter
+    }()
 
-  // MARK: - Interface Builder
+    // MARK: - Interface Builder
 
-  @IBOutlet private var photoImageView: UIImageView!
-  @IBOutlet private var editBarButtonItem: UIBarButtonItem!
-  @IBOutlet private var dateLabel: UILabel!
-  @IBOutlet private var titleLabel: UITextField!
-  @IBOutlet private var contentTextView: UITextView!
-  @IBOutlet private var moodControl: MoodControl!
+    @IBOutlet private var photoImageView: UIImageView!
+    @IBOutlet private var editBarButtonItem: UIBarButtonItem!
+    @IBOutlet private var dateLabel: UILabel!
+    @IBOutlet private var titleLabel: UITextField!
+    @IBOutlet private var contentTextView: UITextView!
+    @IBOutlet private var moodControl: MoodControl!
 
-  // MARK: - View Controller lifecycle
+    // MARK: - View Controller lifecycle
 
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    self.getNote(with: self.noteID)
-  }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if let editNoteSegue = R.segue.noteDetailsViewController.editNote(segue: segue) {
-      let noteEditingViewController = editNoteSegue.destination.topViewController as! NoteEditingViewController
-      noteEditingViewController.notesService = self.notesService
-      noteEditingViewController.noteLocalID = self.noteID
+        getNote(with: noteID)
     }
-  }
 
-  // MARK: - Helpers
-
-  private func getNote(with localID: UUID) {
-    do {
-      self.note = try self.notesService.note(with: self.noteID)
-    } catch {
-      self.displayAlert(message: error.localizedDescription)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let editNoteSegue = R.segue.noteDetailsViewController.editNote(segue: segue) {
+            let noteEditingViewController = editNoteSegue.destination.topViewController as! NoteEditingViewController
+            noteEditingViewController.notesService = notesService
+            noteEditingViewController.noteLocalID = noteID
+        }
     }
-  }
 
-  private func setupUI(with note: Note) {
-    self.dateLabel.text = self.dateFormatter.string(from: note.creationDate)
-    self.titleLabel.text = note.title
-    self.contentTextView.text = note.content
-    self.moodControl.selectedSegmentIndex = Int(note.mood)
+    // MARK: - Helpers
 
-    if let jpegData = note.image?.jpegData {
-      self.photoImageView.image = UIImage(data: jpegData)
+    private func getNote(with localID: UUID) {
+        do {
+            note = try notesService.note(with: noteID)
+        } catch {
+            displayAlert(message: error.localizedDescription)
+        }
     }
-  }
+
+    private func setupUI(with note: Note) {
+        dateLabel.text = dateFormatter.string(from: note.creationDate)
+        titleLabel.text = note.title
+        contentTextView.text = note.content
+        moodControl.selectedSegmentIndex = Int(note.mood)
+
+        if let jpegData = note.image?.jpegData {
+            photoImageView.image = UIImage(data: jpegData)
+        }
+    }
 }
