@@ -9,7 +9,7 @@ DEPENDENCIES:
   - R.swift
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - FSCalendar
     - R.swift
     - R.swift.Library
@@ -21,4 +21,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 1459aa773853cfbf69ae825303861809adc64383
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.8.4
