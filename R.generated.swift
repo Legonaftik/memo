@@ -11,11 +11,215 @@ import UIKit
 struct R: Rswift.Validatable {
   fileprivate static let applicationLocale = hostingBundle.preferredLocalizations.first.flatMap(Locale.init) ?? Locale.current
   fileprivate static let hostingBundle = Bundle(for: R.Class.self)
-  
+
+  /// Find first language and bundle for which the table exists
+  fileprivate static func localeBundle(tableName: String, preferredLanguages: [String]) -> (Foundation.Locale, Foundation.Bundle)? {
+    // Filter preferredLanguages to localizations, use first locale
+    var languages = preferredLanguages
+      .map(Locale.init)
+      .prefix(1)
+      .flatMap { locale -> [String] in
+        if hostingBundle.localizations.contains(locale.identifier) {
+          if let language = locale.languageCode, hostingBundle.localizations.contains(language) {
+            return [locale.identifier, language]
+          } else {
+            return [locale.identifier]
+          }
+        } else if let language = locale.languageCode, hostingBundle.localizations.contains(language) {
+          return [language]
+        } else {
+          return []
+        }
+      }
+
+    // If there's no languages, use development language as backstop
+    if languages.isEmpty {
+      if let developmentLocalization = hostingBundle.developmentLocalization {
+        languages = [developmentLocalization]
+      }
+    } else {
+      // Insert Base as second item (between locale identifier and languageCode)
+      languages.insert("Base", at: 1)
+
+      // Add development language as backstop
+      if let developmentLocalization = hostingBundle.developmentLocalization {
+        languages.append(developmentLocalization)
+      }
+    }
+
+    // Find first language for which table exists
+    // Note: key might not exist in chosen language (in that case, key will be shown)
+    for language in languages {
+      if let lproj = hostingBundle.url(forResource: language, withExtension: "lproj"),
+         let lbundle = Bundle(url: lproj)
+      {
+        let strings = lbundle.url(forResource: tableName, withExtension: "strings")
+        let stringsdict = lbundle.url(forResource: tableName, withExtension: "stringsdict")
+
+        if strings != nil || stringsdict != nil {
+          return (Locale(identifier: language), lbundle)
+        }
+      }
+    }
+
+    // If table is available in main bundle, don't look for localized resources
+    let strings = hostingBundle.url(forResource: tableName, withExtension: "strings", subdirectory: nil, localization: nil)
+    let stringsdict = hostingBundle.url(forResource: tableName, withExtension: "stringsdict", subdirectory: nil, localization: nil)
+
+    if strings != nil || stringsdict != nil {
+      return (applicationLocale, hostingBundle)
+    }
+
+    // If table is not found for requested languages, key will be shown
+    return nil
+  }
+
+  /// Load string from Info.plist file
+  fileprivate static func infoPlistString(path: [String], key: String) -> String? {
+    var dict = hostingBundle.infoDictionary
+    for step in path {
+      guard let obj = dict?[step] as? [String: Any] else { return nil }
+      dict = obj
+    }
+    return dict?[key] as? String
+  }
+
   static func validate() throws {
     try intern.validate()
   }
-  
+
+  #if os(iOS) || os(tvOS)
+  /// This `R.segue` struct is generated, and contains static references to 4 view controllers.
+  struct segue {
+    /// This struct is generated for `CalendarViewController`, and contains static references to 2 segues.
+    struct calendarViewController {
+      /// Segue identifier `noteDetails`.
+      static let noteDetails: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, CalendarViewController, NoteDetailsViewController> = Rswift.StoryboardSegueIdentifier(identifier: "noteDetails")
+      /// Segue identifier `notesList`.
+      static let notesList: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, CalendarViewController, NotesListViewController> = Rswift.StoryboardSegueIdentifier(identifier: "notesList")
+
+      #if os(iOS) || os(tvOS)
+      /// Optionally returns a typed version of segue `noteDetails`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func noteDetails(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, CalendarViewController, NoteDetailsViewController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.calendarViewController.noteDetails, segue: segue)
+      }
+      #endif
+
+      #if os(iOS) || os(tvOS)
+      /// Optionally returns a typed version of segue `notesList`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func notesList(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, CalendarViewController, NotesListViewController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.calendarViewController.notesList, segue: segue)
+      }
+      #endif
+
+      fileprivate init() {}
+    }
+
+    /// This struct is generated for `MainViewController`, and contains static references to 2 segues.
+    struct mainViewController {
+      /// Segue identifier `newNote`.
+      static let newNote: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MainViewController, UIKit.UINavigationController> = Rswift.StoryboardSegueIdentifier(identifier: "newNote")
+      /// Segue identifier `noteDetails`.
+      static let noteDetails: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MainViewController, NoteDetailsViewController> = Rswift.StoryboardSegueIdentifier(identifier: "noteDetails")
+
+      #if os(iOS) || os(tvOS)
+      /// Optionally returns a typed version of segue `newNote`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func newNote(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MainViewController, UIKit.UINavigationController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.mainViewController.newNote, segue: segue)
+      }
+      #endif
+
+      #if os(iOS) || os(tvOS)
+      /// Optionally returns a typed version of segue `noteDetails`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func noteDetails(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MainViewController, NoteDetailsViewController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.mainViewController.noteDetails, segue: segue)
+      }
+      #endif
+
+      fileprivate init() {}
+    }
+
+    /// This struct is generated for `NoteDetailsViewController`, and contains static references to 1 segues.
+    struct noteDetailsViewController {
+      /// Segue identifier `editNote`.
+      static let editNote: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, NoteDetailsViewController, UIKit.UINavigationController> = Rswift.StoryboardSegueIdentifier(identifier: "editNote")
+
+      #if os(iOS) || os(tvOS)
+      /// Optionally returns a typed version of segue `editNote`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func editNote(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, NoteDetailsViewController, UIKit.UINavigationController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.noteDetailsViewController.editNote, segue: segue)
+      }
+      #endif
+
+      fileprivate init() {}
+    }
+
+    /// This struct is generated for `NoteEditingViewController`, and contains static references to 1 segues.
+    struct noteEditingViewController {
+      /// Segue identifier `datePicker`.
+      static let datePicker: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, NoteEditingViewController, UIKit.UINavigationController> = Rswift.StoryboardSegueIdentifier(identifier: "datePicker")
+
+      #if os(iOS) || os(tvOS)
+      /// Optionally returns a typed version of segue `datePicker`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func datePicker(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, NoteEditingViewController, UIKit.UINavigationController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.noteEditingViewController.datePicker, segue: segue)
+      }
+      #endif
+
+      fileprivate init() {}
+    }
+
+    fileprivate init() {}
+  }
+  #endif
+
+  #if os(iOS) || os(tvOS)
+  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
+  struct storyboard {
+    /// Storyboard `LaunchScreen`.
+    static let launchScreen = _R.storyboard.launchScreen()
+    /// Storyboard `Main`.
+    static let main = _R.storyboard.main()
+    /// Storyboard `Settings`.
+    static let settings = _R.storyboard.settings()
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
+    static func launchScreen(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.launchScreen)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "Main", bundle: ...)`
+    static func main(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.main)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "Settings", bundle: ...)`
+    static func settings(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.settings)
+    }
+    #endif
+
+    fileprivate init() {}
+  }
+  #endif
+
   /// This `R.color` struct is generated, and contains static references to 5 colors.
   struct color {
     /// Color `mood0`.
@@ -28,45 +232,55 @@ struct R: Rswift.Validatable {
     static let mood3 = Rswift.ColorResource(bundle: R.hostingBundle, name: "mood3")
     /// Color `mood4`.
     static let mood4 = Rswift.ColorResource(bundle: R.hostingBundle, name: "mood4")
-    
+
+    #if os(iOS) || os(tvOS)
     /// `UIColor(named: "mood0", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func mood0(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.mood0, compatibleWith: traitCollection)
     }
-    
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIColor(named: "mood1", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func mood1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.mood1, compatibleWith: traitCollection)
     }
-    
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIColor(named: "mood2", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func mood2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.mood2, compatibleWith: traitCollection)
     }
-    
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIColor(named: "mood3", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func mood3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.mood3, compatibleWith: traitCollection)
     }
-    
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIColor(named: "mood4", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
     static func mood4(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.mood4, compatibleWith: traitCollection)
     }
-    
+    #endif
+
     fileprivate init() {}
   }
-  
+
   /// This `R.image` struct is generated, and contains static references to 3 images.
   struct image {
     /// Image `photoPlaceholder`.
@@ -75,25 +289,31 @@ struct R: Rswift.Validatable {
     static let settings = Rswift.ImageResource(bundle: R.hostingBundle, name: "settings")
     /// Image `smiling`.
     static let smiling = Rswift.ImageResource(bundle: R.hostingBundle, name: "smiling")
-    
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "photoPlaceholder", bundle: ..., traitCollection: ...)`
     static func photoPlaceholder(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.photoPlaceholder, compatibleWith: traitCollection)
     }
-    
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "settings", bundle: ..., traitCollection: ...)`
     static func settings(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.settings, compatibleWith: traitCollection)
     }
-    
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "smiling", bundle: ..., traitCollection: ...)`
     static func smiling(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.smiling, compatibleWith: traitCollection)
     }
-    
+    #endif
+
     fileprivate init() {}
   }
-  
+
   /// This `R.reuseIdentifier` struct is generated, and contains static references to 7 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `noteContent`.
@@ -110,612 +330,798 @@ struct R: Rswift.Validatable {
     static let noteTitleImage: Rswift.ReuseIdentifier<NoteTableViewCell> = Rswift.ReuseIdentifier(identifier: "noteTitleImage")
     /// Reuse identifier `noteTitle`.
     static let noteTitle: Rswift.ReuseIdentifier<NoteTableViewCell> = Rswift.ReuseIdentifier(identifier: "noteTitle")
-    
+
     fileprivate init() {}
   }
-  
-  /// This `R.segue` struct is generated, and contains static references to 4 view controllers.
-  struct segue {
-    /// This struct is generated for `CalendarViewController`, and contains static references to 2 segues.
-    struct calendarViewController {
-      /// Segue identifier `noteDetails`.
-      static let noteDetails: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, CalendarViewController, NoteDetailsViewController> = Rswift.StoryboardSegueIdentifier(identifier: "noteDetails")
-      /// Segue identifier `notesList`.
-      static let notesList: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, CalendarViewController, NotesListViewController> = Rswift.StoryboardSegueIdentifier(identifier: "notesList")
-      
-      /// Optionally returns a typed version of segue `noteDetails`.
-      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
-      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func noteDetails(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, CalendarViewController, NoteDetailsViewController>? {
-        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.calendarViewController.noteDetails, segue: segue)
-      }
-      
-      /// Optionally returns a typed version of segue `notesList`.
-      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
-      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func notesList(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, CalendarViewController, NotesListViewController>? {
-        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.calendarViewController.notesList, segue: segue)
-      }
-      
-      fileprivate init() {}
-    }
-    
-    /// This struct is generated for `MainViewController`, and contains static references to 2 segues.
-    struct mainViewController {
-      /// Segue identifier `newNote`.
-      static let newNote: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MainViewController, UIKit.UINavigationController> = Rswift.StoryboardSegueIdentifier(identifier: "newNote")
-      /// Segue identifier `noteDetails`.
-      static let noteDetails: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MainViewController, NoteDetailsViewController> = Rswift.StoryboardSegueIdentifier(identifier: "noteDetails")
-      
-      /// Optionally returns a typed version of segue `newNote`.
-      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
-      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func newNote(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MainViewController, UIKit.UINavigationController>? {
-        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.mainViewController.newNote, segue: segue)
-      }
-      
-      /// Optionally returns a typed version of segue `noteDetails`.
-      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
-      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func noteDetails(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MainViewController, NoteDetailsViewController>? {
-        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.mainViewController.noteDetails, segue: segue)
-      }
-      
-      fileprivate init() {}
-    }
-    
-    /// This struct is generated for `NoteDetailsViewController`, and contains static references to 1 segues.
-    struct noteDetailsViewController {
-      /// Segue identifier `editNote`.
-      static let editNote: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, NoteDetailsViewController, UIKit.UINavigationController> = Rswift.StoryboardSegueIdentifier(identifier: "editNote")
-      
-      /// Optionally returns a typed version of segue `editNote`.
-      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
-      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func editNote(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, NoteDetailsViewController, UIKit.UINavigationController>? {
-        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.noteDetailsViewController.editNote, segue: segue)
-      }
-      
-      fileprivate init() {}
-    }
-    
-    /// This struct is generated for `NoteEditingViewController`, and contains static references to 1 segues.
-    struct noteEditingViewController {
-      /// Segue identifier `datePicker`.
-      static let datePicker: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, NoteEditingViewController, UIKit.UINavigationController> = Rswift.StoryboardSegueIdentifier(identifier: "datePicker")
-      
-      /// Optionally returns a typed version of segue `datePicker`.
-      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
-      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func datePicker(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, NoteEditingViewController, UIKit.UINavigationController>? {
-        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.noteEditingViewController.datePicker, segue: segue)
-      }
-      
-      fileprivate init() {}
-    }
-    
-    fileprivate init() {}
-  }
-  
-  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
-  struct storyboard {
-    /// Storyboard `LaunchScreen`.
-    static let launchScreen = _R.storyboard.launchScreen()
-    /// Storyboard `Main`.
-    static let main = _R.storyboard.main()
-    /// Storyboard `Settings`.
-    static let settings = _R.storyboard.settings()
-    
-    /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
-    static func launchScreen(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.launchScreen)
-    }
-    
-    /// `UIStoryboard(name: "Main", bundle: ...)`
-    static func main(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.main)
-    }
-    
-    /// `UIStoryboard(name: "Settings", bundle: ...)`
-    static func settings(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.settings)
-    }
-    
-    fileprivate init() {}
-  }
-  
+
   /// This `R.string` struct is generated, and contains static references to 3 localization tables.
   struct string {
     /// This `R.string.localizable` struct is generated, and contains static references to 12 localization keys.
     struct localizable {
       /// Base translation: All the notes were deleted.
-      /// 
+      ///
       /// Locales: ru, Base
       static let allTheNotesWereDeleted = Rswift.StringResource(key: "All the notes were deleted.", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "Base"], comment: nil)
       /// Base translation: All your notes will be downloaded again. You can go back to the main screen.
-      /// 
+      ///
       /// Locales: ru, Base
       static let resetSyncDate = Rswift.StringResource(key: "resetSyncDate", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "Base"], comment: nil)
       /// Base translation: Authorize to access your diary
-      /// 
+      ///
       /// Locales: ru, Base
       static let authorizeToAccessYourDiary = Rswift.StringResource(key: "Authorize to access your diary", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "Base"], comment: nil)
       /// Base translation: Cancel
-      /// 
+      ///
       /// Locales: ru, Base
       static let cancel = Rswift.StringResource(key: "Cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "Base"], comment: nil)
       /// Base translation: Choose from gallery
-      /// 
+      ///
       /// Locales: ru, Base
       static let chooseFromGallery = Rswift.StringResource(key: "Choose from gallery", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "Base"], comment: nil)
       /// Base translation: How are you?
-      /// 
+      ///
       /// Locales: ru, Base
       static let howAreYou = Rswift.StringResource(key: "How are you?", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "Base"], comment: nil)
       /// Base translation: Log In
-      /// 
+      ///
       /// Locales: ru, Base
       static let logIn = Rswift.StringResource(key: "Log In", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "Base"], comment: nil)
       /// Base translation: Log Out
-      /// 
+      ///
       /// Locales: ru, Base
       static let logOut = Rswift.StringResource(key: "Log Out", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "Base"], comment: nil)
       /// Base translation: No Title
-      /// 
+      ///
       /// Locales: ru, Base
       static let noTitle = Rswift.StringResource(key: "No Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "Base"], comment: nil)
       /// Base translation: Take a photo
-      /// 
+      ///
       /// Locales: ru, Base
       static let takeAPhoto = Rswift.StringResource(key: "Take a photo", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "Base"], comment: nil)
       /// Base translation: Warning
-      /// 
+      ///
       /// Locales: ru, Base
       static let warning = Rswift.StringResource(key: "Warning", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "Base"], comment: nil)
       /// Base translation: You have successfully logged out.
-      /// 
+      ///
       /// Locales: ru, Base
       static let youHaveSuccessfullyLoggedOut = Rswift.StringResource(key: "You have successfully logged out.", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "Base"], comment: nil)
-      
+
       /// Base translation: All the notes were deleted.
-      /// 
+      ///
       /// Locales: ru, Base
-      static func allTheNotesWereDeleted(_: Void = ()) -> String {
-        return NSLocalizedString("All the notes were deleted.", bundle: R.hostingBundle, value: "All the notes were deleted.", comment: "")
+      static func allTheNotesWereDeleted(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("All the notes were deleted.", bundle: hostingBundle, value: "All the notes were deleted.", comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "All the notes were deleted."
+        }
+
+        return NSLocalizedString("All the notes were deleted.", bundle: bundle, value: "All the notes were deleted.", comment: "")
       }
-      
+
       /// Base translation: All your notes will be downloaded again. You can go back to the main screen.
-      /// 
+      ///
       /// Locales: ru, Base
-      static func resetSyncDate(_: Void = ()) -> String {
-        return NSLocalizedString("resetSyncDate", bundle: R.hostingBundle, value: "All your notes will be downloaded again. You can go back to the main screen.", comment: "")
+      static func resetSyncDate(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("resetSyncDate", bundle: hostingBundle, value: "All your notes will be downloaded again. You can go back to the main screen.", comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "resetSyncDate"
+        }
+
+        return NSLocalizedString("resetSyncDate", bundle: bundle, value: "All your notes will be downloaded again. You can go back to the main screen.", comment: "")
       }
-      
+
       /// Base translation: Authorize to access your diary
-      /// 
+      ///
       /// Locales: ru, Base
-      static func authorizeToAccessYourDiary(_: Void = ()) -> String {
-        return NSLocalizedString("Authorize to access your diary", bundle: R.hostingBundle, value: "Authorize to access your diary", comment: "")
+      static func authorizeToAccessYourDiary(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Authorize to access your diary", bundle: hostingBundle, value: "Authorize to access your diary", comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Authorize to access your diary"
+        }
+
+        return NSLocalizedString("Authorize to access your diary", bundle: bundle, value: "Authorize to access your diary", comment: "")
       }
-      
+
       /// Base translation: Cancel
-      /// 
+      ///
       /// Locales: ru, Base
-      static func cancel(_: Void = ()) -> String {
-        return NSLocalizedString("Cancel", bundle: R.hostingBundle, value: "Cancel", comment: "")
+      static func cancel(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Cancel", bundle: hostingBundle, value: "Cancel", comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Cancel"
+        }
+
+        return NSLocalizedString("Cancel", bundle: bundle, value: "Cancel", comment: "")
       }
-      
+
       /// Base translation: Choose from gallery
-      /// 
+      ///
       /// Locales: ru, Base
-      static func chooseFromGallery(_: Void = ()) -> String {
-        return NSLocalizedString("Choose from gallery", bundle: R.hostingBundle, value: "Choose from gallery", comment: "")
+      static func chooseFromGallery(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Choose from gallery", bundle: hostingBundle, value: "Choose from gallery", comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Choose from gallery"
+        }
+
+        return NSLocalizedString("Choose from gallery", bundle: bundle, value: "Choose from gallery", comment: "")
       }
-      
+
       /// Base translation: How are you?
-      /// 
+      ///
       /// Locales: ru, Base
-      static func howAreYou(_: Void = ()) -> String {
-        return NSLocalizedString("How are you?", bundle: R.hostingBundle, value: "How are you?", comment: "")
+      static func howAreYou(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("How are you?", bundle: hostingBundle, value: "How are you?", comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "How are you?"
+        }
+
+        return NSLocalizedString("How are you?", bundle: bundle, value: "How are you?", comment: "")
       }
-      
+
       /// Base translation: Log In
-      /// 
+      ///
       /// Locales: ru, Base
-      static func logIn(_: Void = ()) -> String {
-        return NSLocalizedString("Log In", bundle: R.hostingBundle, value: "Log In", comment: "")
+      static func logIn(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Log In", bundle: hostingBundle, value: "Log In", comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Log In"
+        }
+
+        return NSLocalizedString("Log In", bundle: bundle, value: "Log In", comment: "")
       }
-      
+
       /// Base translation: Log Out
-      /// 
+      ///
       /// Locales: ru, Base
-      static func logOut(_: Void = ()) -> String {
-        return NSLocalizedString("Log Out", bundle: R.hostingBundle, value: "Log Out", comment: "")
+      static func logOut(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Log Out", bundle: hostingBundle, value: "Log Out", comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Log Out"
+        }
+
+        return NSLocalizedString("Log Out", bundle: bundle, value: "Log Out", comment: "")
       }
-      
+
       /// Base translation: No Title
-      /// 
+      ///
       /// Locales: ru, Base
-      static func noTitle(_: Void = ()) -> String {
-        return NSLocalizedString("No Title", bundle: R.hostingBundle, value: "No Title", comment: "")
+      static func noTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("No Title", bundle: hostingBundle, value: "No Title", comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "No Title"
+        }
+
+        return NSLocalizedString("No Title", bundle: bundle, value: "No Title", comment: "")
       }
-      
+
       /// Base translation: Take a photo
-      /// 
+      ///
       /// Locales: ru, Base
-      static func takeAPhoto(_: Void = ()) -> String {
-        return NSLocalizedString("Take a photo", bundle: R.hostingBundle, value: "Take a photo", comment: "")
+      static func takeAPhoto(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Take a photo", bundle: hostingBundle, value: "Take a photo", comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Take a photo"
+        }
+
+        return NSLocalizedString("Take a photo", bundle: bundle, value: "Take a photo", comment: "")
       }
-      
+
       /// Base translation: Warning
-      /// 
+      ///
       /// Locales: ru, Base
-      static func warning(_: Void = ()) -> String {
-        return NSLocalizedString("Warning", bundle: R.hostingBundle, value: "Warning", comment: "")
+      static func warning(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Warning", bundle: hostingBundle, value: "Warning", comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Warning"
+        }
+
+        return NSLocalizedString("Warning", bundle: bundle, value: "Warning", comment: "")
       }
-      
+
       /// Base translation: You have successfully logged out.
-      /// 
+      ///
       /// Locales: ru, Base
-      static func youHaveSuccessfullyLoggedOut(_: Void = ()) -> String {
-        return NSLocalizedString("You have successfully logged out.", bundle: R.hostingBundle, value: "You have successfully logged out.", comment: "")
+      static func youHaveSuccessfullyLoggedOut(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("You have successfully logged out.", bundle: hostingBundle, value: "You have successfully logged out.", comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "You have successfully logged out."
+        }
+
+        return NSLocalizedString("You have successfully logged out.", bundle: bundle, value: "You have successfully logged out.", comment: "")
       }
-      
+
       fileprivate init() {}
     }
-    
+
     /// This `R.string.main` struct is generated, and contains static references to 18 localization keys.
     struct main {
       /// ru translation: 1000
-      /// 
+      ///
       /// Locales: ru
       static let eyIC19RiText = Rswift.StringResource(key: "EyI-C1-9Ri.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: 18 сентября  20:46
-      /// 
+      ///
       /// Locales: ru
       static let ine6JRwGText = Rswift.StringResource(key: "ine-6J-RwG.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: 24 сентября 9:41
-      /// 
+      ///
       /// Locales: ru
       static let h5FN7ZJWText = Rswift.StringResource(key: "h5F-N7-zJW.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: 24 сентября 9:41
-      /// 
+      ///
       /// Locales: ru
       static let leFfQText = Rswift.StringResource(key: "742-LE-ffQ.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Войти
-      /// 
+      ///
       /// Locales: ru
       static let j5QB9EeANormalTitle = Rswift.StringResource(key: "J5Q-B9-eeA.normalTitle", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Дата заметки
-      /// 
+      ///
       /// Locales: ru
       static let ehmRLASvTitle = Rswift.StringResource(key: "ehm-rL-ASv.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Дневник
-      /// 
+      ///
       /// Locales: ru
       static let yLl33MhUTitle = Rswift.StringResource(key: "yLl-33-mhU.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Заголовок
-      /// 
+      ///
       /// Locales: ru
       static let iW25kQUwPlaceholder = Rswift.StringResource(key: "iW2-5k-qUw.placeholder", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Заголовок
-      /// 
+      ///
       /// Locales: ru
       static let llaJqNzOPlaceholder = Rswift.StringResource(key: "Lla-Jq-NzO.placeholder", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Заголовок
-      /// 
+      ///
       /// Locales: ru
       static let pMQn99BText = Rswift.StringResource(key: "5pM-qn-99B.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Изменить дату
-      /// 
+      ///
       /// Locales: ru
       static let eOOMeUDXNormalTitle = Rswift.StringResource(key: "eOO-me-uDX.normalTitle", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Как твои дела?
-      /// 
+      ///
       /// Locales: ru
       static let iPP6rIy9Text = Rswift.StringResource(key: "iPP-6r-Iy9.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Как твои дела?
-      /// 
+      ///
       /// Locales: ru
       static let ltQGYLBJText = Rswift.StringResource(key: "ltQ-GY-LBJ.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Календарь
-      /// 
+      ///
       /// Locales: ru
       static let feuEOXkYSegmentTitles1 = Rswift.StringResource(key: "Feu-eO-xkY.segmentTitles[1]", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Календарь
-      /// 
+      ///
       /// Locales: ru
       static let rQfAZQjGSegmentTitles1 = Rswift.StringResource(key: "rQf-aZ-QjG.segmentTitles[1]", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Список
-      /// 
+      ///
       /// Locales: ru
       static let feuEOXkYSegmentTitles0 = Rswift.StringResource(key: "Feu-eO-xkY.segmentTitles[0]", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Список
-      /// 
+      ///
       /// Locales: ru
       static let rQfAZQjGSegmentTitles0 = Rswift.StringResource(key: "rQf-aZ-QjG.segmentTitles[0]", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: длинный текст длинный текст длинный текст длинный текст длинный текст длинный текст длинный текст длинный текст длинный текст 
-      /// 
+      ///
       /// Locales: ru
       static let xD6pZ6FText = Rswift.StringResource(key: "4xD-6p-Z6F.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
-      
+
       /// ru translation: 1000
-      /// 
+      ///
       /// Locales: ru
-      static func eyIC19RiText(_: Void = ()) -> String {
-        return NSLocalizedString("EyI-C1-9Ri.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      static func eyIC19RiText(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("EyI-C1-9Ri.text", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "EyI-C1-9Ri.text"
+        }
+
+        return NSLocalizedString("EyI-C1-9Ri.text", tableName: "Main", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: 18 сентября  20:46
-      /// 
+      ///
       /// Locales: ru
-      static func ine6JRwGText(_: Void = ()) -> String {
-        return NSLocalizedString("ine-6J-RwG.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      static func ine6JRwGText(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("ine-6J-RwG.text", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "ine-6J-RwG.text"
+        }
+
+        return NSLocalizedString("ine-6J-RwG.text", tableName: "Main", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: 24 сентября 9:41
-      /// 
+      ///
       /// Locales: ru
-      static func h5FN7ZJWText(_: Void = ()) -> String {
-        return NSLocalizedString("h5F-N7-zJW.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      static func h5FN7ZJWText(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("h5F-N7-zJW.text", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "h5F-N7-zJW.text"
+        }
+
+        return NSLocalizedString("h5F-N7-zJW.text", tableName: "Main", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: 24 сентября 9:41
-      /// 
+      ///
       /// Locales: ru
-      static func leFfQText(_: Void = ()) -> String {
-        return NSLocalizedString("742-LE-ffQ.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      static func leFfQText(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("742-LE-ffQ.text", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "742-LE-ffQ.text"
+        }
+
+        return NSLocalizedString("742-LE-ffQ.text", tableName: "Main", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: Войти
-      /// 
+      ///
       /// Locales: ru
-      static func j5QB9EeANormalTitle(_: Void = ()) -> String {
-        return NSLocalizedString("J5Q-B9-eeA.normalTitle", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      static func j5QB9EeANormalTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("J5Q-B9-eeA.normalTitle", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "J5Q-B9-eeA.normalTitle"
+        }
+
+        return NSLocalizedString("J5Q-B9-eeA.normalTitle", tableName: "Main", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: Дата заметки
-      /// 
+      ///
       /// Locales: ru
-      static func ehmRLASvTitle(_: Void = ()) -> String {
-        return NSLocalizedString("ehm-rL-ASv.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      static func ehmRLASvTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("ehm-rL-ASv.title", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "ehm-rL-ASv.title"
+        }
+
+        return NSLocalizedString("ehm-rL-ASv.title", tableName: "Main", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: Дневник
-      /// 
+      ///
       /// Locales: ru
-      static func yLl33MhUTitle(_: Void = ()) -> String {
-        return NSLocalizedString("yLl-33-mhU.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      static func yLl33MhUTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("yLl-33-mhU.title", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "yLl-33-mhU.title"
+        }
+
+        return NSLocalizedString("yLl-33-mhU.title", tableName: "Main", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: Заголовок
-      /// 
+      ///
       /// Locales: ru
-      static func iW25kQUwPlaceholder(_: Void = ()) -> String {
-        return NSLocalizedString("iW2-5k-qUw.placeholder", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      static func iW25kQUwPlaceholder(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("iW2-5k-qUw.placeholder", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "iW2-5k-qUw.placeholder"
+        }
+
+        return NSLocalizedString("iW2-5k-qUw.placeholder", tableName: "Main", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: Заголовок
-      /// 
+      ///
       /// Locales: ru
-      static func llaJqNzOPlaceholder(_: Void = ()) -> String {
-        return NSLocalizedString("Lla-Jq-NzO.placeholder", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      static func llaJqNzOPlaceholder(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Lla-Jq-NzO.placeholder", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "Lla-Jq-NzO.placeholder"
+        }
+
+        return NSLocalizedString("Lla-Jq-NzO.placeholder", tableName: "Main", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: Заголовок
-      /// 
+      ///
       /// Locales: ru
-      static func pMQn99BText(_: Void = ()) -> String {
-        return NSLocalizedString("5pM-qn-99B.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      static func pMQn99BText(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("5pM-qn-99B.text", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "5pM-qn-99B.text"
+        }
+
+        return NSLocalizedString("5pM-qn-99B.text", tableName: "Main", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: Изменить дату
-      /// 
+      ///
       /// Locales: ru
-      static func eOOMeUDXNormalTitle(_: Void = ()) -> String {
-        return NSLocalizedString("eOO-me-uDX.normalTitle", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      static func eOOMeUDXNormalTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("eOO-me-uDX.normalTitle", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "eOO-me-uDX.normalTitle"
+        }
+
+        return NSLocalizedString("eOO-me-uDX.normalTitle", tableName: "Main", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: Как твои дела?
-      /// 
+      ///
       /// Locales: ru
-      static func iPP6rIy9Text(_: Void = ()) -> String {
-        return NSLocalizedString("iPP-6r-Iy9.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      static func iPP6rIy9Text(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("iPP-6r-Iy9.text", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "iPP-6r-Iy9.text"
+        }
+
+        return NSLocalizedString("iPP-6r-Iy9.text", tableName: "Main", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: Как твои дела?
-      /// 
+      ///
       /// Locales: ru
-      static func ltQGYLBJText(_: Void = ()) -> String {
-        return NSLocalizedString("ltQ-GY-LBJ.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      static func ltQGYLBJText(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("ltQ-GY-LBJ.text", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "ltQ-GY-LBJ.text"
+        }
+
+        return NSLocalizedString("ltQ-GY-LBJ.text", tableName: "Main", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: Календарь
-      /// 
+      ///
       /// Locales: ru
-      static func feuEOXkYSegmentTitles1(_: Void = ()) -> String {
-        return NSLocalizedString("Feu-eO-xkY.segmentTitles[1]", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      static func feuEOXkYSegmentTitles1(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Feu-eO-xkY.segmentTitles[1]", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "Feu-eO-xkY.segmentTitles[1]"
+        }
+
+        return NSLocalizedString("Feu-eO-xkY.segmentTitles[1]", tableName: "Main", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: Календарь
-      /// 
+      ///
       /// Locales: ru
-      static func rQfAZQjGSegmentTitles1(_: Void = ()) -> String {
-        return NSLocalizedString("rQf-aZ-QjG.segmentTitles[1]", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      static func rQfAZQjGSegmentTitles1(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("rQf-aZ-QjG.segmentTitles[1]", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "rQf-aZ-QjG.segmentTitles[1]"
+        }
+
+        return NSLocalizedString("rQf-aZ-QjG.segmentTitles[1]", tableName: "Main", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: Список
-      /// 
+      ///
       /// Locales: ru
-      static func feuEOXkYSegmentTitles0(_: Void = ()) -> String {
-        return NSLocalizedString("Feu-eO-xkY.segmentTitles[0]", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      static func feuEOXkYSegmentTitles0(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Feu-eO-xkY.segmentTitles[0]", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "Feu-eO-xkY.segmentTitles[0]"
+        }
+
+        return NSLocalizedString("Feu-eO-xkY.segmentTitles[0]", tableName: "Main", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: Список
-      /// 
+      ///
       /// Locales: ru
-      static func rQfAZQjGSegmentTitles0(_: Void = ()) -> String {
-        return NSLocalizedString("rQf-aZ-QjG.segmentTitles[0]", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      static func rQfAZQjGSegmentTitles0(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("rQf-aZ-QjG.segmentTitles[0]", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "rQf-aZ-QjG.segmentTitles[0]"
+        }
+
+        return NSLocalizedString("rQf-aZ-QjG.segmentTitles[0]", tableName: "Main", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: длинный текст длинный текст длинный текст длинный текст длинный текст длинный текст длинный текст длинный текст длинный текст 
-      /// 
+      ///
       /// Locales: ru
-      static func xD6pZ6FText(_: Void = ()) -> String {
-        return NSLocalizedString("4xD-6p-Z6F.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      static func xD6pZ6FText(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("4xD-6p-Z6F.text", tableName: "Main", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Main", preferredLanguages: preferredLanguages) else {
+          return "4xD-6p-Z6F.text"
+        }
+
+        return NSLocalizedString("4xD-6p-Z6F.text", tableName: "Main", bundle: bundle, comment: "")
       }
-      
+
       fileprivate init() {}
     }
-    
+
     /// This `R.string.settings` struct is generated, and contains static references to 5 localization keys.
     struct settings {
       /// ru translation: Аккаунт
-      /// 
+      ///
       /// Locales: ru
       static let dfrXDTo2HeaderTitle = Rswift.StringResource(key: "Dfr-XD-to2.headerTitle", tableName: "Settings", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Выйти из аккаунта
-      /// 
+      ///
       /// Locales: ru
       static let s52qZJWNormalTitle = Rswift.StringResource(key: "7S5-2q-ZJW.normalTitle", tableName: "Settings", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Заметки
-      /// 
+      ///
       /// Locales: ru
       static let k5tU1AA0HeaderTitle = Rswift.StringResource(key: "K5t-u1-aA0.headerTitle", tableName: "Settings", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Настройки
-      /// 
+      ///
       /// Locales: ru
       static let di5TwYgNTitle = Rswift.StringResource(key: "Di5-Tw-YgN.title", tableName: "Settings", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Удалить все заметки
-      /// 
+      ///
       /// Locales: ru
       static let bkLUpFM0NormalTitle = Rswift.StringResource(key: "BkL-Up-FM0.normalTitle", tableName: "Settings", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
-      
+
       /// ru translation: Аккаунт
-      /// 
+      ///
       /// Locales: ru
-      static func dfrXDTo2HeaderTitle(_: Void = ()) -> String {
-        return NSLocalizedString("Dfr-XD-to2.headerTitle", tableName: "Settings", bundle: R.hostingBundle, comment: "")
+      static func dfrXDTo2HeaderTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Dfr-XD-to2.headerTitle", tableName: "Settings", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Settings", preferredLanguages: preferredLanguages) else {
+          return "Dfr-XD-to2.headerTitle"
+        }
+
+        return NSLocalizedString("Dfr-XD-to2.headerTitle", tableName: "Settings", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: Выйти из аккаунта
-      /// 
+      ///
       /// Locales: ru
-      static func s52qZJWNormalTitle(_: Void = ()) -> String {
-        return NSLocalizedString("7S5-2q-ZJW.normalTitle", tableName: "Settings", bundle: R.hostingBundle, comment: "")
+      static func s52qZJWNormalTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("7S5-2q-ZJW.normalTitle", tableName: "Settings", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Settings", preferredLanguages: preferredLanguages) else {
+          return "7S5-2q-ZJW.normalTitle"
+        }
+
+        return NSLocalizedString("7S5-2q-ZJW.normalTitle", tableName: "Settings", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: Заметки
-      /// 
+      ///
       /// Locales: ru
-      static func k5tU1AA0HeaderTitle(_: Void = ()) -> String {
-        return NSLocalizedString("K5t-u1-aA0.headerTitle", tableName: "Settings", bundle: R.hostingBundle, comment: "")
+      static func k5tU1AA0HeaderTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("K5t-u1-aA0.headerTitle", tableName: "Settings", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Settings", preferredLanguages: preferredLanguages) else {
+          return "K5t-u1-aA0.headerTitle"
+        }
+
+        return NSLocalizedString("K5t-u1-aA0.headerTitle", tableName: "Settings", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: Настройки
-      /// 
+      ///
       /// Locales: ru
-      static func di5TwYgNTitle(_: Void = ()) -> String {
-        return NSLocalizedString("Di5-Tw-YgN.title", tableName: "Settings", bundle: R.hostingBundle, comment: "")
+      static func di5TwYgNTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Di5-Tw-YgN.title", tableName: "Settings", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Settings", preferredLanguages: preferredLanguages) else {
+          return "Di5-Tw-YgN.title"
+        }
+
+        return NSLocalizedString("Di5-Tw-YgN.title", tableName: "Settings", bundle: bundle, comment: "")
       }
-      
+
       /// ru translation: Удалить все заметки
-      /// 
+      ///
       /// Locales: ru
-      static func bkLUpFM0NormalTitle(_: Void = ()) -> String {
-        return NSLocalizedString("BkL-Up-FM0.normalTitle", tableName: "Settings", bundle: R.hostingBundle, comment: "")
+      static func bkLUpFM0NormalTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("BkL-Up-FM0.normalTitle", tableName: "Settings", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Settings", preferredLanguages: preferredLanguages) else {
+          return "BkL-Up-FM0.normalTitle"
+        }
+
+        return NSLocalizedString("BkL-Up-FM0.normalTitle", tableName: "Settings", bundle: bundle, comment: "")
       }
-      
+
       fileprivate init() {}
     }
-    
+
     fileprivate init() {}
   }
-  
+
   fileprivate struct intern: Rswift.Validatable {
     fileprivate static func validate() throws {
       try _R.validate()
     }
-    
+
     fileprivate init() {}
   }
-  
+
   fileprivate class Class {}
-  
+
   fileprivate init() {}
 }
 
 struct _R: Rswift.Validatable {
   static func validate() throws {
+    #if os(iOS) || os(tvOS)
     try storyboard.validate()
+    #endif
   }
-  
+
+  #if os(iOS) || os(tvOS)
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
+      #if os(iOS) || os(tvOS)
       try launchScreen.validate()
+      #endif
+      #if os(iOS) || os(tvOS)
       try main.validate()
+      #endif
+      #if os(iOS) || os(tvOS)
       try settings.validate()
+      #endif
     }
-    
+
+    #if os(iOS) || os(tvOS)
     struct launchScreen: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
       typealias InitialController = UIKit.UIViewController
-      
+
       let bundle = R.hostingBundle
       let name = "LaunchScreen"
-      
+
       static func validate() throws {
-        if #available(iOS 11.0, *) {
+        if #available(iOS 11.0, tvOS 11.0, *) {
         }
       }
-      
+
       fileprivate init() {}
     }
-    
+    #endif
+
+    #if os(iOS) || os(tvOS)
     struct main: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
       typealias InitialController = UIKit.UINavigationController
-      
+
       let bundle = R.hostingBundle
       let calendarViewController = StoryboardViewControllerResource<CalendarViewController>(identifier: "CalendarViewController")
       let name = "Main"
       let notesListViewController = StoryboardViewControllerResource<NotesListViewController>(identifier: "NotesListViewController")
-      
+
       func calendarViewController(_: Void = ()) -> CalendarViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: calendarViewController)
       }
-      
+
       func notesListViewController(_: Void = ()) -> NotesListViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: notesListViewController)
       }
-      
+
       static func validate() throws {
         if UIKit.UIImage(named: "photoPlaceholder", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'photoPlaceholder' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "settings", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'settings' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "smiling", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'smiling' is used in storyboard 'Main', but couldn't be loaded.") }
-        if #available(iOS 11.0, *) {
+        if #available(iOS 11.0, tvOS 11.0, *) {
         }
         if _R.storyboard.main().calendarViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'calendarViewController' could not be loaded from storyboard 'Main' as 'CalendarViewController'.") }
         if _R.storyboard.main().notesListViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'notesListViewController' could not be loaded from storyboard 'Main' as 'NotesListViewController'.") }
       }
-      
+
       fileprivate init() {}
     }
-    
+    #endif
+
+    #if os(iOS) || os(tvOS)
     struct settings: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
       typealias InitialController = UIKit.UINavigationController
-      
+
       let bundle = R.hostingBundle
       let name = "Settings"
-      
+
       static func validate() throws {
-        if #available(iOS 11.0, *) {
+        if #available(iOS 11.0, tvOS 11.0, *) {
         }
       }
-      
+
       fileprivate init() {}
     }
-    
+    #endif
+
     fileprivate init() {}
   }
-  
+  #endif
+
   fileprivate init() {}
 }

@@ -701,31 +701,6 @@
 			};
 			name = Release;
 		};
-		332B3BB15A83367D9CEC2F24FB7F19DF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FEFFF2040F6DE3587E051B27E502443B /* R.swift.Library.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/R.swift.Library/R.swift.Library-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MODULEMAP_FILE = Headers/Public/Rswift/R.swift.Library.modulemap;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = Rswift;
-				PRODUCT_NAME = R.swift.Library;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 		398726D960DCA44CB9C7D5866A06AEDB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F16ABA2DB65A937820426C8EC1FC849D /* R.swift.xcconfig */;
@@ -742,7 +717,7 @@
 			};
 			name = Debug;
 		};
-		53726B3444F8E5E192570DD46F3631A5 /* Release */ = {
+		78B4D26C691CE56CE680D18130965A30 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FEFFF2040F6DE3587E051B27E502443B /* R.swift.Library.xcconfig */;
 			buildSettings = {
@@ -762,7 +737,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -881,6 +856,31 @@
 			};
 			name = Release;
 		};
+		D22CA6C64159B25EDF7BA1798F3AC2B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEFFF2040F6DE3587E051B27E502443B /* R.swift.Library.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/R.swift.Library/R.swift.Library-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MODULEMAP_FILE = Headers/Public/Rswift/R.swift.Library.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = Rswift;
+				PRODUCT_NAME = R.swift.Library;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		E1949801C6874B21198617E4B94AB3A1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2FC676238E193123A547B61ADB19BB37 /* FSCalendar.xcconfig */;
@@ -982,8 +982,8 @@
 		3D966A6E3B737E009252B4616EF68E0D /* Build configuration list for PBXNativeTarget "R.swift.Library" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				332B3BB15A83367D9CEC2F24FB7F19DF /* Debug */,
-				53726B3444F8E5E192570DD46F3631A5 /* Release */,
+				D22CA6C64159B25EDF7BA1798F3AC2B6 /* Debug */,
+				78B4D26C691CE56CE680D18130965A30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
