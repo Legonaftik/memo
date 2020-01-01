@@ -16,6 +16,7 @@ final class AppFactory {
 
     lazy var noteStorage: INoteStorage = coreDataNoteStorage
     lazy var noteValidator = NoteValidator()
+    lazy var moodPredictor = MoodPredictor()
 
     // MARK: - Private
 

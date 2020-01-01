@@ -10,6 +10,7 @@
 		48E478E818CD2B5718E8313D /* libPods-memo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC0E3501ED7CA85FBE08780 /* libPods-memo.a */; };
 		D418BEE0227634DC00F18239 /* MemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D418BEDF227634DC00F18239 /* MemoTests.swift */; };
 		D451342923BD505B006F8470 /* NoteValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451342823BD505B006F8470 /* NoteValidator.swift */; };
+		D451342B23BD579B006F8470 /* MoodPredictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451342A23BD579B006F8470 /* MoodPredictor.swift */; };
 		F31B6AB420D82A64004086AB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31B6AB320D82A64004086AB /* SettingsViewController.swift */; };
 		F31BB5081F8485D1000261A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BB5071F8485D1000261A1 /* AppDelegate.swift */; };
 		F31BB50D1F8485D1000261A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31BB50B1F8485D1000261A1 /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 		D418BEE1227634DC00F18239 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D451342723BD3A5D006F8470 /* memo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = memo.entitlements; sourceTree = "<group>"; };
 		D451342823BD505B006F8470 /* NoteValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteValidator.swift; sourceTree = "<group>"; };
+		D451342A23BD579B006F8470 /* MoodPredictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodPredictor.swift; sourceTree = "<group>"; };
 		D540E3F02F5D7C23BA2731FE /* Pods-memo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memo.debug.xcconfig"; path = "Target Support Files/Pods-memo/Pods-memo.debug.xcconfig"; sourceTree = "<group>"; };
 		F31B6AB320D82A64004086AB /* SettingsViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		F31BB5041F8485D1000261A1 /* memo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = memo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +227,7 @@
 				F3CBC6EA216A437900D7C7A5 /* MemoImage.swift */,
 				F3F101FA20555D280052701E /* Storage */,
 				D451342823BD505B006F8470 /* NoteValidator.swift */,
+				D451342A23BD579B006F8470 /* MoodPredictor.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				F3FF97581F848B0400350881 /* NotesListViewController.swift in Sources */,
 				F34C4C0A205D553600470AFE /* CalendarViewController.swift in Sources */,
 				F3C9BF692042EDA600D58192 /* Note.swift in Sources */,
+				D451342B23BD579B006F8470 /* MoodPredictor.swift in Sources */,
 				D451342923BD505B006F8470 /* NoteValidator.swift in Sources */,
 				F3F10201205574430052701E /* AppFactory.swift in Sources */,
 				F31B6AB420D82A64004086AB /* SettingsViewController.swift in Sources */,

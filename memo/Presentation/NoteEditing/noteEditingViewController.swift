@@ -9,6 +9,7 @@ final class NoteEditingViewController: UIViewController {
 
     var noteStorage: INoteStorage!
     var noteValidator: NoteValidator!
+    private let moodPredictor = AppFactory.shared.moodPredictor
 
     var noteLocalID: UUID? // If not set then we're in creating mode (not editing)
     private var existingNote: Note? {
@@ -206,6 +207,11 @@ final class NoteEditingViewController: UIViewController {
     private func updateDoneButtonAvailability() {
         doneButton.isEnabled = noteValidator.isValid(note: makeNoteFromUIState())
     }
+
+    private func updatePredictedMood() {
+        let predictedMood = moodPredictor.mood(for: makeNoteFromUIState())
+        moodControl.selectedSegmentIndex = Int(predictedMood)
+    }
 }
 
 extension NoteEditingViewController: UITextFieldDelegate {
@@ -240,6 +246,7 @@ extension NoteEditingViewController: UITextViewDelegate {
             textView.textColor = .lightGray
         }
         updateDoneButtonAvailability()
+        updatePredictedMood()
     }
 
     func textViewDidChange(_ textView: UITextView) {
