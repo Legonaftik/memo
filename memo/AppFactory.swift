@@ -1,7 +1,4 @@
 //
-//  AppFactory.swift
-//  memo
-//
 //  Created by Vladimir Pavlov on 11/03/2018.
 //  Copyright © 2018 Vladimir Pavlov. All rights reserved.
 //
@@ -15,15 +12,14 @@ final class AppFactory {
     static let shared = AppFactory()
     private init() {}
 
-    // MARK: - Services
+    // MARK: - Public
 
-    func makeNotesService() -> INoteService {
-        return NoteService(notesStorage: coreDataStorage)
-    }
+    lazy var noteStorage: INoteStorage = coreDataNoteStorage
+    lazy var noteValidator = NoteValidator()
 
-    // MARK: - Core Components
+    // MARK: - Private
 
-    private lazy var coreDataStorage = CoreDataNotesStorage(persistentContainer: persistentContainer)
+    private lazy var coreDataNoteStorage = CoreDataNoteStorage(persistentContainer: persistentContainer)
 
     private lazy var persistentContainer: NSPersistentCloudKitContainer = {
         let container = NSPersistentCloudKitContainer(name: "memo")

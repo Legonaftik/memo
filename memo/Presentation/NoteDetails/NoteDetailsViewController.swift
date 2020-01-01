@@ -1,7 +1,4 @@
 //
-//  NoteDetailsViewController.swift
-//  memo
-//
 //  Created by Vladimir Pavlov on 17/03/2018.
 //  Copyright © 2018 Vladimir Pavlov. All rights reserved.
 //
@@ -10,7 +7,7 @@ import UIKit
 
 final class NoteDetailsViewController: UIViewController {
 
-    var notesService: INoteService!
+    var noteStorage: INoteStorage!
     var noteID: UUID!
     private var note: Note? {
         didSet {
@@ -46,9 +43,10 @@ final class NoteDetailsViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let editNoteSegue = R.segue.noteDetailsViewController.editNote(segue: segue) {
-            let noteEditingViewController = editNoteSegue.destination.topViewController as! NoteEditingViewController
-            noteEditingViewController.notesService = notesService
-            noteEditingViewController.noteLocalID = noteID
+            let noteEditingVC = editNoteSegue.destination.topViewController as! NoteEditingViewController
+            noteEditingVC.noteStorage = noteStorage
+            noteEditingVC.noteValidator = AppFactory.shared.noteValidator
+            noteEditingVC.noteLocalID = noteID
         }
     }
 
@@ -56,7 +54,7 @@ final class NoteDetailsViewController: UIViewController {
 
     private func getNote(with localID: UUID) {
         do {
-            note = try notesService.note(with: noteID)
+            note = try noteStorage.note(with: noteID)
         } catch {
             displayAlert(message: error.localizedDescription)
         }

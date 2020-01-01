@@ -1,7 +1,4 @@
 //
-//  UIViewController+Keyboard.swift
-//  memo
-//
 //  Created by Vladimir Pavlov on 11/02/2018.
 //  Copyright © 2018 Vladimir Pavlov. All rights reserved.
 //

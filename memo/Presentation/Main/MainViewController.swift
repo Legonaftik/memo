@@ -1,7 +1,4 @@
 //
-//  MainViewController.swift
-//  memo
-//
 //  Created by Vladimir Pavlov on 17/03/2018.
 //  Copyright © 2018 Vladimir Pavlov. All rights reserved.
 //
@@ -15,17 +12,17 @@ final class MainViewController: UIViewController {
         case calendar
     }
 
-    private let noteService = AppFactory.shared.makeNotesService()
+    private let noteStorage = AppFactory.shared.noteStorage
 
     private lazy var notesListViewController: NotesListViewController = {
         let notesListVC = R.storyboard.main.notesListViewController()!
-        notesListVC.notesService = noteService
+        notesListVC.noteStorage = noteStorage
         return notesListVC
     }()
 
     private lazy var calendarViewController: CalendarViewController = {
         let calendarVC = R.storyboard.main.calendarViewController()!
-        calendarVC.notesService = noteService
+        calendarVC.noteStorage = noteStorage
         return calendarVC
     }()
 
@@ -67,13 +64,11 @@ final class MainViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let newNoteSegue = R.segue.mainViewController.newNote(segue: segue) {
-            let noteEditingViewController = newNoteSegue.destination.topViewController as! NoteEditingViewController
-            noteEditingViewController.notesService = noteService
-            return
-        }
-
-        if let noteDetailsSegue = R.segue.mainViewController.noteDetails(segue: segue) {
-            noteDetailsSegue.destination.notesService = noteService
+            let noteEditingVC = newNoteSegue.destination.topViewController as! NoteEditingViewController
+            noteEditingVC.noteStorage = noteStorage
+            noteEditingVC.noteValidator = AppFactory.shared.noteValidator
+        } else if let noteDetailsSegue = R.segue.mainViewController.noteDetails(segue: segue) {
+            noteDetailsSegue.destination.noteStorage = noteStorage
             noteDetailsSegue.destination.noteID = (sender as! UUID)
         }
     }

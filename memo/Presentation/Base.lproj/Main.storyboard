@@ -346,7 +346,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="VSQ-Zv-lCK" firstAttribute="top" secondItem="Z0Q-Iu-SPW" secondAttribute="top" id="2a7-HL-jdH"/>
-                            <constraint firstItem="Z0Q-Iu-SPW" firstAttribute="bottom" secondItem="VSQ-Zv-lCK" secondAttribute="bottom" id="BxA-NM-4sq"/>
+                            <constraint firstAttribute="bottom" secondItem="VSQ-Zv-lCK" secondAttribute="bottom" id="Bch-Ek-QxR"/>
                             <constraint firstItem="VSQ-Zv-lCK" firstAttribute="leading" secondItem="Z0Q-Iu-SPW" secondAttribute="leading" id="dlo-Kg-SOG"/>
                             <constraint firstItem="Z0Q-Iu-SPW" firstAttribute="trailing" secondItem="VSQ-Zv-lCK" secondAttribute="trailing" id="esT-oU-LEg"/>
                         </constraints>

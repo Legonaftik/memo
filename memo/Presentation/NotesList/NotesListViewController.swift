@@ -1,7 +1,4 @@
 //
-//  NotesListViewController.swift
-//  memo
-//
 //  Created by Vladimir Pavlov on 04/10/2017.
 //  Copyright © 2017 Vladimir Pavlov. All rights reserved.
 //
@@ -21,7 +18,7 @@ extension NotesListViewControllerDelegate {
 final class NotesListViewController: UITableViewController {
 
     weak var delegate: NotesListViewControllerDelegate?
-    var notesService: INoteService!
+    var noteStorage: INoteStorage!
 
     var dateToDisplay: Date? {
         didSet {
@@ -79,7 +76,7 @@ final class NotesListViewController: UITableViewController {
 
     private func fetchNotes(for searchQuery: String) {
         do {
-            notes = try notesService.fetchNotes(for: searchQuery)
+            notes = try noteStorage.notes(for: searchQuery)
         } catch {
             displayAlert(message: error.localizedDescription)
         }
@@ -87,7 +84,7 @@ final class NotesListViewController: UITableViewController {
 
     private func showOnlyNotesOfDateDay(_ date: Date) {
         do {
-            notes = try notesService.fetchNotes(for: date)
+            notes = try noteStorage.notes(for: date)
         } catch {
             displayAlert(message: error.localizedDescription)
         }
@@ -109,13 +106,8 @@ final class NotesListViewController: UITableViewController {
     }
 
     private func setImage(for note: Note, in cell: NoteTableViewCell) {
-        notesService.image(for: note) { result in
-            switch result {
-            case .success(let data):
-                DispatchQueue.main.async { cell.setImage(with: data) }
-            case .failure:
-                break
-            }
+        if let jpegData = note.image?.jpegData {
+            cell.setImage(with: jpegData)
         }
     }
 

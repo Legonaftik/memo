@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		48E478E818CD2B5718E8313D /* libPods-memo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC0E3501ED7CA85FBE08780 /* libPods-memo.a */; };
 		D418BEE0227634DC00F18239 /* MemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D418BEDF227634DC00F18239 /* MemoTests.swift */; };
+		D451342923BD505B006F8470 /* NoteValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451342823BD505B006F8470 /* NoteValidator.swift */; };
 		F31B6AB420D82A64004086AB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31B6AB320D82A64004086AB /* SettingsViewController.swift */; };
 		F31BB5081F8485D1000261A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BB5071F8485D1000261A1 /* AppDelegate.swift */; };
 		F31BB50D1F8485D1000261A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31BB50B1F8485D1000261A1 /* Main.storyboard */; };
@@ -26,7 +27,6 @@
 		F36E96AA205C7442004AA16E /* NoteDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36E96A9205C7442004AA16E /* NoteDetailsViewController.swift */; };
 		F3BBD3B8202E5C2C00E65BEF /* NoteEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BBD3B7202E5C2C00E65BEF /* NoteEditingViewController.swift */; };
 		F3C0C206214328CF00F7C344 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C0C205214328CF00F7C344 /* R.generated.swift */; };
-		F3C9BF632042ECD600D58192 /* NoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C9BF622042ECD600D58192 /* NoteService.swift */; };
 		F3C9BF692042EDA600D58192 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C9BF682042EDA600D58192 /* Note.swift */; };
 		F3CBC6EB216A437900D7C7A5 /* MemoImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CBC6EA216A437900D7C7A5 /* MemoImage.swift */; };
 		F3D34C322030C2EE0096D8AC /* MoodControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D34C312030C2EE0096D8AC /* MoodControl.swift */; };
@@ -53,6 +53,7 @@
 		D418BEDF227634DC00F18239 /* MemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTests.swift; sourceTree = "<group>"; };
 		D418BEE1227634DC00F18239 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D451342723BD3A5D006F8470 /* memo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = memo.entitlements; sourceTree = "<group>"; };
+		D451342823BD505B006F8470 /* NoteValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteValidator.swift; sourceTree = "<group>"; };
 		D540E3F02F5D7C23BA2731FE /* Pods-memo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memo.debug.xcconfig"; path = "Target Support Files/Pods-memo/Pods-memo.debug.xcconfig"; sourceTree = "<group>"; };
 		F31B6AB320D82A64004086AB /* SettingsViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		F31BB5041F8485D1000261A1 /* memo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = memo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,7 +77,6 @@
 		F36E96A9205C7442004AA16E /* NoteDetailsViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = NoteDetailsViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		F3BBD3B7202E5C2C00E65BEF /* NoteEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditingViewController.swift; sourceTree = "<group>"; };
 		F3C0C205214328CF00F7C344 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
-		F3C9BF622042ECD600D58192 /* NoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteService.swift; sourceTree = "<group>"; };
 		F3C9BF682042EDA600D58192 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		F3CBC6EA216A437900D7C7A5 /* MemoImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoImage.swift; sourceTree = "<group>"; };
 		F3D34C312030C2EE0096D8AC /* MoodControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodControl.swift; sourceTree = "<group>"; };
@@ -170,7 +170,6 @@
 				F3F10200205574430052701E /* AppFactory.swift */,
 				F31BB5071F8485D1000261A1 /* AppDelegate.swift */,
 				F3F101F620555CF70052701E /* Presentation */,
-				F3F101F720555CFE0052701E /* Service */,
 				F3F101F820555D040052701E /* Core */,
 				F34504E620D65D3C007479B8 /* Result.swift */,
 			);
@@ -219,20 +218,13 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		F3F101F720555CFE0052701E /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				F3C9BF622042ECD600D58192 /* NoteService.swift */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
 		F3F101F820555D040052701E /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				F3C9BF682042EDA600D58192 /* Note.swift */,
 				F3CBC6EA216A437900D7C7A5 /* MemoImage.swift */,
 				F3F101FA20555D280052701E /* Storage */,
+				D451342823BD505B006F8470 /* NoteValidator.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -459,8 +451,8 @@
 				F3FF97581F848B0400350881 /* NotesListViewController.swift in Sources */,
 				F34C4C0A205D553600470AFE /* CalendarViewController.swift in Sources */,
 				F3C9BF692042EDA600D58192 /* Note.swift in Sources */,
+				D451342923BD505B006F8470 /* NoteValidator.swift in Sources */,
 				F3F10201205574430052701E /* AppFactory.swift in Sources */,
-				F3C9BF632042ECD600D58192 /* NoteService.swift in Sources */,
 				F31B6AB420D82A64004086AB /* SettingsViewController.swift in Sources */,
 				F3FF975C1F848DF800350881 /* NoteTableViewCell.swift in Sources */,
 				F34C4C08205D533400470AFE /* MainViewController.swift in Sources */,

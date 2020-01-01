@@ -1,21 +1,18 @@
 //
-//  CoreDataNotesStorage.swift
-//  memo
-//
 //  Created by Vladimir Pavlov on 11/06/2018.
 //  Copyright © 2018 Vladimir Pavlov. All rights reserved.
 //
 
 import CoreData
 
-enum NotesStorageError: Error {
+enum NoteStorageError: Error {
     case unknown
     case noteNotFound
     case calendarCannotBeAccessed
     case databaseContainsDuplicates
 }
 
-protocol INotesStorage {
+protocol INoteStorage {
 
     func notes(for searchQuery: String) throws -> [Note]
     func notes(for date: Date) throws -> [Note]
@@ -27,7 +24,7 @@ protocol INotesStorage {
     func deleteAllNotes() throws
 }
 
-final class CoreDataNotesStorage: INotesStorage {
+final class CoreDataNoteStorage: INoteStorage {
 
     private let persistentContainer: NSPersistentCloudKitContainer
     private let context: NSManagedObjectContext
@@ -60,7 +57,7 @@ final class CoreDataNotesStorage: INotesStorage {
         let dateFrom = calendar.startOfDay(for: date)
         guard let dateTo = calendar.date(byAdding: .day, value: 1, to: dateFrom) else {
             assertionFailure("Couldn't create tomorrow date")
-            throw NotesStorageError.calendarCannotBeAccessed
+            throw NoteStorageError.calendarCannotBeAccessed
         }
         let fromPredicate  = NSPredicate(format: "%K >= %@", argumentArray: [#keyPath(NoteMO.creationDate), dateFrom])
         let toPredicate = NSPredicate(format: "%K < %@", argumentArray: [#keyPath(NoteMO.creationDate), dateTo])
@@ -96,7 +93,7 @@ final class CoreDataNotesStorage: INotesStorage {
 
         let notes = try context.fetch(request)
         guard notes.count == 1 else { fatalError("Database contains duplicates") }
-        guard let note = notes.first else { throw NotesStorageError.noteNotFound }
+        guard let note = notes.first else { throw NoteStorageError.noteNotFound }
         let plainNote = memo.note(from: note)
         return plainNote
     }
@@ -115,7 +112,7 @@ final class CoreDataNotesStorage: INotesStorage {
 
         let notes = try self.context.fetch(request)
         guard notes.count == 1 else { fatalError("Database contains duplicates") }
-        guard let noteMO = notes.first else { throw NotesStorageError.noteNotFound }
+        guard let noteMO = notes.first else { throw NoteStorageError.noteNotFound }
         updateNoteMO(noteMO, with: note)
         try self.context.save()
         return note
@@ -129,7 +126,7 @@ final class CoreDataNotesStorage: INotesStorage {
         let notes = try self.context.fetch(request)
         guard notes.count <= 1 else { fatalError("Database contains duplicates") }
         guard let noteMO = notes.first else {
-            throw NotesStorageError.noteNotFound
+            throw NoteStorageError.noteNotFound
         }
         self.context.delete(noteMO)
         try self.context.save()

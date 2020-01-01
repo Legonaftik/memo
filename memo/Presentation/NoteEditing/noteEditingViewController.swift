@@ -1,7 +1,4 @@
 //
-//  NoteEditingViewController.swift
-//  memo
-//
 //  Created by Vladimir Pavlov on 10/02/2018.
 //  Copyright © 2018 Vladimir Pavlov. All rights reserved.
 //
@@ -10,7 +7,8 @@ import UIKit
 
 final class NoteEditingViewController: UIViewController {
 
-    var notesService: INoteService!
+    var noteStorage: INoteStorage!
+    var noteValidator: NoteValidator!
 
     var noteLocalID: UUID? // If not set then we're in creating mode (not editing)
     private var existingNote: Note? {
@@ -83,6 +81,13 @@ final class NoteEditingViewController: UIViewController {
     // MARK: - Complete creation/editing
 
     private func editNote(_ note: Note) {
+        cancelButton.isEnabled = false
+        doneButton.isEnabled = false
+        defer {
+            cancelButton.isEnabled = true
+            doneButton.isEnabled = true
+        }
+
         let image: MemoImage?
         if self.photoImageView.image!.isEqual(R.image.photoPlaceholder()) {
             image = nil
@@ -100,42 +105,27 @@ final class NoteEditingViewController: UIViewController {
             title: titleLabel.text
         )
 
-        cancelButton.isEnabled = false
-        doneButton.isEnabled = false
-        notesService.update(updatedNote) { [weak self] updateResult in
-            guard let self = self else { return }
-
-            DispatchQueue.main.async {
-                switch updateResult {
-                case .failure(let error):
-                    self.displayAlert(message: error.localizedDescription)
-                case .success:
-                    self.dismiss(animated: true)
-                }
-
-                self.cancelButton.isEnabled = true
-                self.doneButton.isEnabled = true
-            }
+        do {
+            _ = try noteStorage.update(updatedNote)
+            dismiss(animated: true)
+        } catch {
+            displayAlert(message: error.localizedDescription)
         }
     }
 
     private func createNewNote() {
         cancelButton.isEnabled = false
         doneButton.isEnabled = false
-        notesService.create(makeNoteFromUIState()) { [weak self] createResult in
-            guard let self = self else { return }
+        defer {
+            cancelButton.isEnabled = true
+            doneButton.isEnabled = true
+        }
 
-            DispatchQueue.main.async {
-                switch createResult {
-                case .failure(let error):
-                    self.displayAlert(message: error.localizedDescription)
-                case .success:
-                    self.dismiss(animated: true)
-                }
-
-                self.cancelButton.isEnabled = true
-                self.doneButton.isEnabled = true
-            }
+        do {
+            _ = try noteStorage.create(makeNoteFromUIState())
+            dismiss(animated: true)
+        } catch {
+            displayAlert(message: error.localizedDescription)
         }
     }
 
@@ -144,7 +134,7 @@ final class NoteEditingViewController: UIViewController {
     private func getNote(with localID: UUID) {
         doneButton.isEnabled = false
         do {
-            existingNote = try notesService.note(with: localID)
+            existingNote = try noteStorage.note(with: localID)
         } catch {
             displayAlert(message: error.localizedDescription)
         }
@@ -214,7 +204,7 @@ final class NoteEditingViewController: UIViewController {
     }
 
     private func updateDoneButtonAvailability() {
-        doneButton.isEnabled = notesService.isValid(note: makeNoteFromUIState())
+        doneButton.isEnabled = noteValidator.isValid(note: makeNoteFromUIState())
     }
 }
 

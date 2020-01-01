@@ -1,7 +1,4 @@
 //
-//  CalendarViewController.swift
-//  memo
-//
 //  Created by Vladimir Pavlov on 17/03/2018.
 //  Copyright © 2018 Vladimir Pavlov. All rights reserved.
 //
@@ -11,7 +8,7 @@ import FSCalendar
 
 final class CalendarViewController: UIViewController {
 
-    var notesService: INoteService!
+    var noteStorage: INoteStorage!
 
     @IBOutlet private var calendarView: FSCalendar!
     @IBOutlet private var notesListHeightConstraint: NSLayoutConstraint!
@@ -33,7 +30,7 @@ final class CalendarViewController: UIViewController {
         super.viewWillAppear(animated)
 
         do {
-            self.dailyNotesInfo = try notesService.dailyNotesInfo()
+            self.dailyNotesInfo = try noteStorage.dailyNotesInfo()
         } catch {
             displayAlert(message: error.localizedDescription)
         }
@@ -42,14 +39,14 @@ final class CalendarViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let notesListSegue = R.segue.calendarViewController.notesList(segue: segue) {
             let notesListVC = notesListSegue.destination
-            notesListVC.notesService = notesService
+            notesListVC.noteStorage = noteStorage
             notesListVC.tableView.isScrollEnabled = false
             notesListVC.tableView.tableHeaderView = nil
             notesListVC.delegate = self
             // Stored as a local property so we can pass it days selection events
             notesListViewController = notesListVC
         } else if let noteDetailsSegue = R.segue.calendarViewController.noteDetails(segue: segue) {
-            noteDetailsSegue.destination.notesService = notesService
+            noteDetailsSegue.destination.noteStorage = noteStorage
             noteDetailsSegue.destination.noteID = (sender as! UUID)
         }
     }

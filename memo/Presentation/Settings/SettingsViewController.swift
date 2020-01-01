@@ -1,7 +1,4 @@
 //
-//  SettingsViewController.swift
-//  memo
-//
 //  Created by Vladimir Pavlov on 18/06/2018.
 //  Copyright © 2018 Vladimir Pavlov. All rights reserved.
 //
@@ -12,27 +9,23 @@ final class SettingsViewController: UITableViewController {
 
     // MARK: - Private
 
-    private let noteService = AppFactory.shared.makeNotesService()
+    private let noteStorage = AppFactory.shared.noteStorage
 
     @IBAction private func deleteAllNotes(_ sender: UIButton) {
         sender.isEnabled = false
-
-        noteService.deleteAllNotes { [weak self] result in
-            guard let self = self else { return }
-
-            DispatchQueue.main.async {
-                let alertMessage: String
-                switch result {
-                case .failure(let error):
-                    alertMessage = error.localizedDescription
-                case .success:
-                    alertMessage = R.string.localizable.allTheNotesWereDeleted()
-                }
-                self.displayAlert(message: alertMessage)
-
-                sender.isEnabled = true
-            }
+        defer {
+            sender.isEnabled = true
         }
+
+        let alertMessage: String
+        do {
+            try noteStorage.deleteAllNotes()
+            alertMessage = R.string.localizable.allTheNotesWereDeleted()
+        } catch {
+            alertMessage = error.localizedDescription
+        }
+
+        displayAlert(message: alertMessage)
     }
 
     @IBAction private func done(_ sender: UIBarButtonItem) {

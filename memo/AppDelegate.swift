@@ -1,7 +1,4 @@
 //
-//  AppDelegate.swift
-//  memo
-//
 //  Created by Vladimir Pavlov on 04/10/2017.
 //  Copyright © 2017 Vladimir Pavlov. All rights reserved.
 //

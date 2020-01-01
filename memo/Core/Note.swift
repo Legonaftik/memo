@@ -1,7 +1,4 @@
 //
-//  Note.swift
-//  memo
-//
 //  Created by Vladimir Pavlov on 25/02/2018.
 //  Copyright © 2018 Vladimir Pavlov. All rights reserved.
 //
