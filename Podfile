@@ -6,4 +6,8 @@ use_modular_headers!
 target 'memo' do
   pod 'R.swift'
   pod 'FSCalendar'
+
+  target 'memo-tests' do
+    pod 'R.swift'
+  end
 end

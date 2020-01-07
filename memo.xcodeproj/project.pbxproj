@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		48E478E818CD2B5718E8313D /* libPods-memo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC0E3501ED7CA85FBE08780 /* libPods-memo.a */; };
+		D0D16E6D7BF6EE63090EF568 /* libPods-memo-memo-tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC7EFF07A423CC1191B1BB9F /* libPods-memo-memo-tests.a */; };
 		D418BEE0227634DC00F18239 /* MemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D418BEDF227634DC00F18239 /* MemoTests.swift */; };
 		D451342923BD505B006F8470 /* NoteValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451342823BD505B006F8470 /* NoteValidator.swift */; };
 		D451342B23BD579B006F8470 /* MoodPredictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D451342A23BD579B006F8470 /* MoodPredictor.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5E5790FDF92D72819EDD00D9 /* Pods-memo-memo-tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memo-memo-tests.debug.xcconfig"; path = "Target Support Files/Pods-memo-memo-tests/Pods-memo-memo-tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A279F1E49DBC1C8D40FDCB8C /* Pods-memo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memo.release.xcconfig"; path = "Target Support Files/Pods-memo/Pods-memo.release.xcconfig"; sourceTree = "<group>"; };
 		ACC0E3501ED7CA85FBE08780 /* libPods-memo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-memo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D418BEDD227634DC00F18239 /* memo-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "memo-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +61,7 @@
 		D451342A23BD579B006F8470 /* MoodPredictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodPredictor.swift; sourceTree = "<group>"; };
 		D4934A0723C5373000410243 /* NoteEditing.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoteEditing.storyboard; sourceTree = "<group>"; };
 		D540E3F02F5D7C23BA2731FE /* Pods-memo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memo.debug.xcconfig"; path = "Target Support Files/Pods-memo/Pods-memo.debug.xcconfig"; sourceTree = "<group>"; };
+		EC7EFF07A423CC1191B1BB9F /* libPods-memo-memo-tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-memo-memo-tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31B6AB320D82A64004086AB /* SettingsViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		F31BB5041F8485D1000261A1 /* memo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = memo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31BB5071F8485D1000261A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +91,7 @@
 		F3F10208205596360052701E /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		F3FF97571F848B0400350881 /* NotesListViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = NotesListViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		F3FF975B1F848DF800350881 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
+		FDB623D1613519108B4F9742 /* Pods-memo-memo-tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memo-memo-tests.release.xcconfig"; path = "Target Support Files/Pods-memo-memo-tests/Pods-memo-memo-tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0D16E6D7BF6EE63090EF568 /* libPods-memo-memo-tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				ACC0E3501ED7CA85FBE08780 /* libPods-memo.a */,
+				EC7EFF07A423CC1191B1BB9F /* libPods-memo-memo-tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -122,6 +128,8 @@
 			children = (
 				D540E3F02F5D7C23BA2731FE /* Pods-memo.debug.xcconfig */,
 				A279F1E49DBC1C8D40FDCB8C /* Pods-memo.release.xcconfig */,
+				5E5790FDF92D72819EDD00D9 /* Pods-memo-memo-tests.debug.xcconfig */,
+				FDB623D1613519108B4F9742 /* Pods-memo-memo-tests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -270,6 +278,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D418BEE4227634DC00F18239 /* Build configuration list for PBXNativeTarget "memo-tests" */;
 			buildPhases = (
+				31FD5977A35B9A30B05156E3 /* [CP] Check Pods Manifest.lock */,
 				D418BED9227634DC00F18239 /* Sources */,
 				D418BEDA227634DC00F18239 /* Frameworks */,
 				D418BEDB227634DC00F18239 /* Resources */,
@@ -375,6 +384,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		31FD5977A35B9A30B05156E3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-memo-memo-tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		83696AF74E645FDBFDFC8608 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -425,7 +456,7 @@
 			);
 			name = R.Swift;
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -521,6 +552,7 @@
 /* Begin XCBuildConfiguration section */
 		D418BEE5227634DC00F18239 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E5790FDF92D72819EDD00D9 /* Pods-memo-memo-tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -535,7 +567,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				INFOPLIST_FILE = "memo-tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -545,13 +576,13 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.legonaftik.memo-tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/memo.app/memo";
 			};
 			name = Debug;
 		};
 		D418BEE6227634DC00F18239 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDB623D1613519108B4F9742 /* Pods-memo-memo-tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -565,7 +596,6 @@
 				DEVELOPMENT_TEAM = 3UUNPVRU82;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "memo-tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -574,7 +604,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.legonaftik.memo-tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/memo.app/memo";
 			};
 			name = Release;
