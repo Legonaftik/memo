@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import Rswift
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,15 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
+        // TODO: Move into tests instead
+        #if DEBUG
+        do {
+          try R.validate()
+        } catch {
+            assertionFailure(error.localizedDescription)
+        }
+        #endif
+
         return true
     }
 }

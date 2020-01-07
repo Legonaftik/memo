@@ -7,10 +7,15 @@
 //
 
 import XCTest
+import Rswift
 
 class MemoTests: XCTestCase {
 
     func testExample() {
-        XCTAssert(true)
+        do {
+          try R.validate()
+        } catch {
+            XCTFail(error)
+        }
     }
 }
