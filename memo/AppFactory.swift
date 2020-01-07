@@ -4,6 +4,8 @@
 //
 
 import CoreData
+import NaturalLanguage
+import CoreML
 
 final class AppFactory {
 
@@ -16,7 +18,15 @@ final class AppFactory {
 
     lazy var noteStorage: INoteStorage = coreDataNoteStorage
     lazy var noteValidator = NoteValidator()
-    lazy var moodPredictor = MoodPredictor()
+    lazy var moodPredictor: MoodPredictor? = {
+        do {
+            // TODO: Pass a real MLModel
+            let model = try NLModel(mlModel: MLModel())
+            return MoodPredictor(model: model)
+        } catch {
+            return nil
+        }
+    }()
 
     // MARK: - Private
 

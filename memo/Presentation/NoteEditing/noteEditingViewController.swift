@@ -209,8 +209,10 @@ final class NoteEditingViewController: UIViewController {
     }
 
     private func updatePredictedMood() {
-        let predictedMood = moodPredictor.mood(for: makeNoteFromUIState())
-        moodControl.selectedSegmentIndex = Int(predictedMood)
+        if let moodPredictor = moodPredictor {
+            let predictedMood = moodPredictor.mood(text: contentTextView.text)
+            moodControl.selectedSegmentIndex = Int(predictedMood)
+        }
     }
 }
 
