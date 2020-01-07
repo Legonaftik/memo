@@ -2,186 +2,18 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aSb-Y1-CRt">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Note Editing View Controller-->
-        <scene sceneID="yIq-Qh-Tax">
-            <objects>
-                <viewController id="fU0-Ek-SUE" customClass="NoteEditingViewController" customModule="memo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="rMA-eP-Eye">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="SCS-8S-aa6">
-                                <rect key="frame" x="16" y="72" width="124" height="124"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="SCS-8S-aa6" secondAttribute="height" multiplier="1:1" id="iqd-Hj-3Bj"/>
-                                </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="ipW-6W-34f" appends="YES" id="HAU-9g-NGb"/>
-                                </connections>
-                            </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="I2T-Aj-pEk">
-                                <rect key="frame" x="156" y="109" width="242" height="50"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24 September 9:41" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h5F-N7-zJW">
-                                        <rect key="frame" x="0.0" y="0.0" width="131.5" height="18"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOO-me-uDX">
-                                        <rect key="frame" x="0.0" y="18" width="93" height="32"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                        <state key="normal" title="Change date"/>
-                                        <connections>
-                                            <segue destination="tIo-Rf-ZCS" kind="presentation" identifier="datePicker" id="d0x-gm-Rco"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iW2-5k-qUw">
-                                <rect key="frame" x="16" y="212" width="382" height="34"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
-                                <connections>
-                                    <action selector="titleDidChange" destination="fU0-Ek-SUE" eventType="editingChanged" id="Gbb-Vk-gX9"/>
-                                    <outlet property="delegate" destination="fU0-Ek-SUE" id="EGJ-6J-kH3"/>
-                                </connections>
-                            </textField>
-                            <textView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" keyboardDismissMode="onDrag" text="How are you?" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iPP-6r-Iy9">
-                                <rect key="frame" x="16" y="262" width="382" height="437.5"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="fU0-Ek-SUE" id="eJG-D5-eTJ"/>
-                                </connections>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EyI-C1-9Ri">
-                                <rect key="frame" x="16" y="707.5" width="382" height="13.5"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
-                                <color key="textColor" red="0.36078431372549019" green="0.36078431372549019" blue="0.36078431372549019" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T0Y-Go-1dg" customClass="MoodControl" customModule="memo" customModuleProvider="target">
-                                <rect key="frame" x="30" y="737" width="354" height="55"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="w71-w7-bmu"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="iW2-5k-qUw" firstAttribute="top" secondItem="SCS-8S-aa6" secondAttribute="bottom" constant="16" id="30M-Lj-G78"/>
-                            <constraint firstItem="iW2-5k-qUw" firstAttribute="leading" secondItem="SCS-8S-aa6" secondAttribute="leading" id="77c-Er-W54"/>
-                            <constraint firstItem="EyI-C1-9Ri" firstAttribute="leading" secondItem="iPP-6r-Iy9" secondAttribute="leading" id="9tq-66-2Al"/>
-                            <constraint firstItem="SCS-8S-aa6" firstAttribute="top" secondItem="OAK-HW-Lhi" secondAttribute="top" constant="16" id="Cdc-ZT-Xn5"/>
-                            <constraint firstItem="iPP-6r-Iy9" firstAttribute="top" secondItem="iW2-5k-qUw" secondAttribute="bottom" constant="16" id="DJR-uU-uiL"/>
-                            <constraint firstItem="SCS-8S-aa6" firstAttribute="width" secondItem="rMA-eP-Eye" secondAttribute="width" multiplier="0.3" id="EQl-lz-ZiL"/>
-                            <constraint firstItem="T0Y-Go-1dg" firstAttribute="top" secondItem="EyI-C1-9Ri" secondAttribute="bottom" constant="16" id="Edn-eJ-Cfy"/>
-                            <constraint firstItem="iW2-5k-qUw" firstAttribute="trailing" secondItem="I2T-Aj-pEk" secondAttribute="trailing" id="PFQ-S5-drL"/>
-                            <constraint firstItem="iPP-6r-Iy9" firstAttribute="trailing" secondItem="iW2-5k-qUw" secondAttribute="trailing" id="VBz-io-ykg"/>
-                            <constraint firstItem="I2T-Aj-pEk" firstAttribute="centerY" secondItem="SCS-8S-aa6" secondAttribute="centerY" id="Wih-XU-GN6"/>
-                            <constraint firstItem="OAK-HW-Lhi" firstAttribute="trailing" secondItem="I2T-Aj-pEk" secondAttribute="trailing" constant="16" id="XVt-uD-Vhs"/>
-                            <constraint firstItem="OAK-HW-Lhi" firstAttribute="bottom" secondItem="T0Y-Go-1dg" secondAttribute="bottom" constant="16" id="Y55-Af-d3U"/>
-                            <constraint firstItem="OAK-HW-Lhi" firstAttribute="trailing" secondItem="T0Y-Go-1dg" secondAttribute="trailing" constant="30" id="YCu-2H-XLA"/>
-                            <constraint firstItem="SCS-8S-aa6" firstAttribute="leading" secondItem="OAK-HW-Lhi" secondAttribute="leading" constant="16" id="YGn-GJ-3tc"/>
-                            <constraint firstItem="iPP-6r-Iy9" firstAttribute="leading" secondItem="iW2-5k-qUw" secondAttribute="leading" id="cPQ-5Z-Yps"/>
-                            <constraint firstItem="T0Y-Go-1dg" firstAttribute="leading" secondItem="OAK-HW-Lhi" secondAttribute="leading" constant="30" id="g2y-3c-3SY"/>
-                            <constraint firstItem="I2T-Aj-pEk" firstAttribute="leading" secondItem="SCS-8S-aa6" secondAttribute="trailing" constant="16" id="kJF-qF-nXn"/>
-                            <constraint firstItem="EyI-C1-9Ri" firstAttribute="trailing" secondItem="iPP-6r-Iy9" secondAttribute="trailing" id="y5Q-EG-bMh"/>
-                            <constraint firstItem="EyI-C1-9Ri" firstAttribute="top" secondItem="iPP-6r-Iy9" secondAttribute="bottom" constant="8" id="zSQ-tP-a1i"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="OAK-HW-Lhi"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="ZDp-HO-8Qf">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8XH-Bk-s9G">
-                            <connections>
-                                <action selector="cancel:" destination="fU0-Ek-SUE" id="9ZH-S3-TaO"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="ofJ-Pp-rmj">
-                            <connections>
-                                <action selector="done:" destination="fU0-Ek-SUE" id="Gg0-PE-aun"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="cancelButton" destination="8XH-Bk-s9G" id="66w-rX-E4y"/>
-                        <outlet property="contentLengthLeftLabel" destination="EyI-C1-9Ri" id="qcY-MZ-qxo"/>
-                        <outlet property="contentTextView" destination="iPP-6r-Iy9" id="909-tr-dEo"/>
-                        <outlet property="dateLabel" destination="h5F-N7-zJW" id="DCR-kV-1iE"/>
-                        <outlet property="doneButton" destination="ofJ-Pp-rmj" id="1y5-5O-GFK"/>
-                        <outlet property="moodControl" destination="T0Y-Go-1dg" id="EsJ-y6-uRH"/>
-                        <outlet property="photoImageView" destination="SCS-8S-aa6" id="Vdx-17-7pT"/>
-                        <outlet property="titleLabel" destination="iW2-5k-qUw" id="vG6-fe-J5S"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="82y-9e-5dr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="ipW-6W-34f">
-                    <connections>
-                        <action selector="selectPhoto:" destination="fU0-Ek-SUE" id="1S1-In-Tcd"/>
-                    </connections>
-                </tapGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="2172" y="725.48725637181417"/>
-        </scene>
-        <!--Note date-->
-        <scene sceneID="bTe-t1-Jkf">
-            <objects>
-                <viewController id="4eE-6k-3iv" customClass="DatePickerViewController" customModule="memo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="pVY-8J-EIs">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="XOR-oA-JAt">
-                                <rect key="frame" x="47" y="313" width="320" height="216"/>
-                                <date key="minimumDate" timeIntervalSinceReferenceDate="39600">
-                                    <!--2001-01-01 11:00:00 +0000-->
-                                </date>
-                            </datePicker>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="XOR-oA-JAt" firstAttribute="centerY" secondItem="pVY-8J-EIs" secondAttribute="centerY" id="54s-mM-7e9"/>
-                            <constraint firstItem="XOR-oA-JAt" firstAttribute="centerX" secondItem="pVY-8J-EIs" secondAttribute="centerX" id="9G7-ZQ-PLO"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="A1t-hK-WHd"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Note date" id="ehm-rL-ASv">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="JYK-sQ-g4i">
-                            <connections>
-                                <action selector="cancel:" destination="4eE-6k-3iv" id="PQk-6U-Goj"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="klR-4s-ZLw">
-                            <connections>
-                                <action selector="done:" destination="4eE-6k-3iv" id="ZGc-fw-izJ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="datePicker" destination="XOR-oA-JAt" id="zlP-ds-1GB"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PBg-mL-1iu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3668" y="724.58770614692662"/>
-        </scene>
         <!--Settings-->
         <scene sceneID="nlC-Ze-rK1">
             <objects>
                 <viewControllerPlaceholder storyboardName="Settings" id="OcE-GX-8ms" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q61-8t-WJ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-52" y="-130"/>
+            <point key="canvasLocation" x="-28" y="-142"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="xh6-bu-cik">
@@ -224,7 +56,7 @@
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="zPs-Ip-WZh">
                             <connections>
-                                <segue destination="5Vd-D4-u5X" kind="presentation" identifier="newNote" id="UGS-Cw-Ido"/>
+                                <segue destination="o1s-3y-bQg" kind="presentation" identifier="newNote" id="q0v-Km-3j2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -237,42 +69,6 @@
             </objects>
             <point key="canvasLocation" x="-28" y="368"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="NVX-1F-MiF">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Vd-D4-u5X" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="soT-BZ-r4t">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="fU0-Ek-SUE" kind="relationship" relationship="rootViewController" id="MxM-fE-rHK"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nCJ-gF-Rlv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1252" y="724.58770614692662"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="UOu-7b-iOr">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tIo-Rf-ZCS" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="7oj-eL-sQK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="4eE-6k-3iv" kind="relationship" relationship="rootViewController" id="rGA-La-xLp"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Yap-KV-7aV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2892" y="719.19040479760122"/>
-        </scene>
         <!--Data Source-->
         <scene sceneID="d3G-qa-Kfr">
             <objects>
@@ -282,7 +78,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VSQ-Zv-lCK">
-                                <rect key="frame" x="0.0" y="44" width="375" height="922"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="956"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oRH-PK-YrC" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1075"/>
@@ -361,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q69-L9-Xow" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-28" y="1272"/>
+            <point key="canvasLocation" x="1" y="1193"/>
         </scene>
         <!--Note Details View Controller-->
         <scene sceneID="RE2-c2-oyV">
@@ -426,7 +222,7 @@
                     <navigationItem key="navigationItem" id="1Ku-ep-koR">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="rQ1-1v-qb5">
                             <connections>
-                                <segue destination="5Vd-D4-u5X" kind="presentation" identifier="editNote" id="AZ9-tG-11b"/>
+                                <segue destination="o1s-3y-bQg" kind="presentation" identifier="editNote" id="x1v-mA-ZvL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -441,7 +237,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IL7-h9-4fs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1252" y="-21.139430284857571"/>
+            <point key="canvasLocation" x="928" y="368"/>
+        </scene>
+        <!--NoteEditing-->
+        <scene sceneID="z3u-tl-XaZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="NoteEditing" id="o1s-3y-bQg" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fJu-jN-fvg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="928" y="-232"/>
         </scene>
         <!--memo-->
         <scene sceneID="nIm-TS-dCd">
@@ -863,7 +667,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Gc-ek-BNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-967" y="2210"/>
+            <point key="canvasLocation" x="1" y="2653"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jYY-7q-gcs">
@@ -890,7 +694,7 @@
         <image name="smiling" width="85.333335876464844" height="85.333335876464844"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="x1v-mA-ZvL"/>
         <segue reference="eZz-D9-mel"/>
-        <segue reference="UGS-Cw-Ido"/>
     </inferredMetricsTieBreakers>
 </document>

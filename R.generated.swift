@@ -186,12 +186,14 @@ struct R: Rswift.Validatable {
   #endif
 
   #if os(iOS) || os(tvOS)
-  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
   struct storyboard {
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `Main`.
     static let main = _R.storyboard.main()
+    /// Storyboard `NoteEditing`.
+    static let noteEditing = _R.storyboard.noteEditing()
     /// Storyboard `Settings`.
     static let settings = _R.storyboard.settings()
 
@@ -206,6 +208,13 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "Main", bundle: ...)`
     static func main(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.main)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "NoteEditing", bundle: ...)`
+    static func noteEditing(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.noteEditing)
     }
     #endif
 
@@ -1061,6 +1070,9 @@ struct _R: Rswift.Validatable {
       try main.validate()
       #endif
       #if os(iOS) || os(tvOS)
+      try noteEditing.validate()
+      #endif
+      #if os(iOS) || os(tvOS)
       try settings.validate()
       #endif
     }
@@ -1106,6 +1118,23 @@ struct _R: Rswift.Validatable {
         }
         if _R.storyboard.main().calendarViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'calendarViewController' could not be loaded from storyboard 'Main' as 'CalendarViewController'.") }
         if _R.storyboard.main().notesListViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'notesListViewController' could not be loaded from storyboard 'Main' as 'NotesListViewController'.") }
+      }
+
+      fileprivate init() {}
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    struct noteEditing: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = UIKit.UINavigationController
+
+      let bundle = R.hostingBundle
+      let name = "NoteEditing"
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "photoPlaceholder", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'photoPlaceholder' is used in storyboard 'NoteEditing', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
       }
 
       fileprivate init() {}
