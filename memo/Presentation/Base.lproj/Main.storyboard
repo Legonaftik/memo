@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aSb-Y1-CRt">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aSb-Y1-CRt">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,6 +28,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                             </containerView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="DhJ-Ma-fFZ"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="o51-Mn-dOm" firstAttribute="top" secondItem="DhJ-Ma-fFZ" secondAttribute="top" id="OXF-pr-XmK"/>
@@ -34,11 +36,10 @@
                             <constraint firstItem="o51-Mn-dOm" firstAttribute="leading" secondItem="DhJ-Ma-fFZ" secondAttribute="leading" id="S6P-Tf-vnI"/>
                             <constraint firstItem="DhJ-Ma-fFZ" firstAttribute="trailing" secondItem="o51-Mn-dOm" secondAttribute="trailing" id="vmx-YD-XoF"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="DhJ-Ma-fFZ"/>
                     </view>
                     <navigationItem key="navigationItem" id="ALh-EF-Ncf">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" image="settings" id="fsR-Mr-sAT">
+                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="fsR-Mr-sAT">
                             <connections>
                                 <segue destination="OcE-GX-8ms" kind="presentation" id="kiI-cI-jyy"/>
                             </connections>
@@ -69,7 +70,7 @@
             </objects>
             <point key="canvasLocation" x="-28" y="368"/>
         </scene>
-        <!--Data Source-->
+        <!--Calendar View Controller-->
         <scene sceneID="d3G-qa-Kfr">
             <objects>
                 <viewController storyboardIdentifier="CalendarViewController" id="DnO-zg-yPp" customClass="CalendarViewController" customModule="memo" customModuleProvider="target" sceneMemberID="viewController">
@@ -139,6 +140,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Z0Q-Iu-SPW"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="VSQ-Zv-lCK" firstAttribute="top" secondItem="Z0Q-Iu-SPW" secondAttribute="top" id="2a7-HL-jdH"/>
@@ -146,7 +148,6 @@
                             <constraint firstItem="VSQ-Zv-lCK" firstAttribute="leading" secondItem="Z0Q-Iu-SPW" secondAttribute="leading" id="dlo-Kg-SOG"/>
                             <constraint firstItem="Z0Q-Iu-SPW" firstAttribute="trailing" secondItem="VSQ-Zv-lCK" secondAttribute="trailing" id="esT-oU-LEg"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Z0Q-Iu-SPW"/>
                     </view>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
@@ -164,41 +165,43 @@
             <objects>
                 <viewController id="Djn-tI-VSC" customClass="NoteDetailsViewController" customModule="memo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CKL-bz-enS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="Qwi-ci-SdY">
-                                <rect key="frame" x="16" y="16" width="124" height="124"/>
+                                <rect key="frame" x="16" y="104" width="124" height="124"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Qwi-ci-SdY" secondAttribute="height" multiplier="1:1" id="nn4-SR-geW"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lla-Jq-NzO">
-                                <rect key="frame" x="16" y="156" width="382" height="34"/>
+                                <rect key="frame" x="16" y="244" width="382" height="34"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textField>
                             <textView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" keyboardDismissMode="onDrag" editable="NO" text="How are you?" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ltQ-GY-LBJ">
-                                <rect key="frame" x="16" y="206" width="382" height="496"/>
+                                <rect key="frame" x="16" y="294" width="382" height="462"/>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                             </textView>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CoH-Eb-wVe" customClass="MoodControl" customModule="memo" customModuleProvider="target">
-                                <rect key="frame" x="30" y="737" width="354" height="55"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="30" y="791" width="354" height="55"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="f6U-5Z-pPt"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24 September 9:41" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="742-LE-ffQ">
-                                <rect key="frame" x="156" y="69" width="242" height="18"/>
+                                <rect key="frame" x="156" y="157" width="242" height="18"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="iIz-vS-ngH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Lla-Jq-NzO" firstAttribute="leading" secondItem="Qwi-ci-SdY" secondAttribute="leading" id="3Hw-6H-EGd"/>
                             <constraint firstItem="742-LE-ffQ" firstAttribute="centerY" secondItem="Qwi-ci-SdY" secondAttribute="centerY" id="80M-2P-5Lb"/>
@@ -217,7 +220,6 @@
                             <constraint firstItem="Lla-Jq-NzO" firstAttribute="top" secondItem="Qwi-ci-SdY" secondAttribute="bottom" constant="16" id="rjo-df-6zO"/>
                             <constraint firstItem="CoH-Eb-wVe" firstAttribute="top" secondItem="ltQ-GY-LBJ" secondAttribute="bottom" constant="35" id="vhv-RU-NoD"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="iIz-vS-ngH"/>
                     </view>
                     <navigationItem key="navigationItem" id="1Ku-ep-koR">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="rQ1-1v-qb5">
@@ -688,13 +690,19 @@
             <point key="canvasLocation" x="-967" y="369"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="q0v-Km-3j2"/>
+        <segue reference="C0U-Yj-nDb"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="photoPlaceholder" width="100" height="100"/>
-        <image name="settings" width="25" height="25"/>
+        <image name="settings" width="75" height="75"/>
         <image name="smiling" width="85.333335876464844" height="85.333335876464844"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="x1v-mA-ZvL"/>
-        <segue reference="eZz-D9-mel"/>
-    </inferredMetricsTieBreakers>
 </document>
