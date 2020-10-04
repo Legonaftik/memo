@@ -59,10 +59,10 @@ final class NoteEditingViewController: UIViewController {
 
         if let noteLocalID = noteLocalID {
             getNote(with: noteLocalID)
-            contentTextView.textColor = .black
+            contentTextView.textColor = .label
         } else {
             dateLabel.text = dateFormatter.string(from: Date())
-            contentTextView.textColor = .lightGray
+            contentTextView.textColor = .secondaryLabel
         }
         contentLengthLeftLabel.text = String(maximumContentLength - contentTextView.text.count)
     }
@@ -233,14 +233,14 @@ extension NoteEditingViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == R.string.localizable.howAreYou() {
             textView.text = ""
-            textView.textColor = .black
+            textView.textColor = .label
         }
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = R.string.localizable.howAreYou()
-            textView.textColor = .lightGray
+            textView.textColor = .placeholderText
         }
         updateDoneButtonAvailability()
         updatePredictedMood()

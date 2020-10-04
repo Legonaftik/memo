@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5S6-x5-ix2">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5S6-x5-ix2">
+    <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -12,11 +13,12 @@
             <objects>
                 <viewController id="c4j-AI-eG4" customClass="NoteEditingViewController" customModule="memo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FV0-W6-3kJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="DLj-33-aN0">
-                                <rect key="frame" x="16" y="104" width="124" height="124"/>
+                                <rect key="frame" x="16.000000000000007" y="104" width="112.66666666666669" height="112.66666666666669"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="DLj-33-aN0" secondAttribute="height" multiplier="1:1" id="udU-we-ha1"/>
@@ -26,15 +28,15 @@
                                 </connections>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ZTx-Ee-16u">
-                                <rect key="frame" x="156" y="141" width="242" height="50"/>
+                                <rect key="frame" x="144.66666666666663" y="135.33333333333334" width="214.33333333333337" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24 September 9:41" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ydr-RV-GbQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="131.5" height="18"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="131.33333333333334" height="18"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWK-1q-xUT">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWK-1q-xUT">
                                         <rect key="frame" x="0.0" y="18" width="93" height="32"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                         <state key="normal" title="Change date"/>
@@ -45,7 +47,7 @@
                                 </subviews>
                             </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jgR-iP-eFc">
-                                <rect key="frame" x="16" y="244" width="382" height="34"/>
+                                <rect key="frame" x="16" y="232.66666666666666" width="343" height="33.999999999999972"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                 <connections>
@@ -54,8 +56,8 @@
                                 </connections>
                             </textField>
                             <textView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" keyboardDismissMode="onDrag" text="How are you?" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3yr-Uq-c8N">
-                                <rect key="frame" x="16" y="294" width="382" height="459.5"/>
-                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="16" y="282.66666666666669" width="343" height="387.00000000000006"/>
+                                <color key="textColor" systemColor="placeholderTextColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
@@ -63,20 +65,20 @@
                                 </connections>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fgv-Nh-o1F">
-                                <rect key="frame" x="16" y="761.5" width="382" height="13.5"/>
+                                <rect key="frame" x="16" y="677.66666666666663" width="343" height="13.333333333333371"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
-                                <color key="textColor" red="0.36078431370000003" green="0.36078431370000003" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sc5-dV-7fz" customClass="MoodControl" customModule="memo" customModuleProvider="target">
-                                <rect key="frame" x="30" y="791" width="354" height="55"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="30" y="707" width="315" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="ZMZ-uA-nie"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="soT-iU-941"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="sc5-dV-7fz" firstAttribute="leading" secondItem="soT-iU-941" secondAttribute="leading" constant="30" id="0VY-hj-xg3"/>
                             <constraint firstItem="ZTx-Ee-16u" firstAttribute="leading" secondItem="DLj-33-aN0" secondAttribute="trailing" constant="16" id="6z1-MQ-OeC"/>
@@ -98,7 +100,6 @@
                             <constraint firstItem="DLj-33-aN0" firstAttribute="leading" secondItem="soT-iU-941" secondAttribute="leading" constant="16" id="lpy-ej-cgm"/>
                             <constraint firstItem="3yr-Uq-c8N" firstAttribute="leading" secondItem="jgR-iP-eFc" secondAttribute="leading" id="pan-7P-PW2"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="soT-iU-941"/>
                     </view>
                     <navigationItem key="navigationItem" id="lbS-3l-Xzq">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="y0j-PS-qcl">
@@ -137,22 +138,22 @@
             <objects>
                 <viewController id="Ctv-xX-8VV" customClass="DatePickerViewController" customModule="memo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gws-5f-3ee">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="W4f-jx-Qpn">
-                                <rect key="frame" x="47" y="313" width="320" height="216"/>
+                                <rect key="frame" x="27.666666666666657" y="271" width="320" height="216"/>
                                 <date key="minimumDate" timeIntervalSinceReferenceDate="39600">
                                     <!--2001-01-01 11:00:00 +0000-->
                                 </date>
                             </datePicker>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="5Rx-ck-Mqg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="W4f-jx-Qpn" firstAttribute="centerY" secondItem="Gws-5f-3ee" secondAttribute="centerY" id="MYr-Eh-Oep"/>
                             <constraint firstItem="W4f-jx-Qpn" firstAttribute="centerX" secondItem="Gws-5f-3ee" secondAttribute="centerX" id="h49-PT-hsL"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="5Rx-ck-Mqg"/>
                     </view>
                     <navigationItem key="navigationItem" title="Note date" id="gO2-nX-Gdd">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Scz-rB-ehC">
@@ -180,7 +181,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5S6-x5-ix2" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XnB-gf-mzx">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -198,7 +199,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="q7p-XL-w4c" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="fwf-mR-Mhm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="108"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -213,5 +214,14 @@
     </scenes>
     <resources>
         <image name="photoPlaceholder" width="100" height="100"/>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

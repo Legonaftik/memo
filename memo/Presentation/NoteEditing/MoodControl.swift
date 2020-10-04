@@ -31,7 +31,7 @@ final class MoodControl: UIControl {
             button.heightAnchor.constraint(equalToConstant: circleDiameter).isActive = true
 
             button.layer.cornerRadius = circleDiameter / 2
-            button.layer.borderColor = UIColor.gray.cgColor
+            button.layer.borderColor = UIColor.secondarySystemBackground.cgColor
             button.backgroundColor = moodColors[index]
             button.addTarget(self, action: #selector(selectMood(selectedButton:)), for: .touchUpInside)
 
