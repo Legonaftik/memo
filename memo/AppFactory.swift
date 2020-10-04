@@ -1,8 +1,3 @@
-//
-//  Created by Vladimir Pavlov on 11/03/2018.
-//  Copyright © 2018 Vladimir Pavlov. All rights reserved.
-//
-
 import CoreData
 import NaturalLanguage
 import CoreML

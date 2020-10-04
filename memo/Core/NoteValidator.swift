@@ -1,8 +1,3 @@
-//
-//  Created by Vladimir Pavlov on 02.01.2020.
-//  Copyright © 2020 Vladimir Pavlov. All rights reserved.
-//
-
 import Foundation
 
 final class NoteValidator {

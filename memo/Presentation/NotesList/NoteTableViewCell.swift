@@ -1,8 +1,3 @@
-//
-//  Created by Vladimir Pavlov on 04/10/2017.
-//  Copyright © 2017 Vladimir Pavlov. All rights reserved.
-//
-
 import UIKit
 
 final class NoteTableViewCell: UITableViewCell {

@@ -1,8 +1,3 @@
-//
-//  Created by Vladimir Pavlov on 18/06/2018.
-//  Copyright © 2018 Vladimir Pavlov. All rights reserved.
-//
-
 import UIKit
 
 final class SettingsViewController: UITableViewController {
