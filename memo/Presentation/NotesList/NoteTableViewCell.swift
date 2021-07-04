@@ -14,6 +14,12 @@ final class NoteTableViewCell: UITableViewCell {
         setRoundedCornersWithShadow()
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        containerView.layer.shadowPath = UIBezierPath(rect: containerView.bounds).cgPath
+    }
+
     private func setRoundedCornersWithShadow() {
         containerView.layer.cornerRadius = 8
         containerView.layer.masksToBounds = false
