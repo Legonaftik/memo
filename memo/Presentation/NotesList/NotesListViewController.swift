@@ -177,3 +177,10 @@ extension NotesListViewController: UISearchBarDelegate {
         updateNotesList()
     }
 }
+
+extension NotesListViewController: ContentViewController {
+
+    func updateContent() {
+        updateNotesList()
+    }
+}

@@ -2,6 +2,8 @@ import UIKit
 
 final class NoteEditingViewController: UIViewController {
 
+    var onNoteUpdate: () -> Void = {}
+
     var noteStorage: INoteStorage!
     var noteValidator: NoteValidator!
     private let moodPredictor = AppFactory.shared.moodPredictor
@@ -103,6 +105,7 @@ final class NoteEditingViewController: UIViewController {
 
         do {
             _ = try noteStorage.update(updatedNote)
+            onNoteUpdate()
             dismiss(animated: true)
         } catch {
             displayAlert(message: error.localizedDescription)
@@ -119,6 +122,7 @@ final class NoteEditingViewController: UIViewController {
 
         do {
             _ = try noteStorage.create(makeNoteFromUIState())
+            onNoteUpdate()
             dismiss(animated: true)
         } catch {
             displayAlert(message: error.localizedDescription)
@@ -269,8 +273,10 @@ extension NoteEditingViewController: UITextViewDelegate {
 
 extension NoteEditingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+    ) {
         if let image = info[.originalImage] as? UIImage {
             photoImageView.image = image
         }

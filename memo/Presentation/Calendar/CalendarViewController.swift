@@ -105,3 +105,10 @@ extension CalendarViewController: NotesListViewControllerDelegate {
         notesListHeightConstraint.constant = contentHeight
     }
 }
+
+extension CalendarViewController: ContentViewController {
+
+    func updateContent() {
+        updateNotesInfo()
+    }
+}

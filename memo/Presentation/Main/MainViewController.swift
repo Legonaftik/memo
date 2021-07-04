@@ -1,5 +1,9 @@
 import UIKit
 
+protocol ContentViewController: UIViewController {
+    func updateContent()
+}
+
 final class MainViewController: UIViewController {
 
     private enum Page: Int {
@@ -21,14 +25,14 @@ final class MainViewController: UIViewController {
         return calendarVC
     }()
 
-    private var containedController: UIViewController? {
+    private var contentViewController: ContentViewController? {
         didSet {
             if let oldVC = oldValue {
                 oldVC.willMove(toParent: nil)
                 oldVC.view.removeFromSuperview()
                 oldVC.removeFromParent()
             }
-            if let newVC = containedController {
+            if let newVC = contentViewController {
                 self.addChild(newVC)
                 self.view.addSubview(newVC.view)
                 newVC.view.frame = view.bounds
@@ -44,25 +48,27 @@ final class MainViewController: UIViewController {
         let page = Page(rawValue: sender.selectedSegmentIndex)!
         switch page {
         case .list:
-            containedController = notesListViewController
+            contentViewController = notesListViewController
         case .calendar:
-            containedController = calendarViewController
+            contentViewController = calendarViewController
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        containedController = notesListViewController
+        contentViewController = notesListViewController
         notesListViewController.delegate = self
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let newNoteSegue = R.segue.mainViewController.newNote(segue: segue) {
             let noteEditingVC = newNoteSegue.destination.topViewController as! NoteEditingViewController
-            noteEditingVC.presentationController?.delegate = self
             noteEditingVC.noteStorage = noteStorage
             noteEditingVC.noteValidator = AppFactory.shared.noteValidator
+            noteEditingVC.onNoteUpdate = { [unowned self] in
+                self.contentViewController?.updateContent()
+            }
         } else if let noteDetailsSegue = R.segue.mainViewController.noteDetails(segue: segue) {
             noteDetailsSegue.destination.noteStorage = noteStorage
             noteDetailsSegue.destination.noteID = (sender as! UUID)
@@ -77,13 +83,5 @@ extension MainViewController: NotesListViewControllerDelegate {
         didSelectNoteWith localID: UUID
     ) {
         performSegue(withIdentifier: R.segue.mainViewController.noteDetails, sender: localID)
-    }
-}
-
-extension MainViewController: UIAdaptivePresentationControllerDelegate {
-
-    func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
-        notesListViewController.updateNotesList()
-        calendarViewController.updateNotesInfo()
     }
 }
