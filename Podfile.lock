@@ -3,22 +3,26 @@ PODS:
   - R.swift (5.2.2):
     - R.swift.Library (~> 5.2.0)
   - R.swift.Library (5.2.0)
+  - Reveal-SDK (29)
 
 DEPENDENCIES:
   - FSCalendar
   - R.swift
+  - Reveal-SDK
 
 SPEC REPOS:
   trunk:
     - FSCalendar
     - R.swift
     - R.swift.Library
+    - Reveal-SDK
 
 SPEC CHECKSUMS:
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
   R.swift: 7c52cdc57a66840ffe6cbd8a823d732059d42a32
   R.swift.Library: 5ba4f1631300caf9a4d890186930da85d540769d
+  Reveal-SDK: 0ecda2395cf587e2f574c19a723b3dd27c90572e
 
-PODFILE CHECKSUM: c51774e5a9dede93e8b62a00c99062496bb735bc
+PODFILE CHECKSUM: 0b43083df3a8ac760e92ef130ec7da1b94440cfb
 
 COCOAPODS: 1.10.1

@@ -1,10 +1,12 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Reveal-SDK/RevealServer" "${PODS_XCFRAMEWORKS_BUILD_DIR}/RevealServer"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FSCalendar"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/Frameworks @loader_path/Frameworks
 LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/FSCalendar" "${PODS_CONFIGURATION_BUILD_DIR}/R.swift.Library"
-OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/R.swift.Library/Rswift.modulemap" -fmodule-map-file="${PODS_ROOT}/Headers/Public/FSCalendar/FSCalendar.modulemap" -isystem "${PODS_ROOT}/Headers/Public"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"FSCalendar" -l"R.swift.Library" -framework "QuartzCore" -framework "UIKit"
+OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/R.swift.Library/Rswift.modulemap" -fmodule-map-file="${PODS_ROOT}/Headers/Public/FSCalendar/FSCalendar.modulemap" -isystem "${PODS_ROOT}/Headers/Public" -iframework "${PODS_ROOT}/Reveal-SDK/RevealServer" -iframework "${PODS_XCFRAMEWORKS_BUILD_DIR}/RevealServer"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"FSCalendar" -l"R.swift.Library" -l"z" -framework "CFNetwork" -framework "CoreGraphics" -framework "QuartzCore" -framework "RevealServer" -framework "UIKit"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/R.swift.Library/Rswift.modulemap" -Xcc -fmodule-map-file="${PODS_ROOT}/Headers/Public/FSCalendar/FSCalendar.modulemap"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
