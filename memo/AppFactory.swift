@@ -1,6 +1,6 @@
 import CoreData
-import NaturalLanguage
 import CoreML
+import NaturalLanguage
 
 final class AppFactory {
 
@@ -12,10 +12,10 @@ final class AppFactory {
     // MARK: - Public
 
     lazy var noteStorage: INoteStorage = coreDataNoteStorage
-    lazy var noteValidator = NoteValidator()
-    lazy var moodPredictor: MoodPredictor? = {
+    let noteValidator = NoteValidator()
+    let moodPredictor: MoodPredictor? = {
         do {
-            // TODO: Pass a real MLModel
+            // TODO: Pass an actual MLModel
             let model = try NLModel(mlModel: MLModel())
             return MoodPredictor(model: model)
         } catch {
@@ -27,7 +27,7 @@ final class AppFactory {
 
     private lazy var coreDataNoteStorage = CoreDataNoteStorage(persistentContainer: persistentContainer)
 
-    private lazy var persistentContainer: NSPersistentCloudKitContainer = {
+    private let persistentContainer: NSPersistentCloudKitContainer = {
         let container = NSPersistentCloudKitContainer(name: "memo")
         container.loadPersistentStores { _, error in
             if let error = error {

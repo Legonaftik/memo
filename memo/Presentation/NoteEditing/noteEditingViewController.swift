@@ -150,24 +150,33 @@ final class NoteEditingViewController: UIViewController {
     private func presentPhotoSelectionActionSheet() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        let galeryAction = UIAlertAction(title: R.string.localizable.chooseFromGallery(),
-                                         style: .default) { [unowned self] _ in
-                                            self.imagePickerController.sourceType = .photoLibrary
-                                            self.present(self.imagePickerController, animated: true)
-                                            self.imagePickerController.delegate = self
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let photoLibrary = UIAlertAction(
+                title: R.string.localizable.chooseFromPhotoLibrary(),
+                style: .default,
+                handler: { [unowned self] _ in
+                    self.imagePickerController.sourceType = .photoLibrary
+                    self.present(self.imagePickerController, animated: true)
+                    self.imagePickerController.delegate = self
+                }
+            )
+            alertController.addAction(photoLibrary)
         }
 
-        let cameraAction = UIAlertAction(title: R.string.localizable.takeAPhoto(),
-                                         style: .default) { [unowned self] _ in
-                                            self.imagePickerController.sourceType = .camera
-                                            self.present(self.imagePickerController, animated: true)
-                                            self.imagePickerController.delegate = self
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let cameraAction = UIAlertAction(
+                title: R.string.localizable.takeAPhoto(),
+                style: .default,
+                handler: { [unowned self] _ in
+                    self.imagePickerController.sourceType = .camera
+                    self.present(self.imagePickerController, animated: true)
+                    self.imagePickerController.delegate = self
+                }
+            )
+            alertController.addAction(cameraAction)
         }
 
         let cancelAction = UIAlertAction(title: R.string.localizable.cancel(), style: .cancel)
-
-        alertController.addAction(galeryAction)
-        alertController.addAction(cameraAction)
         alertController.addAction(cancelAction)
 
         present(alertController, animated: true)

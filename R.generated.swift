@@ -363,10 +363,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: ru, Base
       static let cancel = Rswift.StringResource(key: "Cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "Base"], comment: nil)
-      /// Base translation: Choose from gallery
+      /// Base translation: Choose from Photo Library
       ///
       /// Locales: ru, Base
-      static let chooseFromGallery = Rswift.StringResource(key: "Choose from gallery", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "Base"], comment: nil)
+      static let chooseFromPhotoLibrary = Rswift.StringResource(key: "Choose from Photo Library", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru", "Base"], comment: nil)
       /// Base translation: How are you?
       ///
       /// Locales: ru, Base
@@ -456,19 +456,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Cancel", bundle: bundle, value: "Cancel", comment: "")
       }
 
-      /// Base translation: Choose from gallery
+      /// Base translation: Choose from Photo Library
       ///
       /// Locales: ru, Base
-      static func chooseFromGallery(preferredLanguages: [String]? = nil) -> String {
+      static func chooseFromPhotoLibrary(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Choose from gallery", bundle: hostingBundle, value: "Choose from gallery", comment: "")
+          return NSLocalizedString("Choose from Photo Library", bundle: hostingBundle, value: "Choose from Photo Library", comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "Choose from gallery"
+          return "Choose from Photo Library"
         }
 
-        return NSLocalizedString("Choose from gallery", bundle: bundle, value: "Choose from gallery", comment: "")
+        return NSLocalizedString("Choose from Photo Library", bundle: bundle, value: "Choose from Photo Library", comment: "")
       }
 
       /// Base translation: How are you?
