@@ -66,6 +66,8 @@ final class NoteDetailsViewController: UIViewController {
 
         if let jpegData = note.image?.jpegData {
             photoImageView.image = UIImage(data: jpegData)
+        } else {
+            photoImageView.image = R.image.photoPlaceholder()
         }
     }
 }

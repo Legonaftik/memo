@@ -87,7 +87,7 @@ final class NoteEditingViewController: UIViewController {
         }
 
         let image: MemoImage?
-        if photoImageView.image == nil || photoImageView.image!.isEqual(R.image.photoPlaceholder()) {
+        if photoImageView.image == nil || photoImageView.image?.pngData() == R.image.photoPlaceholder()?.pngData() {
             image = nil
         } else if let jpegData = photoImageView.image?.jpegData(compressionQuality: 1) {
             image = MemoImage(jpegData: jpegData)
@@ -198,7 +198,7 @@ final class NoteEditingViewController: UIViewController {
         }
 
         let image: MemoImage?
-        if photoImageView.image == nil || photoImageView.image!.isEqual(R.image.photoPlaceholder()) {
+        if photoImageView.image == nil || photoImageView.image?.pngData() == R.image.photoPlaceholder()?.pngData() {
             image = nil
         } else if let jpegData = photoImageView.image?.jpegData(compressionQuality: 1) {
             image = MemoImage(jpegData: jpegData)
