@@ -287,6 +287,46 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(watchOS)
+    /// `UIColor(named: "mood0", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func mood0(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.mood0.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "mood1", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func mood1(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.mood1.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "mood2", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func mood2(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.mood2.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "mood3", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func mood3(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.mood3.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "mood4", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func mood4(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.mood4.name)
+    }
+    #endif
+
     fileprivate init() {}
   }
 

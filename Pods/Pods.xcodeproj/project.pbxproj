@@ -871,31 +871,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		000CD4AD644F3542494C23487CDB8CAB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A1D6AF915BBFD423349501AD4BEA8A5E /* R.swift.Library.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/R.swift.Library/R.swift.Library-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MODULEMAP_FILE = Headers/Public/Rswift/R.swift.Library.modulemap;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = Rswift;
-				PRODUCT_NAME = R.swift.Library;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.1;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		130DACABF4829AE141F5E4192A728F2B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CB2EBA224AFBD6DD8ABCDE014C2EE6EC /* FSCalendar.debug.xcconfig */;
@@ -959,7 +934,7 @@
 			};
 			name = Debug;
 		};
-		2E9DFF8202AB9E4620F767350C3D1F46 /* Debug */ = {
+		2ED7631CD2EFA241FF5AFE2C6A2E162A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8ED85C1913236E7C56303EE557CD7EF9 /* R.swift.Library.debug.xcconfig */;
 			buildSettings = {
@@ -967,7 +942,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/R.swift.Library/R.swift.Library-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MODULEMAP_FILE = Headers/Public/Rswift/R.swift.Library.modulemap;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -1094,13 +1069,13 @@
 			};
 			name = Debug;
 		};
-		694EB0160B943B065829D1BB12982C1F /* Release */ = {
+		78348A99DBE5E833006A6ABF8D54B8A8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0CA8A4ACD3209E391475CD582885C334 /* R.swift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1173,22 +1148,6 @@
 			};
 			name = Release;
 		};
-		8E6096E4176B1D45E4D02FB53F5A6350 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A1AA14A10C84D5AF677EC93B43829EFA /* R.swift.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 		99F68AB83D451060298763E743CD8CEF /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A0309160752ACA96E2BD20BDB6573445 /* Pods-memo.release.xcconfig */;
@@ -1236,6 +1195,47 @@
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
+		};
+		A42CA140323E83C13E408FEAA3F39E6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1D6AF915BBFD423349501AD4BEA8A5E /* R.swift.Library.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/R.swift.Library/R.swift.Library-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MODULEMAP_FILE = Headers/Public/Rswift/R.swift.Library.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = Rswift;
+				PRODUCT_NAME = R.swift.Library;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CD17B93CF7ADE75483B704E6E4A5692A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1AA14A10C84D5AF677EC93B43829EFA /* R.swift.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
 		};
 		D895E97256224A1760E76E8BAAC1DB5A /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1297,8 +1297,8 @@
 		6E19C8E8F0C9B49DEE9AFBA54E0A4733 /* Build configuration list for PBXAggregateTarget "R.swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8E6096E4176B1D45E4D02FB53F5A6350 /* Debug */,
-				694EB0160B943B065829D1BB12982C1F /* Release */,
+				CD17B93CF7ADE75483B704E6E4A5692A /* Debug */,
+				78348A99DBE5E833006A6ABF8D54B8A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1315,8 +1315,8 @@
 		9AB26252D89A3F33FBAB50ABC93F9EAD /* Build configuration list for PBXNativeTarget "R.swift.Library" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2E9DFF8202AB9E4620F767350C3D1F46 /* Debug */,
-				000CD4AD644F3542494C23487CDB8CAB /* Release */,
+				2ED7631CD2EFA241FF5AFE2C6A2E162A /* Debug */,
+				A42CA140323E83C13E408FEAA3F39E6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
