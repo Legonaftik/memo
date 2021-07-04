@@ -72,6 +72,11 @@ final class MainViewController: UIViewController {
         } else if let noteDetailsSegue = R.segue.mainViewController.noteDetails(segue: segue) {
             noteDetailsSegue.destination.noteStorage = noteStorage
             noteDetailsSegue.destination.noteID = (sender as! UUID)
+        } else if let settingsSegue = R.segue.mainViewController.settings(segue: segue) {
+            let settingsVC = settingsSegue.destination.topViewController as! SettingsViewController
+            settingsVC.onNotesDeletion = { [unowned self] in
+                contentViewController?.updateContent()
+            }
         }
     }
 }

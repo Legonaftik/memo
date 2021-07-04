@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aSb-Y1-CRt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aSb-Y1-CRt">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -41,7 +41,7 @@
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="organize" id="fsR-Mr-sAT">
                             <connections>
-                                <segue destination="OcE-GX-8ms" kind="presentation" id="kiI-cI-jyy"/>
+                                <segue destination="OcE-GX-8ms" kind="presentation" identifier="settings" id="kiI-cI-jyy"/>
                             </connections>
                         </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="rQf-aZ-QjG">
@@ -164,35 +164,35 @@
             <objects>
                 <viewController id="Djn-tI-VSC" customClass="NoteDetailsViewController" customModule="memo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CKL-bz-enS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="Qwi-ci-SdY">
-                                <rect key="frame" x="16.000000000000007" y="16.000000000000007" width="112.66666666666669" height="112.66666666666669"/>
+                                <rect key="frame" x="16.000000000000007" y="104" width="112.66666666666669" height="112.66666666666669"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Qwi-ci-SdY" secondAttribute="height" multiplier="1:1" id="nn4-SR-geW"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lla-Jq-NzO">
-                                <rect key="frame" x="16" y="144.66666666666666" width="343" height="34"/>
+                                <rect key="frame" x="16" y="232.66666666666666" width="343" height="33.999999999999972"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textField>
                             <textView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" keyboardDismissMode="onDrag" editable="NO" text="How are you?" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ltQ-GY-LBJ">
-                                <rect key="frame" x="16" y="194.66666666666666" width="343" height="423.33333333333337"/>
+                                <rect key="frame" x="16" y="282.66666666666674" width="343" height="389.33333333333326"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                             </textView>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CoH-Eb-wVe" customClass="MoodControl" customModule="memo" customModuleProvider="target">
-                                <rect key="frame" x="30" y="653" width="315" height="55"/>
+                                <rect key="frame" x="30" y="707" width="315" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="f6U-5Z-pPt"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24 September 9:41" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="742-LE-ffQ">
-                                <rect key="frame" x="144.66666666666663" y="63.333333333333343" width="214.33333333333337" height="18"/>
+                                <rect key="frame" x="144.66666666666663" y="153" width="214.33333333333337" height="14.333333333333343"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -257,7 +257,7 @@
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noteTitle" rowHeight="150" id="AMK-G8-jEf" customClass="NoteTableViewCell" customModule="memo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="24.333333969116211" width="375" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AMK-G8-jEf" id="GoK-5A-i7z">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
@@ -267,14 +267,14 @@
                                             <rect key="frame" x="18" y="19" width="319" height="112"/>
                                             <subviews>
                                                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="753" text="18 September  20:46" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6L-Sj-MVE">
-                                                    <rect key="frame" x="14" y="16" width="291" height="18"/>
+                                                    <rect key="frame" x="14" y="16" width="291" height="14.333333333333336"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDt-Sy-HEN">
-                                                    <rect key="frame" x="14" y="50" width="291" height="46"/>
+                                                    <rect key="frame" x="14" y="46.333333333333329" width="291" height="49.666666666666671"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <nil key="textColor"/>
@@ -307,7 +307,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noteImage" rowHeight="430" id="AGp-n6-Lfs" customClass="NoteTableViewCell" customModule="memo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="178" width="375" height="430"/>
+                                <rect key="frame" x="0.0" y="174.33333396911621" width="375" height="430"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AGp-n6-Lfs" id="zwx-lU-N8R">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="430"/>
@@ -358,7 +358,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noteContent" rowHeight="200" id="TXn-6J-cJU" userLabel="noteContent" customClass="NoteTableViewCell" customModule="memo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="608" width="375" height="200"/>
+                                <rect key="frame" x="0.0" y="604.33333396911621" width="375" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TXn-6J-cJU" id="m5z-w6-XXF">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
@@ -368,14 +368,14 @@
                                             <rect key="frame" x="18" y="19" width="319" height="162"/>
                                             <subviews>
                                                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="753" text="18 September  20:46" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgw-lh-rDi">
-                                                    <rect key="frame" x="14" y="16" width="291" height="18"/>
+                                                    <rect key="frame" x="14" y="16" width="291" height="14.333333333333336"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boW-6x-F67">
-                                                    <rect key="frame" x="14" y="50" width="291" height="96"/>
+                                                    <rect key="frame" x="14" y="46.333333333333321" width="291" height="99.666666666666686"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                     <string key="text">Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text </string>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -409,7 +409,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noteTitleImage" rowHeight="450" id="iOE-jx-LtP" userLabel="noteTitleImage" customClass="NoteTableViewCell" customModule="memo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="808" width="375" height="450"/>
+                                <rect key="frame" x="0.0" y="804.33333396911621" width="375" height="450"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iOE-jx-LtP" id="PVs-2i-AF0">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="450"/>
@@ -419,14 +419,14 @@
                                             <rect key="frame" x="18" y="19" width="319" height="412"/>
                                             <subviews>
                                                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="753" text="18 September  20:46" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssA-c8-S0c">
-                                                    <rect key="frame" x="14" y="16" width="291" height="18"/>
+                                                    <rect key="frame" x="14" y="16" width="291" height="14.333333333333336"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFN-ch-Xvg">
-                                                    <rect key="frame" x="14" y="50" width="291" height="35"/>
+                                                    <rect key="frame" x="14" y="46.333333333333329" width="291" height="38.666666666666671"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <nil key="textColor"/>
@@ -469,7 +469,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noteTitleContent" rowHeight="225" id="1dr-h5-pZd" userLabel="noteTitleContent" customClass="NoteTableViewCell" customModule="memo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="1258" width="375" height="225"/>
+                                <rect key="frame" x="0.0" y="1254.3333339691162" width="375" height="225"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1dr-h5-pZd" id="4VT-T5-66R">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="225"/>
@@ -479,21 +479,21 @@
                                             <rect key="frame" x="18" y="19" width="319" height="187"/>
                                             <subviews>
                                                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="753" text="18 September  20:46" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPM-R7-Gz4">
-                                                    <rect key="frame" x="14" y="16" width="291" height="18"/>
+                                                    <rect key="frame" x="14" y="16" width="291" height="14.333333333333336"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGb-AX-6lz">
-                                                    <rect key="frame" x="14" y="50" width="291" height="26.666666666666671"/>
+                                                    <rect key="frame" x="14" y="46.333333333333329" width="291" height="23"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaY-Nf-20B">
-                                                    <rect key="frame" x="14" y="88.666666666666686" width="291" height="82.333333333333314"/>
+                                                    <rect key="frame" x="14" y="81.333333333333314" width="291" height="89.666666666666686"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                     <string key="text">Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text </string>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -531,7 +531,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noteImageContent" rowHeight="500" id="z3U-hH-BYW" userLabel="noteImageContent" customClass="NoteTableViewCell" customModule="memo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="1483" width="375" height="500"/>
+                                <rect key="frame" x="0.0" y="1479.3333339691162" width="375" height="500"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="z3U-hH-BYW" id="RPR-gb-4eN">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
@@ -541,20 +541,20 @@
                                             <rect key="frame" x="18" y="19" width="319" height="462"/>
                                             <subviews>
                                                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="753" text="18 September  20:46" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="onE-eC-tyA">
-                                                    <rect key="frame" x="14" y="16" width="291" height="18"/>
+                                                    <rect key="frame" x="14" y="16" width="291" height="14.333333333333336"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smiling" translatesAutoresizingMaskIntoConstraints="NO" id="iOB-Ad-ElA">
-                                                    <rect key="frame" x="0.0" y="50" width="319" height="319"/>
+                                                    <rect key="frame" x="0.0" y="46.333333333333314" width="319" height="319"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="iOB-Ad-ElA" secondAttribute="height" multiplier="1:1" id="SR7-JB-xOS"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LW4-uK-vEW">
-                                                    <rect key="frame" x="0.0" y="377" width="319" height="69"/>
+                                                    <rect key="frame" x="0.0" y="373.33333333333331" width="319" height="72.666666666666686"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                     <string key="text">Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text </string>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -592,7 +592,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noteTitleImageContent" rowHeight="500" id="i31-iF-eZC" customClass="NoteTableViewCell" customModule="memo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="1983" width="375" height="500"/>
+                                <rect key="frame" x="0.0" y="1979.3333339691162" width="375" height="500"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i31-iF-eZC" id="DCh-fp-Mof">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
@@ -602,27 +602,27 @@
                                             <rect key="frame" x="18" y="19" width="319" height="462"/>
                                             <subviews>
                                                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="753" text="18 September  20:46" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ine-6J-RwG">
-                                                    <rect key="frame" x="14" y="16" width="291" height="18"/>
+                                                    <rect key="frame" x="14" y="16" width="291" height="14.333333333333336"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5pM-qn-99B">
-                                                    <rect key="frame" x="14" y="50" width="291" height="26.666666666666671"/>
+                                                    <rect key="frame" x="14" y="46.333333333333329" width="291" height="23"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smiling" translatesAutoresizingMaskIntoConstraints="NO" id="xgs-3p-baP">
-                                                    <rect key="frame" x="0.0" y="84.666666666666686" width="319" height="319"/>
+                                                    <rect key="frame" x="0.0" y="77.333333333333314" width="319" height="319"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="xgs-3p-baP" secondAttribute="height" multiplier="1:1" id="Adg-Dv-7cn"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4xD-6p-Z6F">
-                                                    <rect key="frame" x="14" y="411.66666666666669" width="291" height="34.333333333333314"/>
+                                                    <rect key="frame" x="14" y="404.33333333333331" width="291" height="41.666666666666686"/>
                                                     <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                                     <string key="text">Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text </string>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -705,7 +705,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="q0v-Km-3j2"/>
-        <segue reference="eZz-D9-mel"/>
+        <segue reference="C0U-Yj-nDb"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="photoPlaceholder" width="100" height="100"/>

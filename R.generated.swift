@@ -119,12 +119,14 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
 
-    /// This struct is generated for `MainViewController`, and contains static references to 2 segues.
+    /// This struct is generated for `MainViewController`, and contains static references to 3 segues.
     struct mainViewController {
       /// Segue identifier `newNote`.
       static let newNote: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MainViewController, UIKit.UINavigationController> = Rswift.StoryboardSegueIdentifier(identifier: "newNote")
       /// Segue identifier `noteDetails`.
       static let noteDetails: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MainViewController, NoteDetailsViewController> = Rswift.StoryboardSegueIdentifier(identifier: "noteDetails")
+      /// Segue identifier `settings`.
+      static let settings: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MainViewController, UIKit.UINavigationController> = Rswift.StoryboardSegueIdentifier(identifier: "settings")
 
       #if os(iOS) || os(tvOS)
       /// Optionally returns a typed version of segue `newNote`.
@@ -141,6 +143,15 @@ struct R: Rswift.Validatable {
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
       static func noteDetails(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MainViewController, NoteDetailsViewController>? {
         return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.mainViewController.noteDetails, segue: segue)
+      }
+      #endif
+
+      #if os(iOS) || os(tvOS)
+      /// Optionally returns a typed version of segue `settings`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func settings(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MainViewController, UIKit.UINavigationController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.mainViewController.settings, segue: segue)
       }
       #endif
 

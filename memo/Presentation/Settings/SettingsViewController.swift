@@ -2,6 +2,8 @@ import UIKit
 
 final class SettingsViewController: UITableViewController {
 
+    var onNotesDeletion: () -> Void = {}
+
     // MARK: - Private
 
     private let noteStorage = AppFactory.shared.noteStorage
@@ -15,6 +17,7 @@ final class SettingsViewController: UITableViewController {
         let alertMessage: String
         do {
             try noteStorage.deleteAllNotes()
+            onNotesDeletion()
             alertMessage = R.string.localizable.allTheNotesWereDeleted()
         } catch {
             alertMessage = error.localizedDescription
