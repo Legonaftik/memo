@@ -167,7 +167,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="Qwi-ci-SdY">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="Qwi-ci-SdY">
                                 <rect key="frame" x="16.000000000000007" y="104" width="112.66666666666669" height="112.66666666666669"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -255,6 +255,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="3000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noteTitle" rowHeight="150" id="AMK-G8-jEf" customClass="NoteTableViewCell" customModule="memo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="24.333333969116211" width="375" height="150"/>
@@ -330,7 +331,7 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                            <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstItem="ipx-WF-LAm" firstAttribute="top" secondItem="P8Y-cS-NqA" secondAttribute="top" constant="16" id="62k-5L-lsk"/>
                                                 <constraint firstAttribute="trailing" secondItem="nVX-7E-PaV" secondAttribute="trailing" id="9d7-a7-Kio"/>
@@ -682,7 +683,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Gc-ek-BNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1" y="2653"/>
+            <point key="canvasLocation" x="1" y="2817"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jYY-7q-gcs">
@@ -704,7 +705,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="q0v-Km-3j2"/>
+        <segue reference="x1v-mA-ZvL"/>
         <segue reference="C0U-Yj-nDb"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -712,9 +713,6 @@
         <image name="smiling" width="85.333335876464844" height="85.333335876464844"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
