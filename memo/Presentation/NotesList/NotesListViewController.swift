@@ -46,15 +46,6 @@ final class NotesListViewController: UITableViewController {
         super.viewWillAppear(animated)
 
         updateNotesList()
-        // Avoid the state when both navigation bar and search controller are visible
-        navigationController?.isNavigationBarHidden = searchController.isActive
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        // Otherwise navigation controller will be hidden for the next VC
-        navigationController?.isNavigationBarHidden = false
     }
 
     override func viewWillLayoutSubviews() {
@@ -63,11 +54,13 @@ final class NotesListViewController: UITableViewController {
         notifyDelegateAboutNewContentHeightAndSaveIt()
     }
 
-    // MARK: - Helpers
+    // MARK: -
 
-    private func updateNotesList() {
+    func updateNotesList() {
         fetchNotes(for: "")
     }
+
+    // MARK: - Helpers
 
     private func fetchNotes(for searchQuery: String) {
         do {

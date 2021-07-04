@@ -1,4 +1,3 @@
-import UIKit
 import FSCalendar
 
 final class CalendarViewController: UIViewController {
@@ -24,11 +23,7 @@ final class CalendarViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        do {
-            self.dailyNotesInfo = try noteStorage.dailyNotesInfo()
-        } catch {
-            displayAlert(message: error.localizedDescription)
-        }
+        updateNotesInfo()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -43,6 +38,14 @@ final class CalendarViewController: UIViewController {
         } else if let noteDetailsSegue = R.segue.calendarViewController.noteDetails(segue: segue) {
             noteDetailsSegue.destination.noteStorage = noteStorage
             noteDetailsSegue.destination.noteID = (sender as! UUID)
+        }
+    }
+
+    func updateNotesInfo() {
+        do {
+            dailyNotesInfo = try noteStorage.dailyNotesInfo()
+        } catch {
+            displayAlert(message: error.localizedDescription)
         }
     }
 }

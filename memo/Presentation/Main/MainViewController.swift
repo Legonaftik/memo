@@ -60,6 +60,7 @@ final class MainViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let newNoteSegue = R.segue.mainViewController.newNote(segue: segue) {
             let noteEditingVC = newNoteSegue.destination.topViewController as! NoteEditingViewController
+            noteEditingVC.presentationController?.delegate = self
             noteEditingVC.noteStorage = noteStorage
             noteEditingVC.noteValidator = AppFactory.shared.noteValidator
         } else if let noteDetailsSegue = R.segue.mainViewController.noteDetails(segue: segue) {
@@ -76,5 +77,13 @@ extension MainViewController: NotesListViewControllerDelegate {
         didSelectNoteWith localID: UUID
     ) {
         performSegue(withIdentifier: R.segue.mainViewController.noteDetails, sender: localID)
+    }
+}
+
+extension MainViewController: UIAdaptivePresentationControllerDelegate {
+
+    func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
+        notesListViewController.updateNotesList()
+        calendarViewController.updateNotesInfo()
     }
 }
