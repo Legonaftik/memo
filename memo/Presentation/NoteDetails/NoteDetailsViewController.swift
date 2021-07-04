@@ -42,6 +42,9 @@ final class NoteDetailsViewController: UIViewController {
             noteEditingVC.noteStorage = noteStorage
             noteEditingVC.noteValidator = AppFactory.shared.noteValidator
             noteEditingVC.noteLocalID = noteID
+            noteEditingVC.onNoteUpdate = { [unowned self] in
+                getNote(with: noteID)
+            }
         }
     }
 

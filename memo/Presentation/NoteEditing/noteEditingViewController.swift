@@ -87,11 +87,12 @@ final class NoteEditingViewController: UIViewController {
         }
 
         let image: MemoImage?
-        if self.photoImageView.image!.isEqual(R.image.photoPlaceholder()) {
+        if photoImageView.image == nil || photoImageView.image!.isEqual(R.image.photoPlaceholder()) {
             image = nil
-        } else {
-            let jpegData = photoImageView.image!.jpegData(compressionQuality: 1)!
+        } else if let jpegData = photoImageView.image?.jpegData(compressionQuality: 1) {
             image = MemoImage(jpegData: jpegData)
+        } else {
+            image = nil
         }
 
         let updatedNote = Note(
@@ -148,6 +149,8 @@ final class NoteEditingViewController: UIViewController {
         moodControl.selectedSegmentIndex = Int(note.mood)
         if let jpegData = note.image?.jpegData {
             photoImageView.image = UIImage(data: jpegData)
+        } else {
+            photoImageView.image = R.image.photoPlaceholder()
         }
     }
 
@@ -159,9 +162,9 @@ final class NoteEditingViewController: UIViewController {
                 title: R.string.localizable.chooseFromPhotoLibrary(),
                 style: .default,
                 handler: { [unowned self] _ in
-                    self.imagePickerController.sourceType = .photoLibrary
-                    self.present(self.imagePickerController, animated: true)
-                    self.imagePickerController.delegate = self
+                    imagePickerController.sourceType = .photoLibrary
+                    present(imagePickerController, animated: true)
+                    imagePickerController.delegate = self
                 }
             )
             alertController.addAction(photoLibrary)
@@ -172,9 +175,9 @@ final class NoteEditingViewController: UIViewController {
                 title: R.string.localizable.takeAPhoto(),
                 style: .default,
                 handler: { [unowned self] _ in
-                    self.imagePickerController.sourceType = .camera
-                    self.present(self.imagePickerController, animated: true)
-                    self.imagePickerController.delegate = self
+                    imagePickerController.sourceType = .camera
+                    present(imagePickerController, animated: true)
+                    imagePickerController.delegate = self
                 }
             )
             alertController.addAction(cameraAction)
@@ -195,11 +198,12 @@ final class NoteEditingViewController: UIViewController {
         }
 
         let image: MemoImage?
-        if self.photoImageView.image!.isEqual(R.image.photoPlaceholder()) {
+        if photoImageView.image == nil || photoImageView.image!.isEqual(R.image.photoPlaceholder()) {
             image = nil
-        } else {
-            let jpegData = photoImageView.image!.jpegData(compressionQuality: 1)!
+        } else if let jpegData = photoImageView.image?.jpegData(compressionQuality: 1) {
             image = MemoImage(jpegData: jpegData)
+        } else {
+            image = nil
         }
 
         return Note(

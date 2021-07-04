@@ -67,7 +67,7 @@ final class MainViewController: UIViewController {
             noteEditingVC.noteStorage = noteStorage
             noteEditingVC.noteValidator = AppFactory.shared.noteValidator
             noteEditingVC.onNoteUpdate = { [unowned self] in
-                self.contentViewController?.updateContent()
+                contentViewController?.updateContent()
             }
         } else if let noteDetailsSegue = R.segue.mainViewController.noteDetails(segue: segue) {
             noteDetailsSegue.destination.noteStorage = noteStorage
