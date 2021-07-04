@@ -98,7 +98,7 @@ final class NoteEditingViewController: UIViewController {
         let updatedNote = Note(
             localID: note.localID,
             content: contentTextView.text,
-            creationDate: dateFormatter.date(from: dateLabel.text!) ?? Date(),
+            creationDate: generateCreationDate(makeNowIfRecent: false),
             image: image,
             mood: UInt8(moodControl.selectedSegmentIndex),
             title: titleLabel.text
@@ -209,7 +209,7 @@ final class NoteEditingViewController: UIViewController {
         return Note(
             localID: UUID(),
             content: content,
-            creationDate: dateFormatter.date(from: dateLabel.text!) ?? Date(),
+            creationDate: generateCreationDate(makeNowIfRecent: true),
             image: image,
             mood: UInt8(moodControl.selectedSegmentIndex),
             title: titleLabel.text
@@ -224,6 +224,19 @@ final class NoteEditingViewController: UIViewController {
         if let moodPredictor = moodPredictor {
             let predictedMood = moodPredictor.mood(text: contentTextView.text)
             moodControl.selectedSegmentIndex = Int(predictedMood)
+        }
+    }
+
+    private func generateCreationDate(makeNowIfRecent: Bool) -> Date {
+        let maxTimeToCreateNote: TimeInterval = 120
+        if let text = dateLabel.text, let date = dateFormatter.date(from: text) {
+            if makeNowIfRecent && date.distance(to: Date()) < maxTimeToCreateNote {
+                return Date()
+            } else {
+                return date
+            }
+        } else {
+            return Date()
         }
     }
 }
