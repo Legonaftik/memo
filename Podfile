@@ -5,6 +5,7 @@ use_modular_headers!
 
 target 'memo' do
   pod 'FSCalendar'
+  pod 'SwiftLint'
   pod 'R.swift'
   pod 'Reveal-SDK', :configurations => ['Debug']
 

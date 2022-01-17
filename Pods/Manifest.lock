@@ -4,11 +4,13 @@ PODS:
     - R.swift.Library (~> 5.3.0)
   - R.swift.Library (5.3.0)
   - Reveal-SDK (29)
+  - SwiftLint (0.45.1)
 
 DEPENDENCIES:
   - FSCalendar
   - R.swift
   - Reveal-SDK
+  - SwiftLint
 
 SPEC REPOS:
   trunk:
@@ -16,13 +18,15 @@ SPEC REPOS:
     - R.swift
     - R.swift.Library
     - Reveal-SDK
+    - SwiftLint
 
 SPEC CHECKSUMS:
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   R.swift: c533450b0f7dc494e0993f5f1a1db925d84c3006
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
   Reveal-SDK: 0ecda2395cf587e2f574c19a723b3dd27c90572e
+  SwiftLint: 06ac37e4d38c7068e0935bb30cda95f093bec761
 
-PODFILE CHECKSUM: f2c51b8197b3424cb0f255e103a2b4ef79af5997
+PODFILE CHECKSUM: cd68d67769c7036d68dd1a617c7c99a68102e948
 
 COCOAPODS: 1.10.1
